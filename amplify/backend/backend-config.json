@@ -1,13 +1,19 @@
 {
 	"auth": {
-		"2019adminfrontc5c1bf7c": {
+		"mbr2019adminfronte1caedbd": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}
 	},
 	"storage": {
-		"2019AdminFront": {
+		"s38f8830b0": {
 			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
 			"providerPlugin": "awscloudformation"
 		}
 	}

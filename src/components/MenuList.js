@@ -8,20 +8,20 @@ import {
     ShoppingCart as ShoppingCartIcon,
     Accessibility as AccessibilityIcon
 } from '@material-ui/icons'
-
+import './style.css'
 const CategoryList = ({ categories, setCategoryId, handleDrawerClose }) => {
   return (
     <React.Fragment>
       <List>
-        <ListItem button>
-          <ListItemIcon><BrushIcon /></ListItemIcon>
+        <ListItem button className="icon">
+          <ListItemIcon ><BrushIcon /></ListItemIcon>
           <ListItemText>
             <Box>
               Artists
             </Box>
           </ListItemText>
         </ListItem>
-        <ListItem button>
+        <ListItem button className="icon">
          <ListItemIcon><PhotoIcon /></ListItemIcon>
           <ListItemText>
             <Box>
@@ -32,7 +32,7 @@ const CategoryList = ({ categories, setCategoryId, handleDrawerClose }) => {
       </List>
       <Divider />
       <List>
-        <ListItem button>
+        <ListItem button className="icon">
          <ListItemIcon><ShoppingCartIcon /></ListItemIcon>
           <ListItemText>
             <Box>
@@ -41,7 +41,7 @@ const CategoryList = ({ categories, setCategoryId, handleDrawerClose }) => {
           </ListItemText>
         </ListItem>
         
-        <ListItem button>
+        <ListItem button className="icon">
           <ListItemIcon><FaceIcon /></ListItemIcon>
           <ListItemText>
             <Box>
@@ -55,7 +55,7 @@ const CategoryList = ({ categories, setCategoryId, handleDrawerClose }) => {
       </List>
       <Divider />
       <List>
-        <ListItem button>
+        <ListItem button className="icon">
           <ListItemIcon><AccessibilityIcon /></ListItemIcon>
           <ListItemText>
             <Box>

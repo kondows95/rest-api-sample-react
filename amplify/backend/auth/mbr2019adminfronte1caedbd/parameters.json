@@ -1,12 +1,12 @@
 {
-    "identityPoolName": "2019adminfrontc5c1bf7c_identitypool_c5c1bf7c",
+    "identityPoolName": "mbr2019adminfronte1caedbd_identitypool_e1caedbd",
     "allowUnauthenticatedIdentities": false,
-    "lambdaLogPolicy": "2019ad_c5c1bf7c_lambda_log_policy",
-    "openIdLambdaRoleName": "2019ad_c5c1bf7c_openid_lambda_role",
-    "openIdRolePolicy": "2019ad_c5c1bf7c_openid_pass_role_policy",
-    "openIdLambdaIAMPolicy": "2019ad_c5c1bf7c_openid_lambda_iam_policy",
-    "openIdLogPolicy": "2019ad_c5c1bf7c_openid_lambda_log_policy",
-    "userPoolName": "2019adminfrontc5c1bf7c_userpool_c5c1bf7c",
+    "lambdaLogPolicy": "mbr201_e1caedbd_lambda_log_policy",
+    "openIdLambdaRoleName": "mbr201_e1caedbd_openid_lambda_role",
+    "openIdRolePolicy": "mbr201_e1caedbd_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "mbr201_e1caedbd_openid_lambda_iam_policy",
+    "openIdLogPolicy": "mbr201_e1caedbd_openid_lambda_log_policy",
+    "userPoolName": "mbr2019adminfronte1caedbd_userpool_e1caedbd",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -14,9 +14,9 @@
     "mfaTypes": [
         "SMS Text Message"
     ],
-    "roleName": "2019adc5c1bf7c_sns-role",
-    "roleExternalId": "2019adc5c1bf7c_role_external_id",
-    "policyName": "2019adc5c1bf7c-sns-policy",
+    "roleName": "mbr201e1caedbd_sns-role",
+    "roleExternalId": "mbr201e1caedbd_role_external_id",
+    "policyName": "mbr201e1caedbd-sns-policy",
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
@@ -27,7 +27,7 @@
     "requiredAttributes": [
         "email"
     ],
-    "userpoolClientName": "2019adc5c1bf7c_app_client",
+    "userpoolClientName": "mbr201e1caedbd_app_client",
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
@@ -36,15 +36,15 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "mfaLambdaRole": "2019adc5c1bf7c_totp_lambda_role",
-    "mfaLambdaLogPolicy": "2019adc5c1bf7c_totp_lambda_log_policy",
-    "mfaPassRolePolicy": "2019adc5c1bf7c_totp_pass_role_policy",
-    "mfaLambdaIAMPolicy": "2019adc5c1bf7c_totp_lambda_iam_policy",
-    "userpoolClientLambdaRole": "2019adc5c1bf7c_userpoolclient_lambda_role",
-    "userpoolClientLogPolicy": "2019adc5c1bf7c_userpoolclient_lambda_log_policy",
-    "userpoolClientLambdaPolicy": "2019adc5c1bf7c_userpoolclient_lambda_iam_policy",
+    "mfaLambdaRole": "mbr201e1caedbd_totp_lambda_role",
+    "mfaLambdaLogPolicy": "mbr201e1caedbd_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "mbr201e1caedbd_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "mbr201e1caedbd_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "mbr201e1caedbd_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "mbr201e1caedbd_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "mbr201e1caedbd_userpoolclient_lambda_iam_policy",
     "userpoolClientSetAttributes": false,
-    "resourceName": "2019adminfrontc5c1bf7c",
+    "resourceName": "mbr2019adminfronte1caedbd",
     "authSelections": "identityPoolAndUserPool",
     "authRoleName": {
         "Ref": "AuthRoleName"

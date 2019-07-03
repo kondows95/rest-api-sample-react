@@ -7,10 +7,16 @@ import theme from '../theme'
 import ToolbarSpacer from './ToolbarSpacer'
 import Header from './Header'
 import CategoryList from '../containers/CategoryList'
+import CustomerList from '../containers/CustomerList'
+import ItemList from '../containers/ItemList'
 
-const App = ({fetchAllCategories}) => {
+const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchAllItems}) => {
   React.useEffect(() => {
+    //
+    //fetchAllCustomers()
     fetchAllCategories()
+    fetchAllItems()
+    
   })
 
   return (
@@ -24,6 +30,12 @@ const App = ({fetchAllCategories}) => {
             <Route exact path="/" render={() => {
               return <CategoryList />
             }} />
+            <Route exact path="/customer" render={() => {
+              return <CustomerList />
+            }} />
+            <Route exact path="/items" render={() => {
+              return <ItemList />
+            }} />
           </Box>
         </Box>
       </Router>
@@ -32,7 +44,9 @@ const App = ({fetchAllCategories}) => {
 }
 
 App.propTypes = {
-  fetchAllCategories: PropTypes.func.isRequired,
+  fetchAllCategories: PropTypes.func,
+  fetchAllCustomers: PropTypes.func,
+  fetchAllItems: PropTypes.func
 }
 
 export default App

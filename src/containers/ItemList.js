@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import CategoryList from '../components/CategoryList'
+import ItemList from '../components/ItemList'
 
 export default connect(
   (state) => ({
@@ -7,4 +7,4 @@ export default connect(
     categories: state.categories.rows,
   }),
   null
-)(CategoryList)
+)(ItemList)

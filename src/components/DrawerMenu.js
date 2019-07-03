@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
       width: drawerWidth,
     },
     [theme.breakpoints.down('sm')]: {
-      paddingRight: theme.spacing(3),
+      paddingRight: theme.spacing(1),
     },
   },
 }));
