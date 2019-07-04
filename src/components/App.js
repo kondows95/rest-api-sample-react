@@ -7,13 +7,10 @@ import theme from '../theme'
 import ToolbarSpacer from './ToolbarSpacer'
 import Header from './Header'
 import CategoryList from '../containers/CategoryList'
-import CustomerList from '../containers/CustomerList'
 import ItemList from '../containers/ItemList'
 
 const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchAllItems}) => {
   React.useEffect(() => {
-    //
-    //fetchAllCustomers()
     fetchAllCategories()
     fetchAllItems()
     
@@ -29,9 +26,6 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchAllItems}) => {
             <ToolbarSpacer />
             <Route exact path="/" render={() => {
               return <CategoryList />
-            }} />
-            <Route exact path="/customer" render={() => {
-              return <CustomerList />
             }} />
             <Route exact path="/items" render={() => {
               return <ItemList />

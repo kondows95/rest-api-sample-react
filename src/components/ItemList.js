@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
           
 */
 
-const ItemList = ({ items, categories }) => {
+const ItemList = ({ items, categories, updateItem }) => {
   const classes = useStyles()
   
   const [dialogOpen, setDialogOpen] = React.useState(false)
@@ -60,10 +60,6 @@ const ItemList = ({ items, categories }) => {
     selectItem(newItem)
   }
   
-  // const handleChangeCategoryId = event => {
-  //   alert(event.target.value)
-  // }
-
   const handleEdit = item => event => {
     selectItem(item)
     setDialogOpen(true)
@@ -71,6 +67,10 @@ const ItemList = ({ items, categories }) => {
 
   const handleCloseDialog = () => {
     setDialogOpen(false)
+  }
+  
+  const handleSubmit = () => {
+    updateItem(selectedItem.id, selectedItem)
   }
   
   const dialog = (selectedItem === null) ? null : (
@@ -98,11 +98,11 @@ const ItemList = ({ items, categories }) => {
         <Select
           value={selectedItem.category_id}
           onChange={handleChangeValue("category_id")}
-          input={<FilledInput name="age" id="filled-age-simple" />}
+          input={<FilledInput name="category_id" id="filled-category_id-simple" />}
         >
           <MenuItem value={1}>DummyCategory1</MenuItem>
           <MenuItem value={2}>DummyCategory2</MenuItem>
-          <MenuItem value={3}>DummyCategory</MenuItem>
+          <MenuItem value={3}>DummyCategory3</MenuItem>
           <MenuItem value={4}>DummyCategory4</MenuItem>
           <MenuItem value={5}>DummyCategory5</MenuItem>
           <MenuItem value={6}>DummyCategory6</MenuItem>
@@ -113,7 +113,7 @@ const ItemList = ({ items, categories }) => {
         <Button onClick={handleCloseDialog} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleCloseDialog} color="primary">
+        <Button onClick={handleSubmit} color="primary">
           Subscribe
         </Button>
       </DialogActions>
@@ -135,10 +135,10 @@ const ItemList = ({ items, categories }) => {
           
           <CardContent >
             <Box fontWeight={600}>
-             test
+             {item.name}
             </Box>
             <Box>
-              Price: {item.price} Ks
+              {item.price} Ks
             </Box>
           </CardContent>
           

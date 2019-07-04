@@ -1,12 +1,12 @@
 {
 	"auth": {
-		"mbr2019adminfronte1caedbd": {
+		"restapisampled57e098b": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}
 	},
 	"storage": {
-		"s38f8830b0": {
+		"s3293146c2": {
 			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}

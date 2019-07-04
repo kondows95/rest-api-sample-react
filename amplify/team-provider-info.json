@@ -1,18 +1,18 @@
 {
     "dev": {
         "awscloudformation": {
-            "AuthRoleName": "mb-r2019-admin-front-dev-20190627115855-authRole",
-            "UnauthRoleArn": "arn:aws:iam::261556458495:role/mb-r2019-admin-front-dev-20190627115855-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::261556458495:role/mb-r2019-admin-front-dev-20190627115855-authRole",
+            "AuthRoleName": "rest-api-sample-dev-20190703212901-authRole",
+            "UnauthRoleArn": "arn:aws:iam::539741201439:role/rest-api-sample-dev-20190703212901-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::539741201439:role/rest-api-sample-dev-20190703212901-authRole",
             "Region": "ap-northeast-1",
-            "DeploymentBucketName": "mb-r2019-admin-front-dev-20190627115855-deployment",
-            "UnauthRoleName": "mb-r2019-admin-front-dev-20190627115855-unauthRole",
-            "StackName": "mb-r2019-admin-front-dev-20190627115855",
-            "StackId": "arn:aws:cloudformation:ap-northeast-1:261556458495:stack/mb-r2019-admin-front-dev-20190627115855/f04b1f80-98d2-11e9-8ca4-06fcc76a2472"
+            "DeploymentBucketName": "rest-api-sample-dev-20190703212901-deployment",
+            "UnauthRoleName": "rest-api-sample-dev-20190703212901-unauthRole",
+            "StackName": "rest-api-sample-dev-20190703212901",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:539741201439:stack/rest-api-sample-dev-20190703212901/9335c730-9dd9-11e9-af19-06ce06e5203e"
         },
         "categories": {
             "auth": {
-                "mbr2019adminfronte1caedbd": {}
+                "restapisampled57e098b": {}
             }
         }
     }
