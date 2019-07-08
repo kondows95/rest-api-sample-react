@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import ItemList from '../components/ItemList'
-import { updateItem } from '../modules/items'
+import { saveItem, deleteItem } from '../modules/items'
+import { addCartItem } from '../modules/cart'
 
 export default connect(
   (state) => ({
@@ -8,6 +9,8 @@ export default connect(
     categories: state.categories.rows,
   }),
   (dispatch) => ({
-    updateItem: (id, data) => dispatch(updateItem(id, data)),
+    saveItem: (item) =>  dispatch(saveItem(item)),
+    deleteItem: (id) =>  dispatch(deleteItem(id)),
+    addCartItem: (item) => dispatch(addCartItem(item)),
   })
 )(ItemList)

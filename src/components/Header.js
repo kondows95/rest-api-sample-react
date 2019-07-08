@@ -1,5 +1,5 @@
 import React from 'react'
-import TitleBar from './TitleBar'
+import TitleBar from '../containers/TitleBar'
 import DrawerMenu from './DrawerMenu'
 
 const Header = () => {

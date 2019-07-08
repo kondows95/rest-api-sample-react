@@ -8,6 +8,8 @@ import ToolbarSpacer from './ToolbarSpacer'
 import Header from './Header'
 import CategoryList from '../containers/CategoryList'
 import ItemList from '../containers/ItemList'
+import Checkout from '../components/Checkout'
+import Cart from './Cart'
 
 const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchAllItems}) => {
   React.useEffect(() => {
@@ -25,6 +27,12 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchAllItems}) => {
           <Box flexGrow={1} display="flex" flexDirection="column">
             <ToolbarSpacer />
             <Route exact path="/" render={() => {
+              return <Checkout />
+            }} />
+            <Route exact path="/cart" render={() => {
+              return <Cart />
+            }} />
+            <Route exact path="/categories" render={() => {
               return <CategoryList />
             }} />
             <Route exact path="/items" render={() => {

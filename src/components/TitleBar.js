@@ -1,8 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, AppBar, IconButton, Toolbar } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
+import { Box, AppBar, IconButton, Toolbar, Badge } from '@material-ui/core'
+import { Link as RouterLink } from 'react-router-dom'
+import { 
+  Menu as MenuIcon,
+  ShoppingCart as ShoppingCartIcon 
+} from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -20,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TitleBar = ({handleDrawerToggle}) => {
+const TitleBar = ({handleDrawerToggle, totalQuantity}) => {
   const classes = useStyles()
   
   return (
@@ -36,7 +40,22 @@ const TitleBar = ({handleDrawerToggle}) => {
         >
           <MenuIcon />
         </IconButton>
-        <Box fontSize="h6.fontSize">Management Console</Box>
+        <Box flexGrow={1} fontSize="h6.fontSize">Sample</Box>
+        <Box mr={0} ml="auto">
+          <IconButton
+            color="inherit"
+            to="/cart"
+            component={RouterLink}
+           >
+            <Badge 
+              color="secondary" 
+              badgeContent={totalQuantity} 
+              invisible={totalQuantity > 0 ? false: true} 
+            >
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
+        </Box>
       </Toolbar>
     </AppBar>
   )

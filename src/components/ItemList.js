@@ -1,8 +1,11 @@
 import React from 'react'
 //import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, Container, Grid, CardMedia,Card, CardActions, CardContent,Button, Dialog, 
-DialogTitle,DialogContent, TextField, DialogActions, Select, MenuItem, FilledInput } from '@material-ui/core'
+import { Box, Paper, Container, Grid, CardMedia,Card, CardActions, CardContent,Button, Dialog, 
+  DialogTitle,DialogContent, TextField, DialogActions, IconButton, NativeSelect
+} from '@material-ui/core'
+import { AddShoppingCart as AddShoppingCartIcon } from '@material-ui/icons'
+import { validateForm } from '../util'
 import { BASEURL_ITEM_IMAGES } from '../constants'
 
 
@@ -18,103 +21,140 @@ const useStyles = makeStyles(theme => ({
   },
   cardAction: {
     display: 'flex',
-    marginLeft: theme.spacing(1),
-    marginRight:theme.spacing(1),
+    margin: theme.spacing(0, 1),
   },
-  
-  
+  inputField: {
+    margin: theme.spacing(2, 0),
+  },
+  dialogContent: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  button: {
+    marginRight: 0,
+    marginLeft: "auto",
+  },
   paper: {
     display: 'flex',
-    flexDirection: 'column',
-    marginLeft: theme.spacing(1),
-    marginRight:theme.spacing(1),
-    marginTop: theme.spacing(2),
-    padding: theme.spacing(2),
+    margin: theme.spacing(2, 1),
+    padding: theme.spacing(2, 2),
   },
-  itemBox: {
-    marginLeft: theme.spacing(1),
-    marginRight:theme.spacing(1),
-    marginTop: theme.spacing(2),
-    padding: theme.spacing(2),
-  },
-  image: {
-    width: 60,
-    height: 96,
-  }
 }))
-/*
-          
-          
-*/
 
-const ItemList = ({ items, categories, updateItem }) => {
+
+const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem }) => {
   const classes = useStyles()
-  
+
   const [dialogOpen, setDialogOpen] = React.useState(false)
-  const [selectedItem, selectItem] = React.useState(null)
+  const [selectedItem, setSelectedItem] = React.useState(null)
+  const [isDelete, setIsDelete] = React.useState(false)
+  const [errors, setErrors] = React.useState({})
+  
+  const initialItem = {id: null, name: "", price: "", category_id: ""}
 
   const handleChangeValue = fieldName => event => {
     const newItem = {...selectedItem}
     newItem[fieldName] =  event.target.value
-    console.log(newItem)
-    selectItem(newItem)
+    setSelectedItem(newItem)
+  }
+  
+  const handleDelete = item => event => {
+    setSelectedItem(item)
+    setDialogOpen(true)
+    setIsDelete(true)
+    setErrors({})
   }
   
   const handleEdit = item => event => {
-    selectItem(item)
+    setSelectedItem(item)
     setDialogOpen(true)
+    setIsDelete(false)
+    setErrors({})
   }
 
   const handleCloseDialog = () => {
     setDialogOpen(false)
   }
   
+  const validationSetting = {
+    isEmpty: ['name', 'price', 'category_id'],
+    isNumeric: ['price']
+  }
+  
   const handleSubmit = () => {
-    updateItem(selectedItem.id, selectedItem)
+    if (selectedItem) {
+      const errs = validateForm(validationSetting, selectedItem)
+      if (errs) {
+        setErrors(errs)
+      }
+      else {
+        if (isDelete) {
+          deleteItem(selectedItem.id)
+        }
+        else {
+          saveItem(selectedItem)
+        }
+        handleCloseDialog()
+      }
+    }
+  }
+  
+  const handleAddCartItem = item => event => {
+    addCartItem(item)
   }
   
   const dialog = (selectedItem === null) ? null : (
-    <Dialog open={dialogOpen} onClose={handleCloseDialog} aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title">Edit</DialogTitle>
-      <DialogContent>
+    <Dialog 
+      open={dialogOpen} 
+      onClose={handleCloseDialog} 
+      aria-labelledby="form-dialog-title"
+      fullWidth
+      maxWidth="xs"
+    >
+      <DialogTitle id="form-dialog-title">
+        {selectedItem.id ? "Edit (ID:"+selectedItem.id+")" : "Create"}
+      </DialogTitle>
+      <DialogContent className={classes.dialogContent}>
         <TextField
-          autoFocus
-          margin="dense"
+          fullWidth
+          variant="outlined"
+          error={errors.name ? true : false}
           id="name"
           label="Name"
           value={selectedItem.name}
           onChange={handleChangeValue("name")}
-          fullWidth
+          margin="dense"
+          className={classes.inputField}
         />
         <TextField
-          autoFocus
-          margin="dense"
-          id="price"
+          fullWidth
+          variant="outlined"
+          error={errors.price ? true : false}
+          id="name"
           label="Price"
           value={selectedItem.price}
           onChange={handleChangeValue("price")}
-          fullWidth
+          margin="dense"
+          className={classes.inputField}
         />
-        <Select
+        <NativeSelect
           value={selectedItem.category_id}
           onChange={handleChangeValue("category_id")}
-          input={<FilledInput name="category_id" id="filled-category_id-simple" />}
+          className={classes.inputField}
+          error={errors.price ? true : false}
         >
-          <MenuItem value={1}>DummyCategory1</MenuItem>
-          <MenuItem value={2}>DummyCategory2</MenuItem>
-          <MenuItem value={3}>DummyCategory3</MenuItem>
-          <MenuItem value={4}>DummyCategory4</MenuItem>
-          <MenuItem value={5}>DummyCategory5</MenuItem>
-          <MenuItem value={6}>DummyCategory6</MenuItem>
-      </Select>
-        
+          <option value=""></option>
+          {categories.map((category) => {
+            return (<option value={category.id}>{category.name}</option>)
+          })}
+        </NativeSelect>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCloseDialog} color="primary">
           Cancel
         </Button>
         <Button onClick={handleSubmit} color="primary">
-          Subscribe
+          Submit
         </Button>
       </DialogActions>
     </Dialog>
@@ -131,8 +171,6 @@ const ItemList = ({ items, categories, updateItem }) => {
             image={BASEURL_ITEM_IMAGES+item.image}
             title={item.name}
           />
-          
-          
           <CardContent >
             <Box fontWeight={600}>
              {item.name}
@@ -141,32 +179,45 @@ const ItemList = ({ items, categories, updateItem }) => {
               {item.price} Ks
             </Box>
           </CardContent>
-          
           <CardActions className={classes.cardAction}>
-            <Box ml="auto">
+            <Box ml={0} mr="auto">
+              <IconButton onClick={handleAddCartItem(item)}>
+                <AddShoppingCartIcon />
+              </IconButton>
+            </Box>
+            <Box ml="auto" mr={0}>
               <Button color="primary" onClick={handleEdit(item)}>
                 Edit
               </Button>
-            </Box>
-            <Box ml="auto" mr={0}>
-              <Button color="primary">
+              <Button color="primary" onClick={handleDelete(item)}>
                 Delete
               </Button>
             </Box>
           </CardActions>
-
-          
-          
-          
-          
         </Card>
       </Grid>
     )
   }
   
+  const paperControl = (
+    <Paper className={classes.paper}>
+      <Box ml={0} my="auto" fontWeight={600}>
+        Items ({categories.length})
+      </Box>
+      <Button 
+        variant="contained" 
+        color="secondary" 
+        className={classes.button}
+        onClick={handleEdit(initialItem)}
+      >
+        Create
+      </Button>
+    </Paper>
+  )
 
   return (
     <Container maxWidth="lg">
+      {paperControl}
       <Grid container>
         {paperItems}
       </Grid>
