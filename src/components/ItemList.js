@@ -7,6 +7,7 @@ import { Box, Paper, Container, Grid, CardMedia,Card, CardActions, CardContent,B
 import { AddShoppingCart as AddShoppingCartIcon } from '@material-ui/icons'
 import { validateForm } from '../util'
 import { BASEURL_ITEM_IMAGES } from '../constants'
+import InfiniteScroll from 'react-infinite-scroller'
 
 
 const useStyles = makeStyles(theme => ({
@@ -42,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem }) => {
+const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCategoryId, fetchAllItems, noMoreFetch }) => {
   const classes = useStyles()
 
   const [dialogOpen, setDialogOpen] = React.useState(false)
@@ -84,6 +85,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem }) => {
   const handleSubmit = () => {
     if (selectedItem) {
       const errs = validateForm(validationSetting, selectedItem)
+      console.log('###handleSubmit###', errs)
       if (errs) {
         setErrors(errs)
       }
@@ -101,6 +103,10 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem }) => {
   
   const handleAddCartItem = item => event => {
     addCartItem(item)
+  }
+  
+  const handleChangeCategory = event => {
+    setCategoryId(event.target.value)
   }
   
   const dialog = (selectedItem === null) ? null : (
@@ -141,7 +147,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem }) => {
           value={selectedItem.category_id}
           onChange={handleChangeValue("category_id")}
           className={classes.inputField}
-          error={errors.price ? true : false}
+          error={errors.category_id ? true : false}
         >
           <option value=""></option>
           {categories.map((category) => {
@@ -204,6 +210,20 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem }) => {
       <Box ml={0} my="auto" fontWeight={600}>
         Items ({categories.length})
       </Box>
+      
+      
+      <NativeSelect
+          className={classes.inputField}
+          error={errors.category_id ? true : false}
+          onChange={handleChangeCategory}
+        >
+          <option value="ALL"></option>
+          {categories.map((category) => {
+            return (<option value={category.id}>{category.name}</option>)
+          })}
+        </NativeSelect>
+      
+      
       <Button 
         variant="contained" 
         color="secondary" 
@@ -216,13 +236,21 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem }) => {
   )
 
   return (
-    <Container maxWidth="lg">
-      {paperControl}
-      <Grid container>
-        {paperItems}
-      </Grid>
-      {dialog}
-    </Container>
+    <InfiniteScroll
+      pageStart={0}
+      loadMore={fetchAllItems}
+      hasMore={!noMoreFetch}
+      initialLoad={true}
+      loader={<div className="loader" key={0}></div>}
+    >
+      <Container maxWidth="lg">
+        {paperControl}
+        <Grid container>
+          {paperItems}
+        </Grid>
+        {dialog}
+      </Container>
+    </InfiniteScroll>
   )
 }
 

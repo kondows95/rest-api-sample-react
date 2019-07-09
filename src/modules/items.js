@@ -6,6 +6,8 @@ const initialState = {
   alreadyFetched: false,
   rows: [],
   error: "",
+  selectedCateogryId: null,
+  noMoreFetch: false,
 }
 
 //=============================================================================
@@ -21,7 +23,7 @@ export const itemsReducer = (state = initialState, action) => {
     case 'ITEM_FETCH_ROWS_DONE':
       return {
         ...state,
-        rows: action.payload
+        rows: [...state.rows, ...action.payload]
       }
     case 'ITEM_POST_DONE':
       return {
@@ -38,6 +40,16 @@ export const itemsReducer = (state = initialState, action) => {
         ...state,
         rows: deleteRowFromRows(state.rows, action.payload)
       }
+    case 'ITEM_SET_CATEGORY_ID':
+      return {
+        ...state,
+        selectedCateogryId: action.payload
+      }
+    case 'ITEM_NO_MORE_FETCH':
+      return {
+        ...state,
+        noMoreFetch: true
+      }
     default:
       return state
   }
@@ -50,16 +62,23 @@ export const itemsReducer = (state = initialState, action) => {
 
 export const fetchAllItems = () => {
   return async (dispatch, getState) => {
-    if (getState().items.alreadyFetched) {
-      return
+    /*if (getState().items.alreadyFetched) {
+      //return
     }
     
     dispatch({
       type: 'ITEM_SET_ALREADY_FETCHED'
-    })
+    })*/
     
     const url = URL_REST_ITEMS + '?offset=' + getState().items.rows.length
+    console.log('fetchAllItems', url)
     const axRes = await axios.get(url)
+    
+    if (axRes.data.data.length === 0) {
+      dispatch({
+        type: 'ITEM_NO_MORE_FETCH'
+      })
+    }
 
     dispatch({
       type: 'ITEM_FETCH_ROWS_DONE',
@@ -108,3 +127,8 @@ export const saveItem= (item) => {
     }
   }
 }
+
+export const setCategoryId = categoryId => ({
+  type: 'ITEM_SET_CATEGORY_ID',
+  payload: categoryId
+})

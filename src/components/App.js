@@ -14,7 +14,7 @@ import Cart from './Cart'
 const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchAllItems}) => {
   React.useEffect(() => {
     fetchAllCategories()
-    fetchAllItems()
+    //fetchAllItems()
     
   })
 
