@@ -136,8 +136,7 @@ const CartTable = ({ cart, deleteCartItem }) => {
           <Box m={2}>
             <CardMedia
               className={classes.descImageMobile}
-              //image={BASEURL_ITEM_IMAGES+row.image}
-              image={"http://127.0.0.1/dummyImage.jpg"}
+              image={BASEURL_ITEM_IMAGES+row.image}
               title={row.name}
             />
           </Box>

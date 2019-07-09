@@ -11,11 +11,10 @@ import ItemList from '../containers/ItemList'
 import Checkout from '../components/Checkout'
 import Cart from './Cart'
 
-const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchAllItems}) => {
+const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
   React.useEffect(() => {
+    fetchCartData()
     fetchAllCategories()
-    //fetchAllItems()
-    
   })
 
   return (

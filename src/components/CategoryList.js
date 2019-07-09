@@ -138,7 +138,7 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
   const paperItems = []
   for (const category of categories) {
     paperItems.push(
-      <Grid item xs={6} sm={4} lg={3}>
+      <Grid item xs={12} sm={4} lg={3}>
         <Paper className={classes.paper}>
           <Box display="flex" flexDirection="column" flexGrow={1}>
             <Box fontWeight={600}>{category.id}: {category.name}</Box>

@@ -31,9 +31,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column'
   },
-  button: {
+  controlButton: {
     marginRight: 0,
-    marginLeft: "auto",
+    marginLeft: theme.spacing(2),
   },
   paper: {
     display: 'flex',
@@ -106,7 +106,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
   }
   
   const handleChangeCategory = event => {
-    setCategoryId(event.target.value)
+    setCategoryId(event.target.value ? event.target.value : null)
   }
   
   const dialog = (selectedItem === null) ? null : (
@@ -170,7 +170,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
   const paperItems = []
   for (const item of items) {
     paperItems.push(
-      <Grid item xs={6} sm={4} lg={3}>
+      <Grid item xs={12} sm={4} lg={3}>
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
@@ -207,27 +207,24 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
   
   const paperControl = (
     <Paper className={classes.paper}>
-      <Box ml={0} my="auto" fontWeight={600}>
-        Items ({categories.length})
+      <Box ml={0} my="auto" flexGrow={1} fontWeight={600}>
+        Items ({items.length})
       </Box>
-      
-      
       <NativeSelect
-          className={classes.inputField}
-          error={errors.category_id ? true : false}
-          onChange={handleChangeCategory}
-        >
-          <option value="ALL"></option>
-          {categories.map((category) => {
-            return (<option value={category.id}>{category.name}</option>)
-          })}
-        </NativeSelect>
-      
-      
+        className={classes.inputField}
+        error={errors.category_id ? true : false}
+        onChange={handleChangeCategory}
+        className={classes.controlButton}
+      >
+        <option value="">All Categories</option>
+        {categories.map((category) => {
+          return (<option value={category.id}>{category.name}</option>)
+        })}
+      </NativeSelect>
       <Button 
         variant="contained" 
         color="secondary" 
-        className={classes.button}
+        className={classes.controlButton}
         onClick={handleEdit(initialItem)}
       >
         Create

@@ -1,13 +1,12 @@
 import { connect } from 'react-redux'
 import App from '../components/App'
 import { fetchAllCategories } from '../modules/categories'
-import { fetchAllItems } from '../modules/items'
-
+import { fetchCartData } from '../modules/cart'
 
 export default connect(
   null,
   (dispatch) => ({
     fetchAllCategories: () => dispatch(fetchAllCategories()),
-    fetchAllItems: () => dispatch(fetchAllItems())
+    fetchCartData: () => dispatch(fetchCartData()),
   })
 )(App)
