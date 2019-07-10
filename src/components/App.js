@@ -25,7 +25,7 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
           <Header />
           <Box flexGrow={1} display="flex" flexDirection="column">
             <ToolbarSpacer />
-            <Route exact path="/" render={() => {
+            <Route exact path="/checkout" render={() => {
               return <Checkout />
             }} />
             <Route exact path="/cart" render={() => {

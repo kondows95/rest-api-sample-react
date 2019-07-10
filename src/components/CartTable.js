@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { BASEURL_ITEM_IMAGES } from '../constants'
 import QuantitySelect from '../containers/QuantitySelect'
 import CartItemPropTypes from './CartItemPropTypes'
-import {Box, Grid, Paper, CardMedia, Divider, Hidden, Link} from '@material-ui/core'
+import { Box, Grid, Paper, CardMedia, Divider, Hidden, Link } from '@material-ui/core'
 
 
 const useStyles = makeStyles(theme => ({
@@ -87,24 +87,25 @@ const CartTable = ({ cart, deleteCartItem }) => {
       <Grid container key={row.id}>
         <Grid item xs={4}>
           <Box display="flex" flexDirection="row" pl={2} py={1}>
+           
             <CardMedia
               className={classes.descImagePC}
-              image={BASEURL_ITEM_IMAGES+row.image}
+              image={BASEURL_ITEM_IMAGES + row.image}
               //image={"http://127.0.0.1/dummyImage.jpg"}
               title={row.name}
             />
             <Box textAlign="left" ml={2} my="auto" fontWeight={600}>
               {row.name}
-            </Box>  
+            </Box>
           </Box>
-          
+
         </Grid>
         <Grid item xs={2} >
           <Box display="flex" height="100%">
             <Box textAlign="right" my="auto" ml="auto" mr={0}>
               {row.price}
-            </Box>  
-          </Box>   
+            </Box>
+          </Box>
         </Grid>
         <Grid item xs={2}>
           <Box display="flex" height="100%">
@@ -136,7 +137,7 @@ const CartTable = ({ cart, deleteCartItem }) => {
           <Box m={2}>
             <CardMedia
               className={classes.descImageMobile}
-              image={BASEURL_ITEM_IMAGES+row.image}
+              image={BASEURL_ITEM_IMAGES + row.image}
               title={row.name}
             />
           </Box>
@@ -166,7 +167,7 @@ const CartTable = ({ cart, deleteCartItem }) => {
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={12}>{divider}</Grid> 
+        <Grid item xs={12}>{divider}</Grid>
       </Grid>
     )
   })
@@ -174,7 +175,7 @@ const CartTable = ({ cart, deleteCartItem }) => {
   return (
     <Paper>
       <Hidden smUp implementation="css">
-      {paperRows}  
+        {paperRows}
       </Hidden>
       <Hidden xsDown implementation="css">
         {tableRows}
