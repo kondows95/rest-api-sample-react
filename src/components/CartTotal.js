@@ -19,13 +19,9 @@ const CartTotal = ({totalPrice}) => {
         </CardContent>
        
         <CardActions>
-        <Link to="/checkout" 
-          component={RouterLink}
-          style={{ textDecoration: 'none' }}>
-          <Button fullWidth={true} variant="contained" color="secondary">
+          <Button to="/checkout" component={RouterLink} fullWidth={true} variant="contained" color="secondary">
             Confirm Order
           </Button>
-          </Link>
         </CardActions>
 
         <CardContent>

@@ -1,9 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Box, TextField, Checkbox, MenuItem, Radio } from '@material-ui/core';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-import { Subtitles } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -104,13 +101,6 @@ const country = [
         </Grid>
         <TextField1 label="State *" id="shipping_state" name="shipping_state" required />
         <TextField1 label="City *" id="shipping_city" name="shipping_city" required />
-        <Checkbox
-          label={""}
-        // key={x.toString()}
-        //  onChange={e => this.handleCheck(e, x)}
-        //   checked={this.state.checkedValues.includes(x)}
-        />
-        Use this address for billing
       </Box>
     </form>
   );

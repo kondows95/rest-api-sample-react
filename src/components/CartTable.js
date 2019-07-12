@@ -81,13 +81,11 @@ const CartTable = ({ cart, deleteCartItem }) => {
   //loop per cartItem
   cart.forEach((row, i) => {
     const divider = (i + 1 < cart.length) ? (<Grid item xs={12}><Divider /></Grid>) : null
-
     //rows for PC
     tableRows.push(
       <Grid container key={row.id}>
         <Grid item xs={4}>
           <Box display="flex" flexDirection="row" pl={2} py={1}>
-           
             <CardMedia
               className={classes.descImagePC}
               image={BASEURL_ITEM_IMAGES + row.image}
