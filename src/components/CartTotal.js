@@ -17,11 +17,17 @@ const CartTotal = ({totalPrice}) => {
             Total {totalPrice} Ks
           </Box>
         </CardContent>
+       
         <CardActions>
+        <Link to="/checkout" 
+          component={RouterLink}
+          style={{ textDecoration: 'none' }}>
           <Button fullWidth={true} variant="contained" color="secondary">
             Confirm Order
           </Button>
+          </Link>
         </CardActions>
+
         <CardContent>
           <Link to="/"
             component={RouterLink}>

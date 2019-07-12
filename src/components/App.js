@@ -8,7 +8,8 @@ import ToolbarSpacer from './ToolbarSpacer'
 import Header from './Header'
 import CategoryList from '../containers/CategoryList'
 import ItemList from '../containers/ItemList'
-import Checkout from '../components/Checkout'
+import Checkout from '../containers/Checkout'
+import ConfirmOrder from '../containers/ConfirmOrder'
 import Cart from './Cart'
 
 const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
@@ -25,8 +26,11 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
           <Header />
           <Box flexGrow={1} display="flex" flexDirection="column">
             <ToolbarSpacer />
-            <Route exact path="/" render={() => {
+            <Route exact path="/checkout" render={() => {
               return <Checkout />
+            }} />
+            <Route exact path="/confirm" render={() => {
+              return <ConfirmOrder />
             }} />
             <Route exact path="/cart" render={() => {
               return <Cart />
