@@ -86,6 +86,7 @@ const CartTable = ({ cart, deleteCartItem }) => {
       <Grid container key={row.id}>
         <Grid item xs={4}>
           <Box display="flex" flexDirection="row" pl={2} py={1}>
+           
             <CardMedia
               className={classes.descImagePC}
               image={BASEURL_ITEM_IMAGES + row.image}
