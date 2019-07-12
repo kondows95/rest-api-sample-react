@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Box, TextField, Checkbox, Radio, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
+import { Grid, Box, TextField, Checkbox, Radio, Button, } from '@material-ui/core';
 import CheckoutOrderReviewCart from '../containers/CheckoutOrderReviewCart';
 import CheckoutPayment from '../containers/CheckoutPayment';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
@@ -14,9 +14,10 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  
 }));
 
-const AddressForm = ({ requestParams, postResultObj, setRequestParams, postOrder, history }) => {
+const AddressForm = ({ requestParams, setRequestParams, history }) => {
   const classes = useStyles()
   const initialForm = {
     first_name: requestParams !== null ? requestParams.first_name : "",
@@ -29,7 +30,6 @@ const AddressForm = ({ requestParams, postResultObj, setRequestParams, postOrder
   }
 
   const [form, setForm] = React.useState(initialForm)
-  const [open, setOpen] = React.useState(false);
   const handleChangeValue = fieldName => event => {
     const newForm = { ...form }
     newForm[fieldName] = event.target.value
@@ -38,14 +38,9 @@ const AddressForm = ({ requestParams, postResultObj, setRequestParams, postOrder
   const handleSubmit = event => {
     event.preventDefault();
     setRequestParams(form);
-    // postOrder();
-    // setOpen(true);
+  
     history.push("/confirm");
   }
-  const handleClose = () => {
-    setOpen(false);
-    history.push("/");
-  };
 
   return (
     <Box>
@@ -59,20 +54,14 @@ const AddressForm = ({ requestParams, postResultObj, setRequestParams, postOrder
         <Box pl={3} pt={1}>
           YOUR INFORMATION
         </Box>
-        <Box mx={3} pl={1} pt={2} bgcolor="#cfcfcf">
+        <Box mx={3} p={2} borderRadius={5} bgcolor="#cfcfcf">
           <TextField1 label="First Name *" id="first_name" name="first_name" value={form.first_name} onChange={handleChangeValue("first_name")} required="true" />
           <TextField1 label="Last Name" id="last_name" name="last_name" value={form.last_name} onChange={handleChangeValue("last_name")} />
           <TextField1 label="Address1 *" id="address1" name="address1" value={form.address1} onChange={handleChangeValue("address1")} required="true" />
-          <TextField1 label="Address2 *" id="address2" name="address2" value={form.address2} onChange={handleChangeValue("address2")} required="true" />
+          <TextField1 label="Address2" id="address2" name="address2" value={form.address2} onChange={handleChangeValue("address2")}  />
           <TextField1 label="Country *" id="country" name="country" value={form.country} onChange={handleChangeValue("country")} required="true" />
-          <TextField1 label="State *" id="state" name="state" value={form.state} onChange={handleChangeValue("state")} required="true" />
+          <TextField1 label="State" id="state" name="state" value={form.state} onChange={handleChangeValue("state")} />
           <TextField1 label="City *" id="city" name="city" value={form.city} onChange={handleChangeValue("city")} required="true" />
-        </Box>
-        <Box mx={3} p={1} mt={1} bgcolor="#cfcfcf">
-          <Checkbox
-            label={""}
-          />
-          Sign Up to get the latest news on all things SUISTUDIO
         </Box>
         <Box fontSize="h6.fontSize" pl={3} mt={2}>
           2.Order Review
@@ -97,39 +86,18 @@ const AddressForm = ({ requestParams, postResultObj, setRequestParams, postOrder
           <CheckoutOrderReviewCart />
         </Box>
         <CheckoutPayment />
-        <Box mx={3} p={1} mt={1} bgcolor="#cfcfcf">
+        <Box mx={3} p={2} mt={1} mb={5} borderRadius={5} bgcolor="#cfcfcf">
           By clicking 'PROCEED TO PAYMENT' you agree to our Terms and Conditions and you have reviewed your and personal details.
                <Button type="submit" variant="contained" color="secondary" className={classes.button}>
-            PROCEED TO COMFIRM
-                </Button>
+                 PROCEED TO COMFIRM
+               </Button>
         </Box>
       </form>
-      {postResultObj === null ? null :
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">"Order Success!"</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Your order id is {postResultObj.id}
-              Thank you for your order.We will ship your items in two weeks.
-          </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="primary" autoFocus>
-              OK
-          </Button>
-          </DialogActions>
-        </Dialog>
-      }
+     
     </Box>
   );
 }
 export default withRouter(AddressForm)
-
 
 const TextField1 = ({ label, id, name, value, onChange, required }) => (
   <Grid container  >
