@@ -2,8 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { BASEURL_ITEM_IMAGES } from '../constants'
 import { Grid, Box, CardMedia, Paper, Link, TextField, Checkbox, MenuItem, Radio, Divider, Hidden } from '@material-ui/core';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import { Subtitles, FormatBold } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
@@ -118,25 +116,6 @@ const CheckoutOrderReviewCart = ({ cart, totalPrice }) => {
 
     return (
         <Paper>
-            <Box fontSize="h6.fontSize" pl={3} mt={2}>
-                2.Order Review
-            </Box>
-            <Box pl={3} pt={2}>
-                SELECT SHIPPING METHOD
-            </Box>
-            <Box mx={3} p={1} mt={1} bgcolor="#cfcfcf">
-                <Radio
-                    // checked={selectedValue === 'e'}
-                    // onChange={handleChange}
-                    // value="e"
-                    color="default"
-                    name="radio-button-demo"
-                    inputProps={{ 'aria-label': 'E' }}
-                    icon={<RadioButtonUncheckedIcon fontSize="small" />}
-                    checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
-                />
-                FedEx-3-4 business day(s)
-             </Box>
             <Hidden xsDown implementation="css">
                 <Grid key={0} container>
                     <Box flexGrow={1} display="flex">

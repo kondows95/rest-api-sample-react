@@ -23,6 +23,8 @@ export const cartReducer = (state = initialState, action) => {
     case 'CART_DELETE_ITEM':
       _deleteCartItem(state.rows, action.payload)
       return _updateState()
+    case 'CART_CLEAR_CART':
+        return initialState
     default:
       return state
   }

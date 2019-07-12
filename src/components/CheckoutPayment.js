@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { Grid, Box, CardMedia, Link, TextField, MenuItem, Tabs, Tab } from '@material-ui/core';
+import { Grid, Box, CardMedia, Button, TextField, Tabs, Tab } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { BASEURL_ITEM_IMAGES } from '../constants'
 
@@ -27,6 +27,9 @@ const useStyles = makeStyles(theme => ({
         fontSize: 11,
         backgroundColor: '#cfcfcf',
     },
+    button: {
+        margin: theme.spacing(1),
+      },
 
 }));
 
@@ -92,9 +95,6 @@ const CheckoutPayment = ({ cart, totalPrice }) => {
                     </TabContainer>}
                 </Grid>
             </Box>
-            <Box mx={3} p={1} mt={1} bgcolor="#cfcfcf">
-                Sign Up to get the latest news on all things SUISTUDIO
-      </Box>
         </Box>
 
     );
