@@ -2,93 +2,71 @@ import { categoriesReducer, fetchAllCategories } from './categories';
 
 describe("categories reducer actions", () => {
   const initialState = {
-    alreadyFetched: true,
-    rows: [{
-      "id": 1,
-      "name": "Vermeer",
-      "deleted_at": null,
-      "created_at": "2019-06-30 10:42:24",
-      "updated_at": "2019-07-09 03:40:12"
-    }],
+    alreadyFetched: false,
+    rows: [{id:2,test:"test2"}],
   }
   it("category already fetch", () => {
     const action = {
       type: "CATEGORY_SET_ALREADY_FETCHED"
     };
-    const expectedAction = {
+    const expectedState = {
+      ...initialState,
       alreadyFetched: true,
-      rows: [{
-        "id": 1,
-        "name": "Vermeer",
-        "deleted_at": null,
-        "created_at": "2019-06-30 10:42:24",
-        "updated_at": "2019-07-09 03:40:12"
-      }],
     }
-    expect(categoriesReducer(initialState, action)).toEqual(expectedAction);
+    const inputState=categoriesReducer(initialState, action);
+    expect(inputState).toEqual(expectedState);
   });
   it("category fetch row done", () => {
     const action = {
       type: "CATEGORY_FETCH_ROWS_DONE",
+      payload:[{test:"test1"}]
     };
-    const expectedAction = {
-      alreadyFetched: true,
+    const expectedState = {
+      ...initialState,
+      rows:[{test:"test1"}]
     }
-    expect(categoriesReducer(initialState, action)).toEqual(expectedAction);
+    expect(categoriesReducer(initialState, action)).toEqual(expectedState);
   });
-
+  it("category post done", () => {
+    const action = {
+      type: "CATEGORY_POST_DONE",
+      payload:{test:"test1"}
+    };
+    const expectedState = {
+      ...initialState,
+      rows:[...initialState.rows,{test:"test1"}]
+    }
+    expect(categoriesReducer(initialState, action)).toEqual(expectedState);
+  });
+  it("category put done", () => {
+    const action1 = {
+      type: "CATEGORY_PUT_DONE",
+      payload:{id:1,test:"test1"}
+    };
+    const action2 = {
+        type: "CATEGORY_PUT_DONE",
+        payload:{id:2,test:"test3"}
+      };
+    const expectedState1 = {
+      ...initialState,
+      rows:[...initialState.rows]
+    }
+    const expectedState2 = {
+        ...initialState,
+        rows:[{id:2,test:"test3"}]
+      }
+    expect(categoriesReducer(initialState, action1)).toEqual(expectedState1);
+    expect(categoriesReducer(initialState, action2)).toEqual(expectedState2);
+  });
+  it("category delete done", () => {
+    const action = {
+      type: "CATEGORY_DELETE_DONE",
+      payload:2
+    };
+    const expectedState = {
+      ...initialState,
+      rows:[]
+    }
+    expect(categoriesReducer(initialState, action)).toEqual(expectedState);
+  });
 });
-// describe("fetch all categories actions", () => {
-//   it("fetch all category", () => {
-//     const expectedAction = {
-//       type: 'CATEGORY_FETCH_ROWS_DONE',
-//       payload: [
-//         {
-//           "id": 1,
-//           "name": "Vermeer",
-//           "deleted_at": null,
-//           "created_at": "2019-06-30 10:42:24",
-//           "updated_at": "2019-07-09 03:40:12"
-//         },
-//         {
-//           "id": 2,
-//           "name": "Rembrandt",
-//           "deleted_at": null,
-//           "created_at": "2019-06-30 10:42:24",
-//           "updated_at": "2019-07-09 04:14:54"
-//         },
-//         {
-//           "id": 3,
-//           "name": "Manet",
-//           "deleted_at": null,
-//           "created_at": "2019-06-30 10:42:24",
-//           "updated_at": "2019-06-30 10:42:24"
-//         },
-//         {
-//           "id": 4,
-//           "name": "Gogh",
-//           "deleted_at": null,
-//           "created_at": "2019-06-30 10:42:24",
-//           "updated_at": "2019-06-30 10:42:24"
-//         },
-//         {
-//           "id": 5,
-//           "name": "Gauguin",
-//           "deleted_at": null,
-//           "created_at": "2019-06-30 10:42:24",
-//           "updated_at": "2019-07-07 08:38:19"
-//         },
-//         {
-//           "id": 6,
-//           "name": "Modigliani",
-//           "deleted_at": null,
-//           "created_at": "2019-06-30 10:42:24",
-//           "updated_at": "2019-07-07 08:38:04"
-//         }
-//        ]
-//     }
-//     expect(fetchAllCategories()).toEqual(expectedAction);
-//   });
- 
-
-// });
