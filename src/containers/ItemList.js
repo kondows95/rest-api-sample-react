@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import ItemList from '../components/ItemList'
 import { saveItem, deleteItem, setCategoryId, fetchAllItems } from '../modules/items'
 import { addCartItem } from '../modules/cart'
+import { uploadImage } from '../modules/image'
 
 
 const _getItemsByCategory = (rows, categoryId) => {
@@ -29,5 +30,6 @@ export default connect(
     addCartItem: (item) => dispatch(addCartItem(item)),
     setCategoryId: (categoryId) =>  dispatch(setCategoryId(categoryId)),
     fetchAllItems: () => dispatch(fetchAllItems()),
+    uploadImage: (fileName, fileData, contentType) => dispatch(uploadImage(fileName, fileData, contentType)),
   })
 )(ItemList)

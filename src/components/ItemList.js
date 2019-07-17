@@ -1,8 +1,9 @@
 import React from 'react'
 //import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, Paper, Container, Grid, CardMedia,Card, CardActions, CardContent,Button, Dialog, 
-  DialogTitle,DialogContent, TextField, DialogActions, IconButton, NativeSelect
+import {
+  Box, Paper, Container, Grid, CardMedia, Card, CardActions, CardContent, Button, Dialog,
+  DialogTitle, DialogContent, TextField, DialogActions, IconButton, NativeSelect, Input
 } from '@material-ui/core'
 import { AddShoppingCart as AddShoppingCartIcon } from '@material-ui/icons'
 import { validateForm } from '../util'
@@ -40,48 +41,95 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(2, 1),
     padding: theme.spacing(2, 2),
   },
+  itemImgBox: {
+    width: '100%',
+    height: 230,
+    borderWidth: "1px",
+    borderStyle: "dotted",
+    borderRadius: 4,
+    resizeMode: 'contain',
+    textAlign: 'center'
+
+  },
+  itemImg: {
+    width: '100%',
+    height: 210,
+    borderRadius: 4
+  },
+  btnPicker: {
+    padding: '10px',
+    background: 'tomato',
+    display: 'table',
+    color: '#fff',
+    width: '100%',
+    borderRadius: 4,
+    textAlign: 'center',
+    cursor: 'pointer'
+  }
 }))
 
 
-const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCategoryId, fetchAllItems, noMoreFetch }) => {
+const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCategoryId, fetchAllItems, noMoreFetch, uploadImage }) => {
   const classes = useStyles()
 
   const [dialogOpen, setDialogOpen] = React.useState(false)
   const [selectedItem, setSelectedItem] = React.useState(null)
+  const [selectedImg, setSelectedImg] = React.useState(null)
   const [isDelete, setIsDelete] = React.useState(false)
   const [errors, setErrors] = React.useState({})
-  
-  const initialItem = {id: null, name: "", price: "", category_id: ""}
+
+  const initialItem = { id: null, name: "", price: "", category_id: "" }
 
   const handleChangeValue = fieldName => event => {
-    const newItem = {...selectedItem}
-    newItem[fieldName] =  event.target.value
+    const newItem = { ...selectedItem }
+    newItem[fieldName] = event.target.value
     setSelectedItem(newItem)
   }
-  
+
   const handleDelete = item => event => {
     setSelectedItem(item)
     setDialogOpen(true)
     setIsDelete(true)
     setErrors({})
   }
-  
+
   const handleEdit = item => event => {
     setSelectedItem(item)
     setDialogOpen(true)
     setIsDelete(false)
+    setSelectedImg(null)
     setErrors({})
   }
 
   const handleCloseDialog = () => {
     setDialogOpen(false)
+    setSelectedImg(null)
   }
-  
+
+  const handleChooseFile = event => {
+    event.preventDefault();
+
+    let reader = new FileReader();
+    let file = event.target.files[0];
+    console.log(file);
+    reader.onloadend = () => {
+      setSelectedImg(reader.result)
+    }
+    reader.readAsDataURL(file)
+    uploadImage(file.name, file, file.type)
+  }
+
+  // const handleSaveImg = event => {
+  //   event.preventDefault();
+
+  //   uploadImage(fname, url.file, url.type)
+  // }
+
   const validationSetting = {
     isEmpty: ['name', 'price', 'category_id'],
     isNumeric: ['price']
   }
-  
+
   const handleSubmit = () => {
     if (selectedItem) {
       const errs = validateForm(validationSetting, selectedItem)
@@ -100,25 +148,26 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
       }
     }
   }
-  
+
   const handleAddCartItem = item => event => {
     addCartItem(item)
   }
-  
+
   const handleChangeCategory = event => {
     setCategoryId(event.target.value ? event.target.value : null)
   }
-  
+
   const dialog = (selectedItem === null) ? null : (
-    <Dialog 
-      open={dialogOpen} 
-      onClose={handleCloseDialog} 
+
+    <Dialog
+      open={dialogOpen}
+      onClose={handleCloseDialog}
       aria-labelledby="form-dialog-title"
       fullWidth
       maxWidth="xs"
     >
       <DialogTitle id="form-dialog-title">
-        {selectedItem.id ? "Edit (ID:"+selectedItem.id+")" : "Create"}
+        {selectedItem.id ? "Edit (ID:" + selectedItem.id + ")" : "Create"}
       </DialogTitle>
       <DialogContent className={classes.dialogContent}>
         <TextField
@@ -154,6 +203,31 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
             return (<option value={category.id}>{category.name}</option>)
           })}
         </NativeSelect>
+        <Grid>
+          {selectedItem.id === null ?
+            <Grid>
+              {selectedImg === null ? null : 
+                <Box className={classes.itemImgBox} p={1} my={2} >
+                  <img src={selectedImg} className={classes.itemImg} />
+                </Box>
+              }
+              <label className={classes.btnPicker}>
+                <TextField onChange={handleChooseFile} type="file" id="image" name="image" style={{ display: 'none' }} ></TextField>
+                Choose File
+              </label>
+            </Grid>
+            :
+            <Grid>
+              <Box className={classes.itemImgBox} p={1} my={2} >
+                <img src={ selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} className={classes.itemImg} />
+              </Box>
+              <label className={classes.btnPicker}>
+                <TextField onChange={handleChooseFile} type="file" id="image" name="image" style={{ display: 'none' }} ></TextField>
+                Update File
+              </label>
+            </Grid>
+          }
+        </Grid>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCloseDialog} color="primary">
@@ -164,9 +238,10 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
         </Button>
       </DialogActions>
     </Dialog>
+
   )
-  
-  
+
+
   const paperItems = []
   for (const item of items) {
     paperItems.push(
@@ -174,12 +249,12 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
-            image={BASEURL_ITEM_IMAGES+item.image}
+            image={BASEURL_ITEM_IMAGES + item.image}
             title={item.name}
           />
           <CardContent >
             <Box fontWeight={600}>
-             {item.name}
+              {item.name}
             </Box>
             <Box>
               {item.price} Ks
@@ -204,7 +279,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
       </Grid>
     )
   }
-  
+
   const paperControl = (
     <Paper className={classes.paper}>
       <Box ml={0} my="auto" flexGrow={1} fontWeight={600}>
@@ -221,9 +296,9 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
           return (<option value={category.id}>{category.name}</option>)
         })}
       </NativeSelect>
-      <Button 
-        variant="contained" 
-        color="secondary" 
+      <Button
+        variant="contained"
+        color="secondary"
         className={classes.controlButton}
         onClick={handleEdit(initialItem)}
       >

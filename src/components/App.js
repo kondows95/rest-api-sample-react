@@ -11,6 +11,12 @@ import ItemList from '../containers/ItemList'
 import Checkout from '../containers/Checkout'
 import ConfirmOrder from '../containers/ConfirmOrder'
 import Cart from './Cart'
+import Amplify from 'aws-amplify'
+import aws_exports from '../aws-exports'
+
+import Login from '../containers/Login'
+
+Amplify.configure(aws_exports);
 
 const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
   React.useEffect(() => {
@@ -40,6 +46,9 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
             }} />
             <Route exact path="/items" render={() => {
               return <ItemList />
+            }} />
+            <Route exact path="/login" render={() => {
+              return <Login />
             }} />
           </Box>
         </Box>
