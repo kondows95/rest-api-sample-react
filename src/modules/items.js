@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { URL_REST_ITEMS } from '../constants'
-import { replaceRowInRows, deleteRowFromRows } from '../util'
+import { replaceRowInRows, deleteRowFromRows } from '../util';
+import { Storage } from 'aws-amplify';
 
 const initialState = {
   alreadyFetched: false,
@@ -98,7 +99,7 @@ export const deleteItem = (id) => {
   }
 }
 
-export const saveItem= (item) => {
+export const saveItem= (item, fileName, fileData, contentType) => {
   return async (dispatch, getState) => {
     const id = item.id ? item.id : null
     const reqParams = {
@@ -107,6 +108,11 @@ export const saveItem= (item) => {
       category_id: item.category_id,
       image: item.image,
     }
+    
+    const res = await Storage.put(fileName, fileData, {
+        contentType: contentType
+    })
+    
     
     if (id === null) {
       //INSERT

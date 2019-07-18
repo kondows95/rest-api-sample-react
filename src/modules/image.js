@@ -1,7 +1,7 @@
 import { Storage } from 'aws-amplify';
 
 const initialState = {
-  result: null,
+  requestParams: null,
   error: null,
   loading: false,
 }
@@ -15,7 +15,7 @@ export const imageReducer = (state = initialState, action) => {
     case 'IMAGE_UPLOAD_SUCCESS':
       return {
         ..._getCommonState(state),
-        result: action.payload
+        requestParams: action.payload
       }
     case 'IMAGE_INIT':
       return {
@@ -35,6 +35,20 @@ const _getCommonState = (state) => ({
 //=============================================================================
 //　ActionCreators
 //=============================================================================
+
+export const setRequestParams = () => {
+  
+  return(dispatch, getState) => {
+    
+    console.log('#setRequestParams# for image')
+    
+    dispatch({
+      type: 'IMAGE_INIT'
+    })
+  }
+  
+}
+
 //'image/png'
 export const uploadImage = (fileName, fileData, contentType) => {
   return async (dispatch, getState) => {

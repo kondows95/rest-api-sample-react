@@ -2,17 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid, Box, AppBar, IconButton, Toolbar, Badge, Button } from '@material-ui/core'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, withRouter } from 'react-router-dom'
 import { 
   Menu as MenuIcon,
   ShoppingCart as ShoppingCartIcon 
 } from '@material-ui/icons';
-
-import SignIn from '../containers/auth/SignIn'
-import SignUp from '../containers/auth/SignUp'
-import ConfirmSignUp from '../containers/auth/ConfirmSignUp'
-import ForgotPassword from '../containers/auth/ForgotPassword'
-import ForgotPasswordSubmit from '../containers/auth/ForgotPasswordSubmit'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -30,21 +24,38 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TitleBar = ({handleDrawerToggle, totalQuantity, authState, changeAuthState, fetchAuthedUser, signOut, user, loading}) => {
-  const classes = useStyles()
+const TitleBar = ({handleDrawerToggle, totalQuantity, changeAuthState, fetchAuthedUser, signOut, user, history}) => {
+  const classes = useStyles();
+  
+  const isFirstRef = React.useRef(true)
+  React.useEffect(() => {
+    if (isFirstRef.current) {
+      isFirstRef.current = false;
+      fetchAuthedUser()
+    }
+  })
+
+  const handleLogin = event => {
+    event.preventDefault();
+    changeAuthState('signIn');
+    history.push("/login");
+  }
+  
+  const handleLogout = event => {
+    event.preventDefault();
+    signOut();
+  }
 
   
   const button = user ? (
-    <Box mt={1}>
-      <Button variant="contained" disabled={loading} color="secondary" onClick={() => {
-        signOut()
-      }}>
+    <Box mt={1} mr={2}>
+      <Button onClick={handleLogout} variant="contained" color="secondary">
         SIGN OUT
       </Button>
     </Box>
   ) : (
-    <Box mt={1}>
-      <Button to="/login" component={RouterLink}  variant="contained"  color="primary">
+    <Box mt={1} mr={2}>
+      <Button onClick={handleLogin}  variant="contained"  color="primary">
         SIGN IN
       </Button>
     </Box>
@@ -92,7 +103,6 @@ const TitleBar = ({handleDrawerToggle, totalQuantity, authState, changeAuthState
 
 TitleBar.propTypes = {
   handleDrawerToggle: PropTypes.func,
-  authState: PropTypes.string,
   changeAuthState: PropTypes.func.isRequired,
   fetchAuthedUser: PropTypes.func.isRequired
 }
@@ -101,4 +111,4 @@ TitleBar.defaultProps = {
   handleDrawerToggle: null,
 }
 
-export default TitleBar
+export default withRouter(TitleBar);

@@ -1,12 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardActions from '@material-ui/core/CardActions'
 import Box from '@material-ui/core/Box'
-import Link from '@material-ui/core/Link'
-import { Link as RouterLink } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import SignIn from '../containers/auth/SignIn'
 import SignUp from '../containers/auth/SignUp'
@@ -14,7 +9,22 @@ import ConfirmSignUp from '../containers/auth/ConfirmSignUp'
 import ForgotPassword from '../containers/auth/ForgotPassword'
 import ForgotPasswordSubmit from '../containers/auth/ForgotPasswordSubmit'
 
-const Login = ({handleDrawerToggle, totalQuantity, authState, changeAuthState, fetchAuthedUser, signOut, user, loading}) => {
+
+
+const Login = ({handleDrawerToggle, totalQuantity, authState, changeAuthState, fetchAuthedUser, signOut, user, loading, history}) => {
+    
+    const isFirstRef = React.useRef(true)
+    React.useEffect(() => {
+      if (isFirstRef.current) {
+        isFirstRef.current = false;
+        fetchAuthedUser()
+      }
+    })
+  
+    const handleItem = event => {
+      event.preventDefault();
+      history.push("/items");
+    }
   
    const auth = (
     <React.Fragment>
@@ -27,15 +37,16 @@ const Login = ({handleDrawerToggle, totalQuantity, authState, changeAuthState, f
   )
   
   const button = user ? (
-    <Box>
-      <Button variant="contained" disabled={loading} color="secondary" onClick={() => {
-        signOut()
-      }}>
-        SIGN OUT
+    <Box mt={10}>
+      <h1>SUCCESSFUL SIGN IN</h1>
+      <h1>Tap To Shopping</h1>
+      <Button variant="contained"  color="primary" onClick={handleItem}>
+        SHOPPING
       </Button>
     </Box>
   ) : (
-    <Box>
+    <Box mt={10} >
+      <h1>Tap To Login</h1>
       <Button variant="contained" disabled={loading} color="primary" onClick={() => {
         changeAuthState('signIn')
       }}>
@@ -46,12 +57,13 @@ const Login = ({handleDrawerToggle, totalQuantity, authState, changeAuthState, f
   
   const contents = authState ? auth : <Box m={2}>{button}</Box>
   
+  
   return (
-    <Box display="flex" flexDirection="column" textAlign="center" >
-      <h1>Login Page..</h1>
+    <Box flexGrow={1} textAlign="center" >
       
       {contents}
+      
     </Box>  
   )
 }
-export default Login;
+export default withRouter(Login);
