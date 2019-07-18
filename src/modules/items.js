@@ -62,14 +62,7 @@ export const itemsReducer = (state = initialState, action) => {
 
 export const fetchAllItems = () => {
   return async (dispatch, getState) => {
-    /*if (getState().items.alreadyFetched) {
-      //return
-    }
-    
-    dispatch({
-      type: 'ITEM_SET_ALREADY_FETCHED'
-    })*/
-    
+        
     const url = URL_REST_ITEMS + '?offset=' + getState().items.rows.length
     console.log('fetchAllItems', url)
     const axRes = await axios.get(url)

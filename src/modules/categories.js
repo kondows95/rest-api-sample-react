@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { URL_REST_CATEGORIES, URL_REST_ORDERS } from '../constants'
 import { replaceRowInRows, deleteRowFromRows } from '../util'
+import { resolve } from 'url';
+import { async } from 'q';
 
 const initialState = {
   alreadyFetched: false,
@@ -52,13 +54,11 @@ export const fetchAllCategories = () => {
     if (getState().categories.alreadyFetched) {
         return
     }
-
     dispatch({
         type: 'CATEGORY_SET_ALREADY_FETCHED'
     })
-
+    
     const axRes = await axios.get(URL_REST_CATEGORIES)
-    console.log("category list data are ",axRes.data.data)
     dispatch({
       type: 'CATEGORY_FETCH_ROWS_DONE',
       payload: axRes.data.data
@@ -119,3 +119,7 @@ export const testPost = () => {
     })
   }
 }
+
+
+
+

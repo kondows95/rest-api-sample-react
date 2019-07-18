@@ -138,7 +138,6 @@ const _deleteCartItem = (rows, itemId) => {
       cartItems.push({...row})
     }
   }
-
   //store in localStorage
   localStorage.setItem('cart', JSON.stringify(cartItems));
 }
