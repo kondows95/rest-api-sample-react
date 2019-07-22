@@ -23,7 +23,7 @@ describe("categories reducer actions", () => {
   it("adding item to cart reducer", () => {
     const action = {
       type: 'CART_ADD_ITEM',
-      payload: { id: 1, name: "item1" }
+      payload: [{ id: 1, name: "item1", quantity: 1 }]
     };
     const expectedState = {
       "maxQuantity": 1,
@@ -44,19 +44,13 @@ describe("categories reducer actions", () => {
   it("fetching cart data", () => {
     const action = {
       type: 'CART_FETCH_DATA',
-    };
+      payload: []
+    }
     const expectedState = {
-      "maxQuantity": 1,
-      "rows": [
-        {
-          "id": 1,
-          "name": "item1",
-          "quantity": 1,
-          "subTotal": NaN,
-        },
-      ],
-      "totalPrice": NaN,
-      "totalQuantity": 1,
+      rows: [],
+      totalQuantity: 0,
+      maxQuantity: 0,
+      totalPrice: 0,
     }
     const inputState = cartReducer(initialState, action);
     expect(inputState).toEqual(expectedState);
@@ -65,7 +59,7 @@ describe("categories reducer actions", () => {
   it("changing cart quantity", () => {
     const action = {
       type: 'CART_CHANGE_QUANTITY',
-      payload: { itemId: 1, quantity: 2 }
+      payload: [{ id: 1, name: "item1", quantity: 2 }]
     };
     const expectedState = {
       "maxQuantity": 2,
@@ -86,7 +80,7 @@ describe("categories reducer actions", () => {
   it("deleting cart", () => {
     const action = {
       type: 'CART_DELETE_ITEM',
-      payload: 1
+      payload: []
     };
     const expectedState = {
       rows: [],
@@ -124,46 +118,69 @@ describe("categories reducer actions", () => {
 describe("ActionCreators Testing", () => {
 
   it("add cart item", async () => {
+    const getState = () => {
+      return { cart: { rows: [{ id: 1, name: "item1", quantity: 2 }, { id: 2, name: "item2", quantity: 1 }] } }
+    }
     const item = {
-      id: 1, name: "item1"
+      id: 1, name: "item1", quantity: 0
     }
-    const expectedAction = {
+    const expectedAction = [{
       type: 'CART_ADD_ITEM',
-      payload: { id: 1, name: "item1" }
-    }
-    const action = addCartItem(item)
-    expect(action).toEqual(expectedAction);
+      payload: [{ id: 1, name: "item1", quantity: 3 }, { id: 2, name: "item2", quantity: 1 }]
+    }]
+    Storage.prototype.setItem = jest.fn(() => 'cart')
+    const dispatch = jest.fn();
+    addCartItem(item)(dispatch, getState)
+    expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+    expect(dispatch.mock.calls[0]).toEqual(expectedAction);
   });
 
   it("fetching cart data", async () => {
-    const item = {
-      id: 1, name: "item1"
-    }
-    const expectedAction = {
-      type: 'CART_FETCH_DATA'
-    }
-    const action = fetchCartData(item)
-    expect(action).toEqual(expectedAction);
+    const cart = [{ id: 1, name: "item1", quantity: 2 }, { id: 2, name: "item2", quantity: 2 }]
+    Storage.prototype.getItem = jest.fn(() => cart);
+    JSON.parse = jest.fn().mockImplementationOnce(() => 
+      [{ id: 1, name: "item1", quantity: 2 }, { id: 2, name: "item2", quantity: 2 }]
+    );
+    const expectedAction = [{
+      type: 'CART_FETCH_DATA',
+      payload: [{ id: 1, name: "item1", quantity: 2 }, { id: 2, name: "item2", quantity: 2 }]
+    }];
+    const dispatch = jest.fn();
+    fetchCartData()(dispatch)
+    expect(dispatch.mock.calls[0]).toEqual(expectedAction);
   });
 
-  it("delete cart item", async () => {
-    const item = 1;
-    const expectedAction = {
-      type: 'CART_DELETE_ITEM',
-      payload: 1
-    }
-    const action = deleteCartItem(item)
-    expect(action).toEqual(expectedAction);
-  });
+    it("delete cart item", async () => {
+      const item = 2;
+      const getState = () => {
+        return { cart: { rows: [{ id: 1, name: "item1", quantity: 2 }, { id: 2, name: "item2", quantity: 1 }] } }
+      }
+      const expectedAction = [{
+        type: 'CART_DELETE_ITEM',
+        payload: [{ id: 1, name: "item1", quantity: 2 }]
+      }]
+      Storage.prototype.setItem = jest.fn(() => 'cart')
+      const dispatch = jest.fn();
+      deleteCartItem(item)(dispatch,getState)
+      expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+      expect(dispatch.mock.calls[0]).toEqual(expectedAction);
+    });
 
-  it("changing cart item quantity", async () => {
-    const item = 1;
-    const quantity = 3;
-    const expectedAction = {
-      type: 'CART_CHANGE_QUANTITY',
-      payload: { itemId: 1, quantity: parseInt("3") }
-    }
-    const action = changeQuantity(item, quantity)
-    expect(action).toEqual(expectedAction);
-  });
+    it("changing cart item quantity", async () => {
+      const item = 1;
+      const quantity = 3;
+      const getState = () => {
+        return { cart: { rows: [{ id: 1, name: "item1", quantity: 2 }, { id: 2, name: "item2", quantity: 1 }] } }
+      }
+      const expectedAction = [{
+        type: 'CART_CHANGE_QUANTITY',
+        payload: [{ id: 1, name: "item1", quantity: 3 }, { id: 2, name: "item2", quantity: 1 }] 
+      }]
+      Storage.prototype.setItem = jest.fn(() => 'cart')
+      const dispatch = jest.fn();
+      changeQuantity(item, quantity)(dispatch,getState)
+      
+      expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+      expect(dispatch.mock.calls[0]).toEqual(expectedAction);
+    });
 });
