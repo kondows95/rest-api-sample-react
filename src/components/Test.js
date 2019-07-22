@@ -82,6 +82,7 @@ const Test = ({ categories, saveCategory, deleteCategory }) => {
         {selectedCategory.id ? "Edit (ID:"+selectedCategory.id+")" : "Create"}
       </DialogTitle>
       <DialogContent>
+        <h1>This</h1>
         <TextField
           variant="outlined"
           autoFocus

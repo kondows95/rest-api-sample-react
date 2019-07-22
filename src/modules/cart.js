@@ -47,7 +47,7 @@ const _updateState = (state) => {
   let totalPrice = 0
   for (const row of newState.rows) {
     //calcurate about quantity
-    const qty = row.quantity
+    const qty =row.quantity
     totalQuantity += qty
     if (qty > maxQuantity) {
       maxQuantity = qty
@@ -135,6 +135,7 @@ export const deleteCartItem = itemId => {
 
 export const changeQuantity = (itemId, quantity) => {
   return (dispatch, getState) => {
+    quantity= parseInt(quantity);
     if (!quantity || quantity <= 0) {
       quantity = 0
     }
@@ -145,7 +146,7 @@ export const changeQuantity = (itemId, quantity) => {
     //update quantity
     for (const row of cartItems) {
       if (row.id === itemId) {
-        row.quantity = quantity
+        row.quantity =  quantity
         break
       }
     }

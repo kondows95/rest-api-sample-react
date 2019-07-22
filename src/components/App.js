@@ -36,7 +36,7 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
               return <Cart />
             }} />
             <Route exact path="/categories" render={() => {
-              return <Test />
+              return <CategoryList />
             }} />
             <Route exact path="/items" render={() => {
               return <ItemList />
