@@ -36,10 +36,12 @@ const Test = ({ categories, saveCategory, deleteCategory }) => {
   }
   
   const handleEdit = category => event => {
+    console.log("this is handle")
     setSelectedCategory(category)
     setDialogOpen(true)
     setIsDelete(false)
     setErrors({})
+    console.log("selected category is ",selectedCategory)
   }
 
   const handleCloseDialog = () => {
@@ -70,7 +72,8 @@ const Test = ({ categories, saveCategory, deleteCategory }) => {
   }
   
   
-  const saveDialog = (selectedCategory && isDelete === false) ? (
+  const saveDialog = (selectedCategory && isDelete === false) ? 
+  (
     <Dialog 
       open={dialogOpen} 
       onClose={handleCloseDialog} 
@@ -103,12 +106,13 @@ const Test = ({ categories, saveCategory, deleteCategory }) => {
         </Button>
       </DialogActions>
     </Dialog>
-  ) : null
+  ) 
+  : 
+ null
   
   
   const paperControl = (
     <Paper className={classes.paper}>
-      <h1>This is thesis</h1>
       <Box ml={0} my="auto" fontWeight={600}>
         Categories 
       </Box>
