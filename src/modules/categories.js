@@ -52,6 +52,16 @@ export const categoriesReducer = (state = initialState, action) => {
 export const fetchAllCategories = () => {
   return async (dispatch, getState) => {
     
+    if (!getState().auth.user) {
+      return;
+    }
+    
+    const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
+   
+    const auth = {
+        headers: {Authorization:'Bearer ' + token } 
+    }
+    
     if (getState().categories.alreadyFetched) {
         return
     }
@@ -59,7 +69,8 @@ export const fetchAllCategories = () => {
         type: 'CATEGORY_SET_ALREADY_FETCHED'
     })
     
-    const axRes = await axios.get(URL_REST_CATEGORIES)
+    const axRes = await axios.get(URL_REST_CATEGORIES, auth)
+    console.log('fetchAllCategories', axRes)
     dispatch({
       type: 'CATEGORY_FETCH_ROWS_DONE',
       payload: axRes.data.data

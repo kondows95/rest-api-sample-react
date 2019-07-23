@@ -80,7 +80,7 @@ export const refreshToken = () => {
       const currentSession = await Auth.currentSession();
       cognitoUser.refreshSession(currentSession.refreshToken, (err, session) => {
         console.log('session', err, session);
-        const { idToken, refreshToken, accessToken } = session;
+        //const { idToken, refreshToken, accessToken } = session;
         // do whatever you want to do now :)
       });
     } catch (e) {

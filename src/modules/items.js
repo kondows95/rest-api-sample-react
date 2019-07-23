@@ -144,9 +144,14 @@ export const saveItem= (item, fileName, fileData) => {
       })
     }
     else {
+      
+      console.log('KONDO.saveItem1', reqParams);
+      
       //UPDATE
       const url = URL_REST_ITEMS + '/' + id
       const axRes = await axios.put(url, reqParams, auth)
+      console.log('KONDO.saveItem2', url);
+      console.log('KONDO.saveItem3', axRes.data.data);
       dispatch({
         type: 'ITEM_PUT_DONE',
         payload: axRes.data.data
