@@ -33,7 +33,6 @@ export const ordersReducer = (state = initialState, action) => {
 //　ActionCreators
 //=============================================================================
 export const setRequestParams = addressForm => {
-  console.log("enter orders .js ");
   return(dispatch, getState) => {
     const reqParams = {...addressForm}
     reqParams.total_price = getState().cart.totalPrice
@@ -49,7 +48,6 @@ export const setRequestParams = addressForm => {
     }
     
     console.log('#setRequestParams#', reqParams)
-    
     dispatch({
       type: 'ORDERS_SET_REQUEST_PARAMS',
       payload: reqParams
@@ -58,13 +56,9 @@ export const setRequestParams = addressForm => {
 }
 
 export const postOrder = () => {
-  console.log("enter post order function");
- 
   return async (dispatch, getState) => {
-    console.log(getState().order.requestParams)
     const reqParams = getState().order.requestParams
     const axRes = await axios.post(URL_REST_ORDERS, reqParams)
-    console.log('###postOrder###', axRes.data)
     dispatch({
       type: 'ORDERS_POST_DONE',
       payload: axRes.data.data

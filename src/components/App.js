@@ -11,7 +11,7 @@ import ItemList from '../containers/ItemList'
 import Checkout from '../containers/Checkout'
 import ConfirmOrder from '../containers/ConfirmOrder'
 import Cart from './Cart'
-
+import Test from './Test';
 const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
   React.useEffect(() => {
     fetchCartData()
