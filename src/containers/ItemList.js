@@ -3,7 +3,6 @@ import ItemList from '../components/ItemList'
 import { saveItem, deleteItem, setCategoryId, fetchAllItems } from '../modules/items'
 import { addCartItem } from '../modules/cart'
 import { uploadImage } from '../modules/image'
-import { setRequestParams } from '../modules/image'
 import { changeAuthState } from '../modules/auth'
 
 
@@ -28,7 +27,7 @@ export default connect(
     user: state.auth.user,
   }),
   (dispatch) => ({
-    saveItem: (item, fileName, fileData, contentType) =>  dispatch(saveItem(item, fileName, fileData, contentType)),
+    saveItem: (item, fileName, fileData) =>  dispatch(saveItem(item, fileName, fileData)),
     deleteItem: (id) =>  dispatch(deleteItem(id)),
     addCartItem: (item) => dispatch(addCartItem(item)),
     setCategoryId: (categoryId) =>  dispatch(setCategoryId(categoryId)),

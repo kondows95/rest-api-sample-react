@@ -47,7 +47,7 @@ const TitleBar = ({handleDrawerToggle, totalQuantity, changeAuthState, fetchAuth
   }
 
   
-  const button = user ? (
+  /*const button = user ? (
     <Box mt={1} mr={2}>
       <Button onClick={handleLogout} variant="contained" color="secondary">
         SIGN OUT
@@ -59,8 +59,15 @@ const TitleBar = ({handleDrawerToggle, totalQuantity, changeAuthState, fetchAuth
         SIGN IN
       </Button>
     </Box>
-  )
+  )*/
   
+  const button = (
+    <Box mt={1} mr={2}>
+      <Button onClick={handleLogout} variant="contained" color="secondary">
+        SIGN OUT
+      </Button>
+    </Box>
+  ) 
   
   return (
     <AppBar position="fixed" className={classes.appBar}>

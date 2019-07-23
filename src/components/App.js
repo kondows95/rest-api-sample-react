@@ -18,20 +18,37 @@ import Login from '../containers/Login'
 
 Amplify.configure(aws_exports);
 
-const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
+const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchAuthedUser, user, refreshToken}) => {
+  
+  // const timer = React.useRef();
+  // React.useEffect(() => {
+  //     return () => {
+  //       clearTimeout(timer.current);
+  //     };
+  //   }, []);
+    
+  // timer.current = 
+  
+  const isFirstRef = React.useRef(true)
   React.useEffect(() => {
-    fetchCartData()
-    fetchAllCategories()
+    if (isFirstRef.current) {
+      isFirstRef.current = false;
+      fetchAuthedUser()
+      fetchCartData()
+      fetchAllCategories()
+    }
   })
+  
+    setTimeout(() => {
+      refreshToken();
+    }, 3000);
+    
 
-  return (
-    <MuiThemeProvider theme={theme}>
-      <Router>
-        <CssBaseline />
-        <Box display="flex">
-          <Header />
-          <Box flexGrow={1} display="flex" flexDirection="column">
-            <ToolbarSpacer />
+  const auth = (
+    <Box display="flex">
+      <Header />
+      <Box flexGrow={1} display="flex" flexDirection="column">
+        <ToolbarSpacer />
             <Route exact path="/checkout" render={() => {
               return <Checkout />
             }} />
@@ -50,8 +67,17 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
             <Route exact path="/login" render={() => {
               return <Login />
             }} />
-          </Box>
         </Box>
+    </Box>  
+  )
+
+ const contents = user ? auth : <Login />
+
+  return (
+    <MuiThemeProvider theme={theme}>
+      <Router>
+        <CssBaseline />
+        {contents}
       </Router>
     </MuiThemeProvider>
   )

@@ -12,5 +12,5 @@ export default combineReducers({
   cart: cartReducer,
   order:ordersReducer,
   auth: authReducer,
-  image: imageReducer,
+  //image: imageReducer,
 })

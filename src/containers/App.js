@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import App from '../components/App'
 import { fetchAllCategories } from '../modules/categories'
 import { fetchCartData } from '../modules/cart'
-import { fetchAuthedUser, changeAuthState, signOut } from '../modules/auth'
+import { fetchAuthedUser, refreshToken } from '../modules/auth'
 
 export default connect(
   (state) => ({
@@ -15,7 +15,7 @@ export default connect(
     fetchAllCategories: () => dispatch(fetchAllCategories()),
     fetchCartData: () => dispatch(fetchCartData()),
     fetchAuthedUser: () => dispatch(fetchAuthedUser()),
-    changeAuthState: (value) => dispatch(changeAuthState(value)),
-    signOut: () => dispatch(signOut()),
+    refreshToken: () => dispatch( refreshToken() )
+    
   })
 )(App)

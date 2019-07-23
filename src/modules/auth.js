@@ -1,7 +1,7 @@
 import { Auth } from 'aws-amplify';
 
 const initialState = {
-  authState: null,
+  authState: 'signIn',
   user: null,
   email: null,
   error: null,
@@ -72,6 +72,24 @@ const _getCommonState = (state) => ({
 //　ActionCreators
 //=============================================================================
 
+export const refreshToken = () => {
+  return async (dispatch, getState) => {
+    
+    try {
+      const cognitoUser = await Auth.currentAuthenticatedUser();
+      const currentSession = await Auth.currentSession();
+      cognitoUser.refreshSession(currentSession.refreshToken, (err, session) => {
+        console.log('session', err, session);
+        const { idToken, refreshToken, accessToken } = session;
+        // do whatever you want to do now :)
+      });
+    } catch (e) {
+      console.log('Unable to refresh Token', e);
+    }
+    
+  }
+}
+
 export const changeAuthState = (value) =>  ({
   type: 'AUTH_CHANGE_AUTH_STATE',
   payload: value
@@ -79,6 +97,7 @@ export const changeAuthState = (value) =>  ({
 
 export const fetchAuthedUser = () => {
   return async (dispatch, getState) => {
+    console.log('TEST', 'fetchAuthedUser');
     dispatch({
       type: 'AUTH_BEGIN_LOADING'
     })

@@ -174,6 +174,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
     
     const errs = validateForm(validationSetting, selectedItem)
     console.log('###handleSubmit###', errs)
+    
     if (errs) {
       setErrors(errs)
     }
@@ -190,7 +191,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
           setSpinner(true);
           
           //console.log(selectedItem);
-          saveItem(selectedItem, fileName, file, file.type);
+          saveItem(selectedItem, fileName, file);
           
           //if(file !== null && fileName !== null ){ uploadImage(fileName, file, file.type, selectedItem); }
           
