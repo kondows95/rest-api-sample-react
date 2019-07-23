@@ -91,10 +91,10 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
         <Box fontWeight={600}></Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCloseDialog} color="primary">
+        <Button id = "cancel delete" onClick={handleCloseDialog} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleSubmit} color="primary">
+        <Button id="delete" onClick={handleSubmit} color="primary">
           Delete
         </Button>
       </DialogActions>
