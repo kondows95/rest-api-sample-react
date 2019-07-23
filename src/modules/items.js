@@ -82,10 +82,8 @@ export const fetchAllItems = () => {
         headers: {Authorization:'Bearer ' + token } 
     }
     
-    const url = URL_REST_ITEMS + '?offset=' + getState().items.rows.length
-    console.log('fetchAllItems', url)
+    const url = URL_REST_ITEMS + '?offset=' + getState().items.rows.length;
     const axRes = await axios.get(url, auth)
-    
     if (axRes.data.data.length === 0) {
       dispatch({
         type: 'ITEM_NO_MORE_FETCH'
@@ -129,7 +127,6 @@ export const saveItem= (item, fileName, fileData) => {
       const res = await Storage.put(fileName, fileData, {
           contentType: fileData.type
       });
-      console.log('uploadImage', res)
     }
     
     const token = getState().auth.user.signInUserSession.accessToken.jwtToken;

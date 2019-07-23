@@ -1,5 +1,6 @@
 import { itemsReducer, fetchAllItems, deleteItem, saveItem, setCategoryId } from '../items';
 import mockAxios from "axios";
+import { Storage } from 'aws-amplify';
 //Reducer testing
 describe("item reducer actions", () => {
   const initialState = {
@@ -11,7 +12,7 @@ describe("item reducer actions", () => {
   }
   const state = {
     alreadyFetched: false,
-    rows: [{id: 1 ,name:"item1"},{id:2,name:"item2"}],
+    rows: [{ id: 1, name: "item1" }, { id: 2, name: "item2" }],
     error: "",
     selectedCateogryId: null,
     noMoreFetch: false,
@@ -30,11 +31,11 @@ describe("item reducer actions", () => {
   it("item fetch rows done", () => {
     const action = {
       type: 'ITEM_FETCH_ROWS_DONE',
-      payload:[{id:1,name:"item1"}]
+      payload: [{ id: 1, name: "item1" }]
     };
     const expectedState = {
       ...initialState,
-      rows:[...initialState.rows,...[{id:1,name:"item1"}]]
+      rows: [...initialState.rows, ...[{ id: 1, name: "item1" }]]
     }
     const inputState = itemsReducer(initialState, action);
     expect(inputState).toEqual(expectedState);
@@ -42,11 +43,11 @@ describe("item reducer actions", () => {
   it("item post done", () => {
     const action = {
       type: 'ITEM_POST_DONE',
-      payload: {id:1,name:"item1"}
+      payload: { id: 1, name: "item1" }
     };
     const expectedState = {
       ...initialState,
-      rows:[...initialState.rows,...[{id:1,name:"item1"}]]
+      rows: [...initialState.rows, ...[{ id: 1, name: "item1" }]]
     }
     const inputState = itemsReducer(initialState, action);
     expect(inputState).toEqual(expectedState);
@@ -54,11 +55,11 @@ describe("item reducer actions", () => {
   it("item put done", () => {
     const action = {
       type: 'ITEM_PUT_DONE',
-      payload: {id: 1 ,name:"item2"}
+      payload: { id: 1, name: "item2" }
     };
     const expectedState = {
       ...state,
-      rows: [{id:1,name:"item2"},{id :2,name:"item2"}]
+      rows: [{ id: 1, name: "item2" }, { id: 2, name: "item2" }]
     }
     const inputState = itemsReducer(state, action);
     expect(inputState).toEqual(expectedState);
@@ -71,9 +72,9 @@ describe("item reducer actions", () => {
     };
     const expectedState = {
       ...state,
-      rows: [{id:2,name:"item2"}]
+      rows: [{ id: 2, name: "item2" }]
     }
-    
+
     const inputState = itemsReducer(state, action);
     expect(inputState).toEqual(expectedState);
   });
@@ -87,7 +88,7 @@ describe("item reducer actions", () => {
       ...state,
       selectedCateogryId: 1
     }
-    
+
     const inputState = itemsReducer(state, action);
     expect(inputState).toEqual(expectedState);
   });
@@ -120,7 +121,19 @@ describe("item reducer actions", () => {
 
 describe("ActionCreators Testing", () => {
   const getState = () => {
-    return { items: { rows: [{id:1,name:"item1"}] },auth :{user:"name"} }
+    return {
+      items: { rows: [{ id: 1, name: "item1" }] },
+      auth: {
+        user: {
+          signInUserSession: {
+            accessToken: { jwtToken: "123456789" }
+          }
+        }
+      }
+    }
+  }
+  const fileData ={
+    type: "jpg"
   }
   it("fetch all items with data", async () => {
     mockAxios.get.mockImplementationOnce(() =>
@@ -154,7 +167,7 @@ describe("ActionCreators Testing", () => {
   it("delete item", async () => {
     mockAxios.delete.mockImplementationOnce(() =>
       Promise.resolve({
-        data: { data: [{id: 2,name:"item2"}] }
+        data: { data: [{ id: 2, name: "item2" }] }
       })
     );
     const expectedAction = [{
@@ -184,6 +197,11 @@ describe("ActionCreators Testing", () => {
         data: { data: { id: 1, name: "item 11" } }
       })
     );
+    Storage.put = jest.fn().mockImplementation(
+      () => {
+         return "successfully upload image"
+     });
+  
     const expectedAction_post = [{
       type: 'ITEM_POST_DONE',
       payload: { id: 5, name: "item 5" }
@@ -194,12 +212,12 @@ describe("ActionCreators Testing", () => {
     }]
     const dispatch_put = jest.fn();
     const dispatch_post = jest.fn();
-    await saveItem(item_id)(dispatch_put, getState);
+    await saveItem(item_id,"abcd",fileData)(dispatch_put, getState);
     expect(dispatch_put.mock.calls[0]).toEqual(expectedAction_put);
-    await saveItem(item)(dispatch_post, getState);
+    await saveItem(item,"abcd",fileData)(dispatch_post, getState);
     expect(dispatch_post.mock.calls[0]).toEqual(expectedAction_post)
   });
-  
+
   it("set category id ", async () => {
     const expectedAction = {
       type: 'ITEM_SET_CATEGORY_ID',
