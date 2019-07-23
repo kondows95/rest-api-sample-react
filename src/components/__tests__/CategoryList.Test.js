@@ -17,7 +17,7 @@ afterEach(() => {
 const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
 describe("testing creating category", () => {
   const initialCategory = { id: null, name: "" };
-  
+
 
   it('should exists one create button and one name textfield', () => {
     let categories = [{ id: 1, name: "a" }, { id: 2, name: "b" }];
@@ -106,5 +106,64 @@ describe("testing creating category", () => {
       buttonArray[6].dispatchEvent(new Event('click', { bubbles: true }))
     })
     expect(saveCategory).not.toHaveBeenCalled();
+  });
+})
+
+describe("testing category list", () => {
+  it('testing edit button', () => {
+    let categories = [{ id: 1, name: "a" }, { id: 2, name: "b" }];
+    act(() => {
+      ReactDOM.render(<CategoryList categories={categories} />, container);
+    });
+    const button = container.querySelectorAll('Button')
+    act(() => {
+      button[1].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    const inputArr = document.querySelectorAll('input');
+    expect(inputArr[0].value).toBe("a");
+  });
+
+  it('testing delete button', () => {
+    let categories = [{ id: 1, name: "a" }, { id: 2, name: "b" }];
+    const deleteCategory = jest.fn((category_id) => {
+      if (category_id === 1) categories = [{ id: 2, name: "b" }];
+      else categories = [{ id: 1, name: "a" }];
+    });
+    act(() => {
+      ReactDOM.render(<CategoryList categories={categories} deleteCategory={deleteCategory} />, container);
+    });
+    const button = container.querySelectorAll('Button');
+    act(() => {
+      button[2].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    const buttonArr = document.querySelectorAll('Button')
+    expect(buttonArr[5].id).toBe("delete cancel");
+    expect(buttonArr[6].id).toBe("delete");
+    act(() => {
+      buttonArr[6].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    expect(deleteCategory).toHaveBeenCalled();
+    const expectedCategoires=[{ id: 2, name: "b" }];
+    expect(categories).toStrictEqual(expectedCategoires)
+  });
+
+  it('testing cancle button', () => {
+    let categories = [{ id: 1, name: "a" }, { id: 2, name: "b" }];
+    const deleteCategory = jest.fn((category_id) => {
+      if (category_id === 1) categories = [{ id: 2, name: "b" }];
+      else categories = [{ id: 1, name: "a" }];
+    });
+    act(() => {
+      ReactDOM.render(<CategoryList categories={categories} deleteCategory={deleteCategory} />, container);
+    });
+    const button = container.querySelectorAll('Button');
+    act(() => {
+      button[2].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    const buttonArr = document.querySelectorAll('Button')
+    act(() => {
+      buttonArr[5].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    expect(deleteCategory).not.toHaveBeenCalled();
   });
 })

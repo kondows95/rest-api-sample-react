@@ -35,6 +35,7 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
   }
   
   const handleDelete = category => event => {
+    console.log("enter handel delete")
     setSelectedCategory(category)
     setDialogOpen(true)
     setIsDelete(true)
@@ -91,7 +92,7 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
         <Box fontWeight={600}></Box>
       </DialogContent>
       <DialogActions>
-        <Button id = "cancel delete" onClick={handleCloseDialog} color="primary">
+        <Button id = "delete cancel" onClick={handleCloseDialog} color="primary">
           Cancel
         </Button>
         <Button id="delete" onClick={handleSubmit} color="primary">
@@ -143,10 +144,10 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
           <Box display="flex" flexDirection="column" flexGrow={1}>
             <Box fontWeight={600}>{category.id}: {category.name}</Box>
             <Box ml="auto" mr={0} mt={2}>
-              <Button color="primary" onClick={handleEdit(category)}>
+              <Button id="categoryedit" color="primary" onClick={handleEdit(category)}>
                 Edit
               </Button>
-              <Button color="primary" onClick={handleDelete(category)}>
+              <Button id ='categorydelete' color="primary" onClick={handleDelete(category)}>
                 Delete
               </Button>
             </Box>
