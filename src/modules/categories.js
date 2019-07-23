@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { URL_REST_CATEGORIES, URL_REST_ORDERS } from '../constants'
 import { replaceRowInRows, deleteRowFromRows } from '../util'
+import { resolve } from 'url';
+import { async } from 'q';
 
 const initialState = {
   alreadyFetched: false,
@@ -50,33 +52,14 @@ export const categoriesReducer = (state = initialState, action) => {
 export const fetchAllCategories = () => {
   return async (dispatch, getState) => {
     
-    /*if (!getState().auth.user) {
-      return;
-    }*/
-    
-    // const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
-    
-    // console.log("Category", token)
-   
-    // const auth = {
-    //     headers: {Authorization:'Bearer ' + token } 
-    // }
-    
-    console.log("cate",getState())
-    console.log("Category=================================================")
-    
-    
     if (getState().categories.alreadyFetched) {
         return
     }
-
     dispatch({
         type: 'CATEGORY_SET_ALREADY_FETCHED'
     })
     
-    
     const axRes = await axios.get(URL_REST_CATEGORIES)
-
     dispatch({
       type: 'CATEGORY_FETCH_ROWS_DONE',
       payload: axRes.data.data
@@ -137,3 +120,7 @@ export const testPost = () => {
     })
   }
 }
+
+
+
+

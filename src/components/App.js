@@ -11,25 +11,15 @@ import ItemList from '../containers/ItemList'
 import Checkout from '../containers/Checkout'
 import ConfirmOrder from '../containers/ConfirmOrder'
 import Cart from './Cart'
+
 import Amplify from 'aws-amplify'
 import aws_exports from '../aws-exports'
-
 import Login from '../containers/Login'
-
 Amplify.configure(aws_exports);
 
 const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchAuthedUser, user, refreshToken}) => {
-  
-  // const timer = React.useRef();
-  // React.useEffect(() => {
-  //     return () => {
-  //       clearTimeout(timer.current);
-  //     };
-  //   }, []);
-    
-  // timer.current = 
-  
   const isFirstRef = React.useRef(true)
+  
   React.useEffect(() => {
     if (isFirstRef.current) {
       isFirstRef.current = false;
@@ -39,11 +29,17 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
     }
   })
   
-    setTimeout(() => {
-      refreshToken();
-    }, 3000);
-    
-
+  // const timer = React.useRef();
+  // React.useEffect(() => {
+  //     return () => {
+  //       clearTimeout(timer.current);
+  //     };
+  //   }, []);
+  
+  setTimeout(() => {
+    refreshToken();
+  }, 3000);
+  
   const auth = (
     <Box display="flex">
       <Header />
