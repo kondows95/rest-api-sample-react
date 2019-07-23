@@ -51,6 +51,7 @@ export const categoriesReducer = (state = initialState, action) => {
 //=============================================================================
 export const fetchAllCategories = () => {
   return async (dispatch, getState) => {
+    
     if (getState().categories.alreadyFetched) {
         return
     }

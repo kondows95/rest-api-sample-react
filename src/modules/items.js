@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { URL_REST_ITEMS } from '../constants'
-import { replaceRowInRows, deleteRowFromRows } from '../util'
+import { replaceRowInRows, deleteRowFromRows } from '../util';
+import { Storage } from 'aws-amplify';
 
 const initialState = {
   alreadyFetched: false,
@@ -62,10 +63,28 @@ export const itemsReducer = (state = initialState, action) => {
 
 export const fetchAllItems = () => {
   return async (dispatch, getState) => {
-        
+    console.log('TEST', getState().auth.user);
+    if (!getState().auth.user) {
+      return;
+    }
+    
+    /*if (getState().items.alreadyFetched) {
+      //return
+    }
+    
+    dispatch({
+      type: 'ITEM_SET_ALREADY_FETCHED'
+    })*/
+    
+    const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
+   
+    const auth = {
+        headers: {Authorization:'Bearer ' + token } 
+    }
+    
     const url = URL_REST_ITEMS + '?offset=' + getState().items.rows.length
     console.log('fetchAllItems', url)
-    const axRes = await axios.get(url)
+    const axRes = await axios.get(url, auth)
     
     if (axRes.data.data.length === 0) {
       dispatch({
@@ -91,8 +110,13 @@ export const deleteItem = (id) => {
   }
 }
 
-export const saveItem= (item) => {
+export const saveItem= (item, fileName, fileData) => {
   return async (dispatch, getState) => {
+    
+    if (!getState().auth.user) {
+      return;
+    }
+    
     const id = item.id ? item.id : null
     const reqParams = {
       name: item.name,
@@ -101,9 +125,22 @@ export const saveItem= (item) => {
       image: item.image,
     }
     
+    if(fileName !== null && fileData !== null){
+      const res = await Storage.put(fileName, fileData, {
+          contentType: fileData.type
+      });
+      console.log('uploadImage', res)
+    }
+    
+    const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
+   
+    const auth = {
+        headers: {Authorization:'Bearer ' + token } 
+    }
+    
     if (id === null) {
       //INSERT
-      const axRes = await axios.post(URL_REST_ITEMS, reqParams)
+      const axRes = await axios.post(URL_REST_ITEMS, reqParams, auth)
       dispatch({
         type: 'ITEM_POST_DONE',
         payload: axRes.data.data
@@ -112,7 +149,7 @@ export const saveItem= (item) => {
     else {
       //UPDATE
       const url = URL_REST_ITEMS + '/' + id
-      const axRes = await axios.put(url, reqParams)
+      const axRes = await axios.put(url, reqParams, auth)
       dispatch({
         type: 'ITEM_PUT_DONE',
         payload: axRes.data.data
