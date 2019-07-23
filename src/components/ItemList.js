@@ -1,14 +1,23 @@
 import React from 'react'
 //import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, Paper, Container, Grid, CardMedia,Card, CardActions, CardContent,Button, Dialog, 
-  DialogTitle,DialogContent, TextField, DialogActions, IconButton, NativeSelect
+import {
+  Box, Paper, Container, Grid, CardMedia, Card, CardActions, CardContent, Button, Dialog,
+  DialogTitle, DialogContent, TextField, DialogActions, IconButton, NativeSelect
 } from '@material-ui/core'
 import { AddShoppingCart as AddShoppingCartIcon } from '@material-ui/icons'
 import { validateForm } from '../util'
 import { BASEURL_ITEM_IMAGES } from '../constants'
 import InfiniteScroll from 'react-infinite-scroller'
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import { green } from '@material-ui/core/colors';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+const uuidv1 = require('uuid/v1');
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -26,6 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
   inputField: {
     margin: theme.spacing(2, 0),
+    height: 45
   },
   dialogContent: {
     display: 'flex',
@@ -40,51 +50,181 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(2, 1),
     padding: theme.spacing(2, 2),
   },
+  itemImgBox: {
+    width: '100%',
+    maxHeight: 230,
+    borderWidth: "1px",
+    borderStyle: "dotted",
+    borderRadius: 4
+
+  },
+  itemImg: {
+    maxWidth: '100%',
+    maxHeight: 210,
+    borderRadius: 4,
+    resizeMode: 'contain'
+  },
+  btnPicker: {
+    padding: '10px',
+    background: 'tomato',
+    display: 'table',
+    color: '#fff',
+    width: '100%',
+    borderRadius: 4,
+    textAlign: 'center',
+    cursor: 'pointer'
+  },
+  labelCategory: {
+    margin: theme.spacing(1,2)
+  },
+  btnWrapper: {
+    margin: theme.spacing(1),
+    position: 'relative',
+  },
+  btnProgress: {
+    color: green[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
 }))
 
 
-const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCategoryId, fetchAllItems, noMoreFetch }) => {
+const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCategoryId, fetchAllItems, noMoreFetch, uploadImage, user, changeAuthState, history }) => {
   const classes = useStyles()
 
   const [dialogOpen, setDialogOpen] = React.useState(false)
   const [selectedItem, setSelectedItem] = React.useState(null)
+  const [selectedImg, setSelectedImg] = React.useState(null)
   const [isDelete, setIsDelete] = React.useState(false)
   const [errors, setErrors] = React.useState({})
+  const [isLogin, setIsLogin] = React.useState(false);
+  const [spinner, setSpinner] = React.useState(false);
+  const [file, setFile] = React.useState(null);
+  const [fileName, setFileName] = React.useState(null);
   
-  const initialItem = {id: null, name: "", price: "", category_id: ""}
+  const timer = React.useRef();
+  React.useEffect(() => {
+      return () => {
+        clearTimeout(timer.current);
+      };
+    }, []);
+  
+  const initialItem = { id: null, name: "", price: "", category_id: "" }
 
   const handleChangeValue = fieldName => event => {
-    const newItem = {...selectedItem}
-    newItem[fieldName] =  event.target.value
+    const newItem = { ...selectedItem }
+    newItem[fieldName] = event.target.value
     setSelectedItem(newItem)
   }
-  
+
   const handleDelete = item => event => {
     setSelectedItem(item)
     setDialogOpen(true)
     setIsDelete(true)
     setErrors({})
   }
-  
+
   const handleEdit = item => event => {
     setSelectedItem(item)
     setDialogOpen(true)
     setIsDelete(false)
+    setSelectedImg(null)
     setErrors({})
   }
 
   const handleCloseDialog = () => {
-    setDialogOpen(false)
+    setDialogOpen(false);
+    setSpinner(false);
+    setIsLogin(false);
+    setSelectedImg(null);
+    setFile(null);
+    setFileName(null);
+  }
+
+  const handleChooseFile = event => {
+    event.preventDefault();
+    
+    let reader = new FileReader();
+    let file = event.target.files[0];
+    
+    //create dynamic name
+    const fname = uuidv1()+".png";
+    
+    //add file name in state
+    const newItem = { ...selectedItem }
+    newItem['image'] = fname;
+    setSelectedItem(newItem);
+    
+    setFile(file);
+    setFileName(fname);
+    
+    //get url img for preview
+    reader.onloadend = () => {
+      setSelectedImg(reader.result)
+    }
+    reader.readAsDataURL(file);
+  
   }
   
+  const handleUpload = event => {
+    event.preventDefault();
+    
+    const errs = validateForm(validationSetting, selectedItem)
+    console.log('###handleSubmit###', errs)
+    
+    if (errs) {
+      setErrors(errs)
+    }
+    else {
+      if (isDelete) {
+        deleteItem(selectedItem.id)
+      }
+      else {
+        
+        if(user === null){
+          setIsLogin(true);
+        }else{
+          setIsLogin(false);
+          setSpinner(true);
+          
+          //console.log(selectedItem);
+          saveItem(selectedItem, fileName, file);
+          
+          //if(file !== null && fileName !== null ){ uploadImage(fileName, file, file.type, selectedItem); }
+          
+        }
+        
+      }
+      
+      timer.current = setTimeout(() => {
+        
+        setSpinner(false);
+        handleCloseDialog();
+        //window.location.reload();
+      }, 3000);
+    }
+
+  }
+
   const validationSetting = {
     isEmpty: ['name', 'price', 'category_id'],
     isNumeric: ['price']
   }
   
-  const handleSubmit = () => {
+  const handleLogin = event => {
+    event.preventDefault();
+    changeAuthState('signIn')
+    history.push("/login");
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    
     if (selectedItem) {
-      const errs = validateForm(validationSetting, selectedItem)
+      /*const errs = validateForm(validationSetting, selectedItem)
       console.log('###handleSubmit###', errs)
       if (errs) {
         setErrors(errs)
@@ -97,28 +237,31 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
           saveItem(selectedItem)
         }
         handleCloseDialog()
-      }
+      }*/
+      
     }
   }
-  
+
   const handleAddCartItem = item => event => {
     addCartItem(item)
   }
-  
+
   const handleChangeCategory = event => {
     setCategoryId(event.target.value ? event.target.value : null)
   }
-  
+
   const dialog = (selectedItem === null) ? null : (
-    <Dialog 
-      open={dialogOpen} 
-      onClose={handleCloseDialog} 
+
+    <Dialog
+      open={dialogOpen}
+      onClose={handleCloseDialog}
       aria-labelledby="form-dialog-title"
       fullWidth
       maxWidth="xs"
     >
       <DialogTitle id="form-dialog-title">
-        {selectedItem.id ? "Edit (ID:"+selectedItem.id+")" : "Create"}
+        {selectedItem.id ? "Edit (ID:" + selectedItem.id + ")" : "Create"}
+        {isLogin ? <Box color="red" >You don't have Upload Permission. <Button onClick={handleLogin} color="secondary" >sign in</Button></Box> : null}
       </DialogTitle>
       <DialogContent className={classes.dialogContent}>
         <TextField
@@ -143,30 +286,67 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
           margin="dense"
           className={classes.inputField}
         />
-        <NativeSelect
-          value={selectedItem.category_id}
-          onChange={handleChangeValue("category_id")}
-          className={classes.inputField}
-          error={errors.category_id ? true : false}
-        >
-          <option value=""></option>
-          {categories.map((category) => {
-            return (<option value={category.id}>{category.name}</option>)
-          })}
-        </NativeSelect>
+        
+        <FormControl>
+          <InputLabel htmlFor="category" className={classes.labelCategory}>
+            Category
+          </InputLabel>
+          <NativeSelect
+            value={selectedItem.category_id}
+            onChange={handleChangeValue("category_id")}
+            className={classes.inputField}
+            error={errors.category_id ? true : false}
+            input={<OutlinedInput labelWidth={70} name="category" id="category" />}
+          >
+            <option value=""></option>
+            {categories.map((category) => {
+              return (<option value={category.id}>{category.name}</option>)
+            })}
+          </NativeSelect>
+        </FormControl>
+        
+        <Grid>
+          {selectedItem.id === null ?
+            <Grid>
+              {selectedImg === null ? null : 
+                <Box textAlign="center"  p={1} my={2} className={classes.itemImgBox} >
+                  <img src={selectedImg} className={classes.itemImg} />
+                </Box>
+              }
+              <label className={classes.btnPicker}>
+                <TextField onChange={handleChooseFile} type="file" id="image" name="image" style={{ display: 'none' }} ></TextField>
+                Choose File
+              </label>
+            </Grid>
+            :
+            <Grid>
+              <Box textAlign="center"  p={1} my={2} className={classes.itemImgBox} >
+                <img src={ selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} className={classes.itemImg} />
+              </Box>
+              <label className={classes.btnPicker}>
+                <TextField onChange={handleChooseFile} type="file" id="image" name="image" style={{ display: 'none' }} ></TextField>
+                Update File
+              </label>
+            </Grid>
+          }
+        </Grid>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCloseDialog} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleSubmit} color="primary">
-          Submit
-        </Button>
+        <Box className={classes.btnWrapper} >
+          <Button onClick={handleUpload} disabled={spinner} color="primary" variant="contained">
+            Submit
+          </Button>
+          {spinner && <CircularProgress size={24} className={classes.btnProgress} />}
+        </Box>
       </DialogActions>
     </Dialog>
+
   )
-  
-  
+
+
   const paperItems = []
   for (const item of items) {
     paperItems.push(
@@ -174,12 +354,12 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
-            image={BASEURL_ITEM_IMAGES+item.image}
+            image={BASEURL_ITEM_IMAGES + item.image}
             title={item.name}
           />
           <CardContent >
             <Box fontWeight={600}>
-             {item.name}
+              {item.name}
             </Box>
             <Box>
               {item.price} Ks
@@ -204,7 +384,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
       </Grid>
     )
   }
-  
+
   const paperControl = (
     <Paper className={classes.paper}>
       <Box ml={0} my="auto" flexGrow={1} fontWeight={600}>
@@ -221,9 +401,9 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
           return (<option value={category.id}>{category.name}</option>)
         })}
       </NativeSelect>
-      <Button 
-        variant="contained" 
-        color="secondary" 
+      <Button
+        variant="contained"
+        color="secondary"
         className={classes.controlButton}
         onClick={handleEdit(initialItem)}
       >
@@ -251,4 +431,8 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
   )
 }
 
-export default ItemList
+ItemList.propTypes = {
+  changeAuthState: PropTypes.func.isRequired,
+}
+
+export default withRouter(ItemList);

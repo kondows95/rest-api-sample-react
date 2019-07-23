@@ -1,19 +1,14 @@
 {
 	"auth": {
-		"restapisampled57e098b": {
+		"mbamplifysampleda88b9d9": {
 			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
 		}
 	},
 	"storage": {
-		"s3293146c2": {
+		"s39772916f": {
 			"service": "S3",
-			"providerPlugin": "awscloudformation"
-		}
-	},
-	"hosting": {
-		"S3AndCloudFront": {
-			"service": "S3AndCloudFront",
 			"providerPlugin": "awscloudformation"
 		}
 	}

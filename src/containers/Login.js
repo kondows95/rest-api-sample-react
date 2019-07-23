@@ -1,11 +1,10 @@
 import { connect } from 'react-redux'
-import TitleBar from '../components/TitleBar'
+import Login from '../components/Login'
 import { fetchAuthedUser, changeAuthState, signOut } from '../modules/auth'
 
 export default connect(
   (state) => ({
     totalQuantity:  state.cart.totalQuantity,
-    
     authState: state.auth.authState,
     dialogOpened: state.auth.dialogOpened,
     user: state.auth.user,
@@ -17,4 +16,4 @@ export default connect(
     changeAuthState: (value) => dispatch(changeAuthState(value)),
     signOut: () => dispatch(signOut()),
   })
-)(TitleBar)
+)(Login)

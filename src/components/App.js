@@ -11,21 +11,40 @@ import ItemList from '../containers/ItemList'
 import Checkout from '../containers/Checkout'
 import ConfirmOrder from '../containers/ConfirmOrder'
 import Cart from './Cart'
-import Test from './Test';
-const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
-  React.useEffect(() => {
-    fetchCartData()
-    fetchAllCategories()
-  })
 
-  return (
-    <MuiThemeProvider theme={theme}>
-      <Router>
-        <CssBaseline />
-        <Box display="flex">
-          <Header />
-          <Box flexGrow={1} display="flex" flexDirection="column">
-            <ToolbarSpacer />
+import Amplify from 'aws-amplify'
+import aws_exports from '../aws-exports'
+import Login from '../containers/Login'
+Amplify.configure(aws_exports);
+
+const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchAuthedUser, user, refreshToken}) => {
+  const isFirstRef = React.useRef(true)
+  
+  React.useEffect(() => {
+    if (isFirstRef.current) {
+      isFirstRef.current = false;
+      fetchAuthedUser()
+      fetchCartData()
+      fetchAllCategories()
+    }
+  })
+  
+  // const timer = React.useRef();
+  // React.useEffect(() => {
+  //     return () => {
+  //       clearTimeout(timer.current);
+  //     };
+  //   }, []);
+  
+  setTimeout(() => {
+    refreshToken();
+  }, 3000);
+  
+  const auth = (
+    <Box display="flex">
+      <Header />
+      <Box flexGrow={1} display="flex" flexDirection="column">
+        <ToolbarSpacer />
             <Route exact path="/checkout" render={() => {
               return <Checkout />
             }} />
@@ -41,8 +60,20 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData}) => {
             <Route exact path="/items" render={() => {
               return <ItemList />
             }} />
-          </Box>
+            <Route exact path="/login" render={() => {
+              return <Login />
+            }} />
         </Box>
+    </Box>  
+  )
+
+ const contents = user ? auth : <Login />
+
+  return (
+    <MuiThemeProvider theme={theme}>
+      <Router>
+        <CssBaseline />
+        {contents}
       </Router>
     </MuiThemeProvider>
   )

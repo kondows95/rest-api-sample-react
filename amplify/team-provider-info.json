@@ -1,18 +1,18 @@
 {
     "dev": {
         "awscloudformation": {
-            "AuthRoleName": "rest-api-sample-dev-20190703212901-authRole",
-            "UnauthRoleArn": "arn:aws:iam::539741201439:role/rest-api-sample-dev-20190703212901-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::539741201439:role/rest-api-sample-dev-20190703212901-authRole",
+            "AuthRoleName": "mb-amplify-sample-dev-20190715021517-authRole",
+            "UnauthRoleArn": "arn:aws:iam::261556458495:role/mb-amplify-sample-dev-20190715021517-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::261556458495:role/mb-amplify-sample-dev-20190715021517-authRole",
             "Region": "ap-northeast-1",
-            "DeploymentBucketName": "rest-api-sample-dev-20190703212901-deployment",
-            "UnauthRoleName": "rest-api-sample-dev-20190703212901-unauthRole",
-            "StackName": "rest-api-sample-dev-20190703212901",
-            "StackId": "arn:aws:cloudformation:ap-northeast-1:539741201439:stack/rest-api-sample-dev-20190703212901/9335c730-9dd9-11e9-af19-06ce06e5203e"
+            "DeploymentBucketName": "mb-amplify-sample-dev-20190715021517-deployment",
+            "UnauthRoleName": "mb-amplify-sample-dev-20190715021517-unauthRole",
+            "StackName": "mb-amplify-sample-dev-20190715021517",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:261556458495:stack/mb-amplify-sample-dev-20190715021517/6367cdc0-a6a6-11e9-a212-0a29b069fc22"
         },
         "categories": {
             "auth": {
-                "restapisampled57e098b": {}
+                "mbamplifysampleda88b9d9": {}
             }
         }
     }
