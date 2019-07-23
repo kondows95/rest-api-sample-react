@@ -22,24 +22,25 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
   
   React.useEffect(() => {
     if (isFirstRef.current) {
+      
       isFirstRef.current = false;
       fetchAuthedUser()
-      fetchCartData()
-      fetchAllCategories()
+    fetchCartData()
+      
     }
+    
+    fetchAllCategories();
+    
+    const timer = window.setInterval(() => {
+      refreshToken();
+    }, 600000); //after 10 minutes to call refreshToken()
+    return () => { // Return callback to run on unmount.
+      window.clearInterval(timer);
+    };
+    
   })
   
-  // const timer = React.useRef();
-  // React.useEffect(() => {
-  //     return () => {
-  //       clearTimeout(timer.current);
-  //     };
-  //   }, []);
-  
-  setTimeout(() => {
-    refreshToken();
-  }, 3000);
-  
+ 
   const auth = (
     <Box display="flex">
       <Header />
