@@ -120,7 +120,7 @@ describe("item reducer actions", () => {
 
 describe("ActionCreators Testing", () => {
   const getState = () => {
-    return { items: { rows: [{id:1,name:"item1"}] } }
+    return { items: { rows: [{id:1,name:"item1"}] },auth :{user:"name"} }
   }
   it("fetch all items with data", async () => {
     mockAxios.get.mockImplementationOnce(() =>

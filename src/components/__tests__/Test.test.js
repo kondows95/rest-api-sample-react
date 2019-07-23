@@ -7,13 +7,14 @@ import { TextField } from '@material-ui/core'
 
 let container
 
+
 beforeEach(() => {
   container = document.createElement('div')
   document.body.appendChild(container)
 })
 
 afterEach(() => {
-  document.body.removeChild(container)
+  document.body.outerHTML = '<body></body>'
   container = null
 })
 
@@ -25,14 +26,28 @@ it('should exists email field', () => {
   act(() => {
     ReactDOM.render(<Test />, container);
   });
-  const button = container.querySelector('Button')
-  //expect(button).toHaveLength(1)
+
+  const button = container.querySelectorAll('Button')
+  expect(button).toHaveLength(1)
+  //click create button 
   act(() => {
-    button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    button[0].dispatchEvent(new MouseEvent('click', { bubbles: true }));
   });
-  expect(1).toBe(1);
-  // const h1arr = container.querySelectorAll('h1');
-  // expect(h1arr).toHaveLength(1)
-  // const inputarr = container.querySelectorAll('input');
-  // expect(inputarr).toHaveLength(1)
+  const inputArr = document.querySelectorAll('input');
+  expect(inputArr).toHaveLength(1);
+  expect(inputArr[0].id).toBe("name");
+  //enter value to textfield
+  act(() => {
+    valueSetter.call(inputArr[0], 'abc');
+    inputArr[0].dispatchEvent(new Event('change', { bubbles: true}));
+  });
+  expect(inputArr[0].value).toBe('abc');
+
+  const buttonArray = container.querySelectorAll('button');
+  act(() => {
+    buttonArray[0].dispatchEvent(new Event('click', { bubbles: true}))
+  })
+  expect(inputArr[0].value).toBe("");
+
+ 
 });
