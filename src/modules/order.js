@@ -47,7 +47,6 @@ export const setRequestParams = addressForm => {
       reqParams.item_price_array.push(cartItem.price)
     }
     
-    console.log('#setRequestParams#', reqParams)
     dispatch({
       type: 'ORDERS_SET_REQUEST_PARAMS',
       payload: reqParams

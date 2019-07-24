@@ -11,10 +11,7 @@ const _getItemsByCategory = (rows, categoryId) => {
     return rows
   }
   else {
-    //console.log('_getItemsByCategory1', categoryId)
     const newRows = rows.filter(t => Number(t.category_id) === Number(categoryId))
-    //console.log('_getItemsByCategory2', rows)
-    //console.log('_getItemsByCategory2', newRows)
     return newRows
   }
 }

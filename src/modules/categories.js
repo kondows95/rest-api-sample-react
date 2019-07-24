@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { URL_REST_CATEGORIES, URL_REST_ORDERS } from '../constants';
+import { URL_REST_CATEGORIES } from '../constants';
 import { replaceRowInRows, deleteRowFromRows } from '../util';
 
 const initialState = {
@@ -68,7 +68,6 @@ export const fetchAllCategories = () => {
     })
     
     const axRes = await axios.get(URL_REST_CATEGORIES, auth)
-    console.log('fetchAllCategories', axRes)
     dispatch({
       type: 'CATEGORY_FETCH_ROWS_DONE',
       payload: axRes.data.data
@@ -135,21 +134,6 @@ export const saveCategory= (category) => {
   }
 }
 
-export const testPost = () => {
-  return async (dispatch, getState) => {
-    const reqParams = {
-      first_name: 'Kondo',
-      last_name: 'Tsubasa',
-      //items: [{id:1, qty:2},{id:2, qty:3}]
-    }
-    
-    const axRes = await axios.post(URL_REST_ORDERS, reqParams)
-    console.log('###testPost', axRes.data)
-    dispatch({
-      type: 'CATEGORY_TEST_POST'
-    })
-  }
-}
 
 
 

@@ -187,7 +187,6 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
     event.preventDefault();
     
     const errs = validateForm(validationSetting, selectedItem)
-    console.log('###handleSubmit###', errs)
     
     if (errs) {
       setErrors(errs)
@@ -205,7 +204,6 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
           setIsLogin(false);
           setSpinner(true);
           
-          //console.log(selectedItem);
           saveItem(selectedItem, fileName, file);
         }
         
@@ -290,7 +288,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
           >
             <option value=""></option>
             {categories.map((category) => {
-              return (<option value={category.id}>{category.name}</option>)
+              return (<option key={category.id} value={category.id} >{category.name}</option>)
             })}
           </NativeSelect>
         </FormControl>
@@ -348,7 +346,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
   const paperItems = []
   for (const item of items) {
     paperItems.push(
-      <Grid item xs={12} sm={4} lg={3}>
+      <Grid  item xs={12} sm={4} lg={3} key={item.id}>
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}

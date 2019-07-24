@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CheckoutOrderReviewCart = ({ cart, totalPrice }) => {
-  console.log(cart)
   const classes = useStyles()
   const mobileView = [];
   const pcView = [];

@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const CategoryList = ({ categories, setCategoryId, handleDrawerClose }) => {
+const CategoryList = ({ handleDrawerClose }) => {
   const classes = useStyles()
   return (
     <React.Fragment>
@@ -51,11 +51,6 @@ const CategoryList = ({ categories, setCategoryId, handleDrawerClose }) => {
 }
 
 CategoryList.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired
-  }).isRequired).isRequired,
-  setCategoryId: PropTypes.func,
   handleDrawerClose: PropTypes.func,
 }
 
