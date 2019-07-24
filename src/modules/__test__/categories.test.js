@@ -89,7 +89,16 @@ describe("categories reducer actions", () => {
 
 describe("ActionCreators Testing", () => {
   const getState = () => {
-    return { categories: { alreadyFetched: false } }
+    return {
+      categories: { alreadyFetched: false },
+      auth: {
+        user: {
+          signInUserSession: {
+            accessToken: { jwtToken: "123456789" }
+          }
+        }
+      }
+    }
   }
 
   it("category already fetch", async () => {

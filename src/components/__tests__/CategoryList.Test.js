@@ -16,10 +16,7 @@ afterEach(() => {
 
 const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
 describe("testing creating category", () => {
-  const initialCategory = { id: null, name: "" };
-
-
-  it('should exists one create button and one name textfield', () => {
+   it('should exists one create button and one name textfield', () => {
     let categories = [{ id: 1, name: "a" }, { id: 2, name: "b" }];
     act(() => {
       ReactDOM.render(<CategoryList categories={categories} />, container);
