@@ -38,7 +38,7 @@ const ConfirmForm = ({ cart, requestParams, postResultObj, setRequestParams, pos
 
   const handleHome = event => {
     event.preventDefault();
-    history.push("/items");
+    history.push("/");
   }
 
   return (

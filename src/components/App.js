@@ -46,6 +46,9 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
       <Header />
       <Box flexGrow={1} display="flex" flexDirection="column">
         <ToolbarSpacer />
+            <Route exact path="/" render={() => {
+              return <ItemList />
+            }} />
             <Route exact path="/checkout" render={() => {
               return <Checkout />
             }} />
@@ -57,9 +60,6 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
             }} />
             <Route exact path="/categories" render={() => {
               return <CategoryList />
-            }} />
-            <Route exact path="/items" render={() => {
-              return <ItemList />
             }} />
             <Route exact path="/login" render={() => {
               return <Login />

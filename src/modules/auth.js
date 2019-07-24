@@ -12,7 +12,6 @@ const initialState = {
 //　Reducers
 //=============================================================================
 export const authReducer = (state = initialState, action) => {
-  console.log(action.type, state)
   switch (action.type) {
     case 'AUTH_SYSTEM_ERROR':
       return {
@@ -40,7 +39,6 @@ export const authReducer = (state = initialState, action) => {
         user: action.payload
       }
     case 'AUTH_SIGN_IN_SUCCESS':
-      console.log('AUTH_SIGN_IN_SUCCESS', action.payload)
       return {
         ..._getCommonState(state),
         user: action.payload,
@@ -97,7 +95,6 @@ export const changeAuthState = (value) =>  ({
 
 export const fetchAuthedUser = () => {
   return async (dispatch, getState) => {
-    console.log('TEST', 'fetchAuthedUser');
     dispatch({
       type: 'AUTH_BEGIN_LOADING'
     })
