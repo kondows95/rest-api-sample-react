@@ -91,10 +91,10 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
         <Box fontWeight={600}></Box>
       </DialogContent>
       <DialogActions>
-        <Button id="categoryCancel" onClick={handleCloseDialog} color="primary">
+        <Button onClick={handleCloseDialog} color="primary">
           Cancel
         </Button>
-        <Button id="categoryDelete"  onClick={handleSubmit} color="primary">
+        <Button onClick={handleSubmit} color="primary">
           Delete
         </Button>
       </DialogActions>
@@ -125,10 +125,10 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button id = "cancel" onClick={handleCloseDialog} color="primary">
+        <Button onClick={handleCloseDialog} color="primary">
           Cancel
         </Button>
-        <Button id = "submit" onClick={handleSubmit} color="primary">
+        <Button onClick={handleSubmit} color="primary">
           Submit
         </Button>
       </DialogActions>
@@ -138,7 +138,7 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
   const paperItems = []
   for (const category of categories) {
     paperItems.push(
-      <Grid key={category.id} item xs={12} sm={4} lg={3}>
+      <Grid item xs={12} sm={4} lg={3} key={category.id} >
         <Paper className={classes.paper}>
           <Box display="flex" flexDirection="column" flexGrow={1}>
             <Box fontWeight={600}>{category.id}: {category.name}</Box>
@@ -162,7 +162,6 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
         Categories ({categories.length})
       </Box>
       <Button 
-        id="create"
         variant="contained" 
         color="secondary" 
         className={classes.button}

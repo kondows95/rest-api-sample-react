@@ -64,6 +64,7 @@ const validateByMethod = (method, fields, values) => {
           if (!validator.isEmpty(value) && !validator.isNumeric(value)) {
             result = true
           }
+          break
         default:
       }//switch
       if (result === true) {

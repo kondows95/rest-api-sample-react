@@ -10,7 +10,6 @@ const initialState = {
 //　Reducers
 //=============================================================================
 export const imageReducer = (state = initialState, action) => {
-  console.log(action.type, state)
   switch (action.type) {
     case 'IMAGE_UPLOAD_SUCCESS':
       return {
@@ -39,9 +38,6 @@ const _getCommonState = (state) => ({
 export const setRequestParams = () => {
   
   return(dispatch, getState) => {
-    
-    console.log('#setRequestParams# for image')
-    
     dispatch({
       type: 'IMAGE_INIT'
     })
@@ -60,7 +56,6 @@ export const uploadImage = (fileName, fileData, contentType) => {
       const res = await Storage.put(fileName, fileData, {
           contentType: contentType
       })
-      console.log('uploadImage', res)
       dispatch({
         type: 'IMAGE_UPLOAD_SUCCESS',
         payload: res
