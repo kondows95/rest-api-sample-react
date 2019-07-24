@@ -22,7 +22,7 @@ describe("testing creating category", () => {
       ReactDOM.render(<CategoryList categories={categories} />, container);
     });
     const button = container.querySelectorAll('Button')
-    expect(button[0].id).toBe("create")
+    expect(button[0].textContent.toUpperCase()).toBe("CREATE")
     act(() => {
       button[0].dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
@@ -74,7 +74,7 @@ describe("testing creating category", () => {
       inputArr[0].dispatchEvent(new Event('change', { bubbles: true }));
     });
     const buttonArray = document.querySelectorAll('button');
-    expect(buttonArray[6].id).toBe("submit")
+    expect(buttonArray[6].textContent.toUpperCase()).toBe("SUBMIT")
     act(() => {
       buttonArray[6].dispatchEvent(new Event('click', { bubbles: true }))
     })
@@ -134,8 +134,8 @@ describe("testing category list", () => {
       button[2].dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
     const buttonArr = document.querySelectorAll('Button')
-    expect(buttonArr[5].id).toBe("delete cancel");
-    expect(buttonArr[6].id).toBe("delete");
+    expect(buttonArr[5].textContent.toUpperCase()).toBe("CANCEL");
+    expect(buttonArr[6].textContent.toUpperCase()).toBe("DELETE");
     act(() => {
       buttonArr[6].dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
