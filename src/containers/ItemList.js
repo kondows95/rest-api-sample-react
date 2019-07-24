@@ -7,13 +7,11 @@ import { changeAuthState } from '../modules/auth'
 
 
 const _getItemsByCategory = (rows, categoryId) => {
-  if (categoryId <= 0) {
+  if (categoryId === null) {
     return rows
   }
   else {
-    console.log('_getItemsByCategory1', categoryId)
-    const newRows = rows.filter(t => t.category_id == categoryId)
-    console.log('_getItemsByCategory2', rows)
+    const newRows = rows.filter(t => Number(t.category_id) === Number(categoryId))
     return newRows
   }
 }

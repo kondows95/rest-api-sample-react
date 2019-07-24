@@ -5,7 +5,7 @@ import {
   Box, Paper, Container, Grid, CardMedia, Card, CardActions, CardContent, Button, Dialog,
   DialogTitle, DialogContent, TextField, DialogActions, IconButton, NativeSelect
 } from '@material-ui/core'
-import { AddShoppingCart as AddShoppingCartIcon } from '@material-ui/icons'
+import { AddShoppingCart as AddShoppingCartIcon, AddPhotoAlternate as AddPhotoIcon } from '@material-ui/icons'
 import { validateForm } from '../util'
 import { BASEURL_ITEM_IMAGES } from '../constants'
 import InfiniteScroll from 'react-infinite-scroller'
@@ -44,6 +44,8 @@ const useStyles = makeStyles(theme => ({
   controlButton: {
     marginRight: 0,
     marginLeft: theme.spacing(2),
+     marginTop: theme.spacing(1),
+    height: 40
   },
   paper: {
     display: 'flex',
@@ -53,6 +55,7 @@ const useStyles = makeStyles(theme => ({
   itemImgBox: {
     width: '100%',
     maxHeight: 230,
+    minHeight: 180,
     borderWidth: "1px",
     borderStyle: "dotted",
     borderRadius: 4
@@ -62,17 +65,22 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '100%',
     maxHeight: 210,
     borderRadius: 4,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
+    cursor: 'pointer',
+  },
+  defaultImg: {
+    width: 85,
+    height: 85,
+    borderRadius: 4,
+    color: '#cfcfcf',
+    cursor: 'pointer',
   },
   btnPicker: {
     padding: '10px',
     background: 'tomato',
-    display: 'table',
     color: '#fff',
-    width: '100%',
     borderRadius: 4,
-    textAlign: 'center',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   labelCategory: {
     margin: theme.spacing(1,2)
@@ -112,6 +120,8 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
       };
     }, []);
   
+  const inputFile = React.useRef(null) ;
+  
   const initialItem = { id: null, name: "", price: "", category_id: "" }
 
   const handleChangeValue = fieldName => event => {
@@ -143,6 +153,10 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
     setFile(null);
     setFileName(null);
   }
+  
+  const handleBrowseOpen = (e) => {
+    inputFile.current.click();
+  }
 
   const handleChooseFile = event => {
     event.preventDefault();
@@ -169,18 +183,18 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
   
   }
   
-  const handleUpload = event => {
+  const handleSubmit = event => {
     event.preventDefault();
     
     const errs = validateForm(validationSetting, selectedItem)
-    console.log('###handleSubmit###', errs)
     
     if (errs) {
       setErrors(errs)
     }
     else {
       if (isDelete) {
-        deleteItem(selectedItem.id)
+        setSpinner(true);
+        deleteItem(selectedItem.id);
       }
       else {
         
@@ -190,11 +204,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
           setIsLogin(false);
           setSpinner(true);
           
-          //console.log(selectedItem);
           saveItem(selectedItem, fileName, file);
-          
-          //if(file !== null && fileName !== null ){ uploadImage(fileName, file, file.type, selectedItem); }
-          
         }
         
       }
@@ -218,28 +228,6 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
     event.preventDefault();
     changeAuthState('signIn')
     history.push("/login");
-  }
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    
-    if (selectedItem) {
-      /*const errs = validateForm(validationSetting, selectedItem)
-      console.log('###handleSubmit###', errs)
-      if (errs) {
-        setErrors(errs)
-      }
-      else {
-        if (isDelete) {
-          deleteItem(selectedItem.id)
-        }
-        else {
-          saveItem(selectedItem)
-        }
-        handleCloseDialog()
-      }*/
-      
-    }
   }
 
   const handleAddCartItem = item => event => {
@@ -300,7 +288,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
           >
             <option value=""></option>
             {categories.map((category) => {
-              return (<option value={category.id}>{category.name}</option>)
+              return (<option key={category.id} value={category.id} >{category.name}</option>)
             })}
           </NativeSelect>
         </FormControl>
@@ -308,25 +296,33 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
         <Grid>
           {selectedItem.id === null ?
             <Grid>
-              {selectedImg === null ? null : 
                 <Box textAlign="center"  p={1} my={2} className={classes.itemImgBox} >
-                  <img src={selectedImg} className={classes.itemImg} />
+                  {selectedImg === null ? 
+                    <Box textAlign="center" pt={1}>
+                      <Box><AddPhotoIcon className={classes.defaultImg} onClick={() => handleBrowseOpen()} /></Box>
+                      <label className={classes.btnPicker}>
+                        <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
+                        Choose File
+                      </label>
+                    </Box>
+                    : 
+                    <Box>
+                      <img src={selectedImg} onClick={() => handleBrowseOpen()} className={classes.itemImg} alt={selectedItem.image}  />
+                      <label>
+                        <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
+                      </label>
+                    </Box>
+                  }
                 </Box>
-              }
-              <label className={classes.btnPicker}>
-                <TextField onChange={handleChooseFile} type="file" id="image" name="image" style={{ display: 'none' }} ></TextField>
-                Choose File
-              </label>
             </Grid>
             :
             <Grid>
               <Box textAlign="center"  p={1} my={2} className={classes.itemImgBox} >
-                <img src={ selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} className={classes.itemImg} />
+                <img src={ selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} onClick={() => handleBrowseOpen()} alt={selectedItem.image} className={classes.itemImg} />
+                <label>
+                  <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
+                </label>
               </Box>
-              <label className={classes.btnPicker}>
-                <TextField onChange={handleChooseFile} type="file" id="image" name="image" style={{ display: 'none' }} ></TextField>
-                Update File
-              </label>
             </Grid>
           }
         </Grid>
@@ -336,8 +332,8 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
           Cancel
         </Button>
         <Box className={classes.btnWrapper} >
-          <Button onClick={handleUpload} disabled={spinner} color="primary" variant="contained">
-            Submit
+          <Button onClick={handleSubmit} disabled={spinner} color="primary" variant="contained">
+            { isDelete ? 'Delete' : 'Submit' }
           </Button>
           {spinner && <CircularProgress size={24} className={classes.btnProgress} />}
         </Box>
@@ -350,7 +346,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
   const paperItems = []
   for (const item of items) {
     paperItems.push(
-      <Grid item xs={12} sm={4} lg={3}>
+      <Grid  item xs={12} sm={4} lg={3} key={item.id}>
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
@@ -391,14 +387,13 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
         Items ({items.length})
       </Box>
       <NativeSelect
-        className={classes.inputField}
+        className={classes.inputField+ ' ' +classes.controlButton}
         error={errors.category_id ? true : false}
         onChange={handleChangeCategory}
-        className={classes.controlButton}
       >
         <option value="">All Categories</option>
-        {categories.map((category) => {
-          return (<option value={category.id}>{category.name}</option>)
+        {categories.map((category, index) => {
+          return (<option value={category.id} key={index}>{category.name}</option>)
         })}
       </NativeSelect>
       <Button

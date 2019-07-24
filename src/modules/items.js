@@ -9,6 +9,7 @@ const initialState = {
   error: "",
   selectedCateogryId: null,
   noMoreFetch: false,
+  loading: false,
 }
 
 //=============================================================================
@@ -24,7 +25,8 @@ export const itemsReducer = (state = initialState, action) => {
     case 'ITEM_FETCH_ROWS_DONE':
       return {
         ...state,
-        rows: [...state.rows, ...action.payload]
+        rows: [...state.rows, ...action.payload],
+        loading: false
       }
     case 'ITEM_POST_DONE':
       return {
@@ -51,6 +53,11 @@ export const itemsReducer = (state = initialState, action) => {
         ...state,
         noMoreFetch: true
       }
+    case 'ITEM_BEGIN_LOADING':
+      return {
+        ...state,
+        loading: true
+      }
     default:
       return state
   }
@@ -63,18 +70,17 @@ export const itemsReducer = (state = initialState, action) => {
 
 export const fetchAllItems = () => {
   return async (dispatch, getState) => {
-    console.log('TEST', getState().auth.user);
     if (!getState().auth.user) {
       return;
     }
     
-    /*if (getState().items.alreadyFetched) {
-      //return
+    if (getState().items.loading) {
+      return;
     }
     
     dispatch({
-      type: 'ITEM_SET_ALREADY_FETCHED'
-    })*/
+      type: 'ITEM_BEGIN_LOADING'
+    })
     
     const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
    
@@ -83,7 +89,6 @@ export const fetchAllItems = () => {
     }
     
     const url = URL_REST_ITEMS + '?offset=' + getState().items.rows.length
-    console.log('fetchAllItems', url)
     const axRes = await axios.get(url, auth)
     
     if (axRes.data.data.length === 0) {
@@ -101,8 +106,17 @@ export const fetchAllItems = () => {
 
 export const deleteItem = (id) => {
   return async (dispatch, getState) => {
+    if (!getState().auth.user) {
+      return;
+    }
+    
+    const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
+    const auth = {
+        headers: {Authorization:'Bearer ' + token } 
+    }
+    
     const url = URL_REST_ITEMS + '/' + id
-    await axios.delete(url)
+    await axios.delete(url, auth)
     dispatch({
       type: 'ITEM_DELETE_DONE',
       payload: id
@@ -126,10 +140,9 @@ export const saveItem= (item, fileName, fileData) => {
     }
     
     if(fileName !== null && fileData !== null){
-      const res = await Storage.put(fileName, fileData, {
+      await Storage.put(fileName, fileData, {
           contentType: fileData.type
       });
-      console.log('uploadImage', res)
     }
     
     const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
@@ -147,14 +160,9 @@ export const saveItem= (item, fileName, fileData) => {
       })
     }
     else {
-      
-      console.log('KONDO.saveItem1', reqParams);
-      
       //UPDATE
       const url = URL_REST_ITEMS + '/' + id
       const axRes = await axios.put(url, reqParams, auth)
-      console.log('KONDO.saveItem2', url);
-      console.log('KONDO.saveItem3', axRes.data.data);
       dispatch({
         type: 'ITEM_PUT_DONE',
         payload: axRes.data.data
