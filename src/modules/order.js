@@ -57,8 +57,18 @@ export const setRequestParams = addressForm => {
 
 export const postOrder = () => {
   return async (dispatch, getState) => {
+    if (!getState().auth.user) {
+      return;
+    }
+    
+    const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
+   
+    const auth = {
+        headers: {Authorization:'Bearer ' + token } 
+    }
+    
     const reqParams = getState().order.requestParams
-    const axRes = await axios.post(URL_REST_ORDERS, reqParams)
+    const axRes = await axios.post(URL_REST_ORDERS, reqParams, auth)
     dispatch({
       type: 'ORDERS_POST_DONE',
       payload: axRes.data.data

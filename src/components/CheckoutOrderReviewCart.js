@@ -80,7 +80,10 @@ const CheckoutOrderReviewCart = ({ cart, totalPrice }) => {
         <Grid item xs={12}><Divider /></Grid>
       </Grid>
     )
-  })
+    
+    return null;
+  });
+  
   cart.map((cartList, k) => {
     mobileView.push(
       <Grid container key={cartList.id}>
@@ -109,6 +112,8 @@ const CheckoutOrderReviewCart = ({ cart, totalPrice }) => {
         <Grid item xs={12}><Divider /></Grid>
       </Grid>
     )
+    
+    return null;
   })
   return (
     <Paper>

@@ -1,8 +1,6 @@
-import axios from 'axios'
-import { URL_REST_CATEGORIES, URL_REST_ORDERS } from '../constants'
-import { replaceRowInRows, deleteRowFromRows } from '../util'
-import { resolve } from 'url';
-import { async } from 'q';
+import axios from 'axios';
+import { URL_REST_CATEGORIES, URL_REST_ORDERS } from '../constants';
+import { replaceRowInRows, deleteRowFromRows } from '../util';
 
 const initialState = {
   alreadyFetched: false,
@@ -80,8 +78,18 @@ export const fetchAllCategories = () => {
 
 export const deleteCategory = (id) => {
   return async (dispatch, getState) => {
+    if (!getState().auth.user) {
+      return;
+    }
+    
+    const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
+   
+    const auth = {
+        headers: {Authorization:'Bearer ' + token } 
+    }
+    
     const url = URL_REST_CATEGORIES + '/' + id
-    await axios.delete(url)
+    await axios.delete(url, auth)
     dispatch({
       type: 'CATEGORY_DELETE_DONE',
       payload: id
@@ -91,6 +99,17 @@ export const deleteCategory = (id) => {
 
 export const saveCategory= (category) => {
   return async (dispatch, getState) => {
+    
+    if (!getState().auth.user) {
+      return;
+    }
+    
+    const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
+   
+    const auth = {
+        headers: {Authorization:'Bearer ' + token } 
+    }
+    
     const id = category.id ? category.id : null
     const reqParams = {
       name: category.name
@@ -98,7 +117,7 @@ export const saveCategory= (category) => {
     
     if (id === null) {
       //INSERT
-      const axRes = await axios.post(URL_REST_CATEGORIES, reqParams)
+      const axRes = await axios.post(URL_REST_CATEGORIES, reqParams, auth)
       dispatch({
         type: 'CATEGORY_POST_DONE',
         payload: axRes.data.data
@@ -107,7 +126,7 @@ export const saveCategory= (category) => {
     else {
       //UPDATE
       const url = URL_REST_CATEGORIES + '/' + id
-      const axRes = await axios.put(url, reqParams)
+      const axRes = await axios.put(url, reqParams, auth)
       dispatch({
         type: 'CATEGORY_PUT_DONE',
         payload: axRes.data.data

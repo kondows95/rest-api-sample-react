@@ -101,8 +101,17 @@ export const fetchAllItems = () => {
 
 export const deleteItem = (id) => {
   return async (dispatch, getState) => {
+    if (!getState().auth.user) {
+      return;
+    }
+    
+    const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
+    const auth = {
+        headers: {Authorization:'Bearer ' + token } 
+    }
+    
     const url = URL_REST_ITEMS + '/' + id
-    await axios.delete(url)
+    await axios.delete(url, auth)
     dispatch({
       type: 'ITEM_DELETE_DONE',
       payload: id

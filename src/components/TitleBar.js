@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import { Grid, Box, AppBar, IconButton, Toolbar, Badge, Button } from '@material-ui/core'
+import { Grid, Box, AppBar, IconButton, Toolbar, Badge, Button, Hidden } from '@material-ui/core'
 import { Link as RouterLink, withRouter } from 'react-router-dom'
 import { 
   Menu as MenuIcon,
-  ShoppingCart as ShoppingCartIcon 
+  ShoppingCart as ShoppingCartIcon,
+  AccountBalanceWallet as LogoutIcon
 } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
@@ -34,38 +35,30 @@ const TitleBar = ({handleDrawerToggle, totalQuantity, changeAuthState, fetchAuth
       fetchAuthedUser()
     }
   })
-
-  const handleLogin = event => {
-    event.preventDefault();
-    changeAuthState('signIn');
-    history.push("/login");
-  }
   
   const handleLogout = event => {
     event.preventDefault();
     signOut();
   }
 
-  
-  /*const button = user ? (
-    <Box mt={1} mr={2}>
-      <Button onClick={handleLogout} variant="contained" color="secondary">
-        SIGN OUT
-      </Button>
-    </Box>
-  ) : (
-    <Box mt={1} mr={2}>
-      <Button onClick={handleLogin}  variant="contained"  color="primary">
-        SIGN IN
-      </Button>
-    </Box>
-  )*/
-  
   const button = (
-    <Box mt={1} mr={2}>
-      <Button onClick={handleLogout} variant="contained" color="secondary">
-        SIGN OUT
-      </Button>
+    <Box>
+      <Hidden xsDown>
+        <Box mt={1} mr={2}>
+          <Button onClick={handleLogout} variant="contained" color="secondary">
+            SIGN OUT
+          </Button>
+        </Box>
+      </Hidden>
+      <Hidden smUp>
+        <IconButton
+          color="inherit"
+          aria-label="Logout"
+          onClick={handleLogout}
+        >
+          <LogoutIcon />
+        </IconButton>
+      </Hidden>
     </Box>
   ) 
   

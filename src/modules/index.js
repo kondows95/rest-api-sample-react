@@ -4,7 +4,6 @@ import { itemsReducer } from './items'
 import { cartReducer } from './cart'
 import {ordersReducer} from './order';
 import { authReducer } from './auth';
-import { imageReducer } from './image';
 
 export default combineReducers({
   categories:　categoriesReducer,
@@ -12,5 +11,4 @@ export default combineReducers({
   cart: cartReducer,
   order:ordersReducer,
   auth: authReducer,
-  //image: imageReducer,
 })

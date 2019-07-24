@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Box, TextField, Checkbox, Radio, Button, } from '@material-ui/core';
+import { Grid, Box, TextField, Radio, Button, } from '@material-ui/core';
 import CheckoutOrderReviewCart from '../containers/CheckoutOrderReviewCart';
 import CheckoutPayment from '../containers/CheckoutPayment';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';

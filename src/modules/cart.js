@@ -1,4 +1,3 @@
-import { async } from "q";
 
 /*global localStorage*/
 
