@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import CategoryList from '../CategoryList';
-
+import renderer from 'react-test-renderer';
 let container
 beforeEach(() => {
   container = document.createElement('div')
@@ -15,8 +15,30 @@ afterEach(() => {
 })
 
 const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+
+describe("CategoryList component", () => {
+  let categories = [{ id: 1, name: "a" }, { id: 2, name: "b" }];
+  const saveCategory = jest.fn((setSelectedCategory) => {
+    categories = [...categories, setSelectedCategory]
+  });
+  const deleteCategory = jest.fn((category_id) => {
+    if (category_id === 1) categories = [{ id: 2, name: "b" }];
+    else categories = [{ id: 1, name: "a" }];
+  });
+  it('matches the snapshot', () => {
+    const CategoryListSnapshot = renderer.create(<CategoryList
+      categories={categories}
+      saveCategory={saveCategory}
+      deleteCategory={deleteCategory}
+    />).toJSON(); 
+    expect(CategoryListSnapshot).toMatchSnapshot();
+  })
+
+
+ 
+})
 describe("testing creating category", () => {
-   it('should exists one create button and one name textfield', () => {
+  it('should exists one create button and one name textfield', () => {
     let categories = [{ id: 1, name: "a" }, { id: 2, name: "b" }];
     act(() => {
       ReactDOM.render(<CategoryList categories={categories} />, container);
@@ -140,7 +162,7 @@ describe("testing category list", () => {
       buttonArr[6].dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
     expect(deleteCategory).toHaveBeenCalled();
-    const expectedCategoires=[{ id: 2, name: "b" }];
+    const expectedCategoires = [{ id: 2, name: "b" }];
     expect(categories).toStrictEqual(expectedCategoires)
   });
 

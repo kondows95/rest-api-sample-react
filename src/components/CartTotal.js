@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
 import Box from '@material-ui/core/Box'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const CartTotal = ({totalPrice, totalQuantity}) => {
   return (
@@ -17,16 +17,22 @@ const CartTotal = ({totalPrice, totalQuantity}) => {
           </Box>
         </CardContent>
        
-        <CardActions>
-          <Button to="/checkout" disabled={totalQuantity > 0 ? false: true} component={RouterLink} fullWidth={true} variant="contained" color="secondary">
+        <CardActions >
+          <Box style={{ width: '100%' }}>
+          <Link to={totalQuantity > 0 ? "/checkout": "#"}  style={{ textDecoration: 'none'  }}>
+          <Button fullWidth={true}  disabled={totalQuantity > 0 ? false: true}   variant="contained" color="secondary">
             Confirm Order
           </Button>
+          </Link>
+          </Box>
         </CardActions>
 
         <CardContent>
-          <Button to="/" component={RouterLink} fullWidth={true}  color="primary">
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Button fullWidth={true}  color="primary">
             <Box fontSize={11} fontWeight={300} >Continue Shopping</Box>
           </Button>
+          </Link>
         </CardContent>
       </Card>
     </Box>  

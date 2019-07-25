@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { BASEURL_ITEM_IMAGES } from '../constants'
 import QuantitySelect from '../containers/QuantitySelect'
 import CartItemPropTypes from './CartItemPropTypes'
-import { Box, Grid, Paper, CardMedia, Divider, Hidden, Link } from '@material-ui/core'
+import { Box, Grid, Paper, CardMedia, Divider, Hidden, Link} from '@material-ui/core'
 
 
 const useStyles = makeStyles(theme => ({
