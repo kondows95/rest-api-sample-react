@@ -140,6 +140,7 @@ export const signIn = (email, password) => {
     
     try {
       const user = await Auth.signIn(email, password)
+      console.log(user);
       dispatch({
         type: 'AUTH_SIGN_IN_SUCCESS',
         payload: user

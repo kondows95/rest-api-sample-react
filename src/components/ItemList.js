@@ -16,6 +16,9 @@ import { green } from '@material-ui/core/colors';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+
+//import ScrollUpButton from "react-scroll-up-button";
 
 const uuidv1 = require('uuid/v1');
 
@@ -177,7 +180,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
     
     //get url img for preview
     reader.onloadend = () => {
-      setSelectedImg(reader.result)
+      setSelectedImg(reader.result);
     }
     reader.readAsDataURL(file);
   
@@ -248,7 +251,11 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
       maxWidth="xs"
     >
       <DialogTitle id="form-dialog-title">
-        {selectedItem.id ? "Edit (ID:" + selectedItem.id + ")" : "Create"}
+        {selectedItem.id ? 
+           <Box> <FormattedMessage id="Button.Edit" defualtMessage="Edit" /> (ID: {selectedItem.id} )</Box>
+          : 
+           <FormattedMessage id="Button.Create" defualtMessage="Create" />
+        }
         {isLogin ? <Box color="red" >You don't have Upload Permission. <Button onClick={handleLogin} color="secondary" >sign in</Button></Box> : null}
       </DialogTitle>
       <DialogContent className={classes.dialogContent}>
@@ -329,11 +336,15 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCloseDialog} color="primary">
-          Cancel
+          <FormattedMessage id="Button.Cancel" defualtMessage="Cancel" />
         </Button>
         <Box className={classes.btnWrapper} >
           <Button onClick={handleSubmit} disabled={spinner} color="primary" variant="contained">
-            { isDelete ? 'Delete' : 'Submit' }
+            { isDelete ? 
+              <FormattedMessage id="Button.Delete" defualtMessage="Delete" />
+            : 
+              <FormattedMessage id="Button.Submit" defualtMessage="Submit" />
+            }
           </Button>
           {spinner && <CircularProgress size={24} className={classes.btnProgress} />}
         </Box>
@@ -369,10 +380,10 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
             </Box>
             <Box ml="auto" mr={0}>
               <Button color="primary" onClick={handleEdit(item)}>
-                Edit
+                <FormattedMessage id="Button.Edit" defualtMessage="Edit" />
               </Button>
               <Button color="primary" onClick={handleDelete(item)}>
-                Delete
+                <FormattedMessage id="Button.Delete" defualtMessage="Delete" />
               </Button>
             </Box>
           </CardActions>
@@ -384,7 +395,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
   const paperControl = (
     <Paper className={classes.paper}>
       <Box ml={0} my="auto" flexGrow={1} fontWeight={600}>
-        Items ({items.length})
+        <FormattedMessage id="Menu.Item" defualtMessage="Items" /> ({items.length})
       </Box>
       <NativeSelect
         className={classes.inputField+ ' ' +classes.controlButton}
@@ -402,7 +413,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
         className={classes.controlButton}
         onClick={handleEdit(initialItem)}
       >
-        Create
+        <FormattedMessage id="Button.Create" defualtMessage="Create" />
       </Button>
     </Paper>
   )
@@ -415,14 +426,16 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
       initialLoad={true}
       loader={<div className="loader" key={0}></div>}
     >
-      <Container maxWidth="lg">
-        {paperControl}
-        <Grid container>
-          {paperItems}
-        </Grid>
-        {dialog}
-      </Container>
+        <Container maxWidth="lg">
+          {paperControl}
+          <Grid container>
+            {paperItems}
+          </Grid>
+          {dialog}
+        </Container>
+        
     </InfiniteScroll>
+    
   )
 }
 
