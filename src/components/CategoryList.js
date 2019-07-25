@@ -35,6 +35,7 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
   }
   
   const handleDelete = category => event => {
+    console.log("enter handel delete")
     setSelectedCategory(category)
     setDialogOpen(true)
     setIsDelete(true)
@@ -91,10 +92,10 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
         <Box fontWeight={600}></Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCloseDialog} color="primary">
+        <Button id = "delete cancel" onClick={handleCloseDialog} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleSubmit} color="primary">
+        <Button id="delete" onClick={handleSubmit} color="primary">
           Delete
         </Button>
       </DialogActions>
@@ -125,10 +126,10 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCloseDialog} color="primary">
+        <Button id = "cancle" onClick={handleCloseDialog} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleSubmit} color="primary">
+        <Button id = "submit" onClick={handleSubmit} color="primary">
           Submit
         </Button>
       </DialogActions>
@@ -143,10 +144,10 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
           <Box display="flex" flexDirection="column" flexGrow={1}>
             <Box fontWeight={600}>{category.id}: {category.name}</Box>
             <Box ml="auto" mr={0} mt={2}>
-              <Button color="primary" onClick={handleEdit(category)}>
+              <Button id="categoryedit" color="primary" onClick={handleEdit(category)}>
                 Edit
               </Button>
-              <Button color="primary" onClick={handleDelete(category)}>
+              <Button id ='categorydelete' color="primary" onClick={handleDelete(category)}>
                 Delete
               </Button>
             </Box>
@@ -162,6 +163,7 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
         Categories ({categories.length})
       </Box>
       <Button 
+        id="create"
         variant="contained" 
         color="secondary" 
         className={classes.button}
