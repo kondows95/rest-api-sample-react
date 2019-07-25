@@ -7,6 +7,7 @@ describe("item reducer actions", () => {
     alreadyFetched: false,
     rows: [],
     error: "",
+    loading: false,
     selectedCateogryId: null,
     noMoreFetch: false,
   }
@@ -141,13 +142,17 @@ describe("ActionCreators Testing", () => {
         data: { data: [{ id: 1, name: "item1" }] }
       })
     );
-    const expectedAction = [{
+    const expectedAction1 =[{
+      type: 'ITEM_BEGIN_LOADING'
+    }];
+    const expectedAction2 = [{
       type: 'ITEM_FETCH_ROWS_DONE',
       payload: [{ id: 1, name: "item1" }]
     }];
     const dispatch = jest.fn();
     await fetchAllItems()(dispatch, getState);
-    expect(dispatch.mock.calls[0]).toEqual(expectedAction);
+    expect(dispatch.mock.calls[0]).toEqual(expectedAction1);
+    expect(dispatch.mock.calls[1]).toEqual(expectedAction2);
   });
 
   it("fetch all items no data", async () => {
@@ -156,12 +161,16 @@ describe("ActionCreators Testing", () => {
         data: { data: [] }
       })
     );
-    const expectedAction = [{
+    const expectedAction1 =[{
+      type: 'ITEM_BEGIN_LOADING'
+    }];
+    const expectedAction2 = [{
       type: 'ITEM_NO_MORE_FETCH'
     }];
     const dispatch = jest.fn();
     await fetchAllItems()(dispatch, getState);
-    expect(dispatch.mock.calls[0]).toEqual(expectedAction);
+    expect(dispatch.mock.calls[0]).toEqual(expectedAction1);
+    expect(dispatch.mock.calls[1]).toEqual(expectedAction2);
   });
 
   it("delete item", async () => {
