@@ -9,24 +9,21 @@ import ConfirmSignUp from '../containers/auth/ConfirmSignUp'
 import ForgotPassword from '../containers/auth/ForgotPassword'
 import ForgotPasswordSubmit from '../containers/auth/ForgotPasswordSubmit'
 
+const Login = ({ handleDrawerToggle, totalQuantity, authState, changeAuthState, fetchAuthedUser, signOut, user, loading, history }) => {
 
-
-const Login = ({handleDrawerToggle, totalQuantity, authState, changeAuthState, fetchAuthedUser, signOut, user, loading, history}) => {
-    
-    const isFirstRef = React.useRef(true)
-    React.useEffect(() => {
-      if (isFirstRef.current) {
-        isFirstRef.current = false;
-        fetchAuthedUser()
-      }
-    })
-  
-    const handleItem = event => {
-      event.preventDefault();
-      history.push("/items");
+  const isFirstRef = React.useRef(true)
+  React.useEffect(() => {
+    if (isFirstRef.current) {
+      isFirstRef.current = false;
+      fetchAuthedUser()
     }
-  
-   const auth = (
+  })
+  const handleItem = event => {
+    event.preventDefault();
+    history.push("/items");
+  }
+
+  const auth = (
     <React.Fragment>
       <SignIn />
       <SignUp />
@@ -35,35 +32,29 @@ const Login = ({handleDrawerToggle, totalQuantity, authState, changeAuthState, f
       <ForgotPasswordSubmit />
     </React.Fragment>
   )
-  
   const button = user ? (
     <Box mt={10}>
       <h1>SUCCESSFUL SIGN IN</h1>
       <h1>Tap To Shopping</h1>
-      <Button variant="contained"  color="primary" onClick={handleItem}>
+      <Button variant="contained" color="primary" onClick={handleItem}>
         SHOPPING
       </Button>
     </Box>
   ) : (
-    <Box mt={10} >
-      <h1>Tap To Login</h1>
-      <Button variant="contained" disabled={loading} color="primary" onClick={() => {
-        changeAuthState('signIn')
-      }}>
-        SIGN IN
+      <Box mt={10} >
+        <h1>Tap To Login</h1>
+        <Button variant="contained" disabled={loading} color="primary" onClick={() => {
+          changeAuthState('signIn')
+        }}>
+          SIGN IN
       </Button>
-    </Box>
-  )
-  
+      </Box>
+    )
   const contents = authState ? auth : <Box m={2}>{button}</Box>
-  
-  
   return (
     <Box flexGrow={1} textAlign="center" >
-      
       {contents}
-      
-    </Box>  
+    </Box>
   )
 }
 export default withRouter(Login);

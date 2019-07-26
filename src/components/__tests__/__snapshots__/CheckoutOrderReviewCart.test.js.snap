@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckoutOrderReviewCart component matches the snapshot 1`] = `
+<div
+  className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    className="MuiBox-root MuiBox-root-33"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-4"
+    >
+      <div
+        className="MuiBox-root MuiBox-root-137"
+      >
+         
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4"
+    >
+      <div
+        className="MuiBox-root MuiBox-root-138"
+      >
+         SUBTOTAL 
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-139"
+      >
+         SHIPPING COSTS 
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-140"
+      >
+         ADDITIONAL SHIPPING COSTS
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-141"
+      >
+        SALES TAX
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-142"
+      >
+        TOTAL COSTS(4 ARTICLSE)
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4"
+    >
+      <div
+        className="MuiBox-root MuiBox-root-143"
+      >
+         
+        2000
+         MMK 
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-144"
+      >
+         0.0 MMK 
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-145"
+      >
+         0.0 MMK 
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-146"
+      >
+         0.0 MMK 
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-147"
+      >
+         
+        2000
+         MMK
+      </div>
+    </div>
+  </div>
+</div>
+`;

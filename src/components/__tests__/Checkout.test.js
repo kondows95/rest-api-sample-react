@@ -28,7 +28,6 @@ const requestParams = {
   city: ""
 }
 const setRequestParams = jest.fn((form) => {
-  console.log("setRequestParams  ",form)
   let setRequest ={...form};
 });
 describe("CartTable component", () => {
@@ -41,7 +40,6 @@ describe("CartTable component", () => {
     expect(CheckoutSnapshot).toMatchSnapshot();
   })
 })
-
 
 describe("testing Checkout ", () => {
   it('testing textfield handelchange and click comfirm button', () => {
@@ -95,6 +93,5 @@ describe("testing Checkout ", () => {
     });
     expect(setRequestParams).toHaveBeenCalled();
   });
- 
 })
 
