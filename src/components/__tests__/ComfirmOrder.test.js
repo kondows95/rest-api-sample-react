@@ -6,8 +6,6 @@ import renderer from 'react-test-renderer';
 import ConfirmOrder from '../ConfirmOrder';
 import { Provider } from 'react-redux'
 import store from '../../store';
-import { createBrowserHistory } from 'history';
-import { jsxEmptyExpression } from '@babel/types';
 let container
 beforeEach(() => {
   container = document.createElement('div')
