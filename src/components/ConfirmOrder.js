@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 const ConfirmForm = ({ cart, requestParams, postResultObj, setRequestParams, postOrder, history }) => {
   const classes = useStyles()
   const handlePrevious = () => {
+    console.log("enter handlePrevious")
     history.push("/checkout");
   };
 
@@ -47,7 +48,7 @@ const ConfirmForm = ({ cart, requestParams, postResultObj, setRequestParams, pos
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Box fontSize="h6.fontSize" pl={3} mt={2}>
             1.Order contents
-                    </Box>
+          </Box>
           <Box flexGrow={1} p={2}>
             <CheckoutOrderReviewCart />
           </Box>
@@ -138,13 +139,13 @@ const ConfirmForm = ({ cart, requestParams, postResultObj, setRequestParams, pos
           <Box flexGrow={1} p={2}>
             <Paper>
               <Box p={2} bgcolor="#e9e9ef">Order Number</Box>
-              <Box p={3} mb={3} bgcolor="#fff">{postResultObj.id}</Box>
+              <Box p={3} mb={3} bgcolor="#fff"><span>{postResultObj.id}</span></Box>
             </Paper>
           </Box>
           <Box flexGrow={1} p={2}>
             <Paper>
               <Box p={2} bgcolor="#e9e9ef">Total Price</Box>
-              <Box p={3} mb={3} bgcolor="#fff">{postResultObj.total_price} MMK</Box>
+              <Box p={3} mb={3} bgcolor="#fff"><span>{postResultObj.total_price}</span> MMK</Box>
             </Paper>
           </Box>
           <Box textAlign="center" >
@@ -162,8 +163,8 @@ export default withRouter(ConfirmForm);
 
 const Address = ({ label, value }) => (
   <Paper>
-    <Box p={2} bgcolor="#e9e9ef">{label}</Box>
-    <Box p={3} mb={3} bgcolor="#fff">{value}</Box>
+    <Box p={2} bgcolor="#e9e9ef"><span>{label}</span></Box>
+    <Box p={3} mb={3} bgcolor="#fff"><span>{value}</span></Box>
   </Paper>
 )
 

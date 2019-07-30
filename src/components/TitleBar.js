@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid, Box, AppBar, IconButton, Toolbar, Badge, Button, Hidden } from '@material-ui/core'
-import { Link as RouterLink, withRouter } from 'react-router-dom'
-import { 
+import { Link, withRouter } from 'react-router-dom'
+import {
   Menu as MenuIcon,
   ShoppingCart as ShoppingCartIcon,
   AccountBalanceWallet as LogoutIcon
@@ -25,9 +25,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TitleBar = ({handleDrawerToggle, totalQuantity, changeAuthState, fetchAuthedUser, signOut, user, history}) => {
+const TitleBar = ({ handleDrawerToggle, totalQuantity, changeAuthState, fetchAuthedUser, signOut, user, history }) => {
   const classes = useStyles();
-  
+
   const isFirstRef = React.useRef(true)
   React.useEffect(() => {
     if (isFirstRef.current) {
@@ -35,7 +35,7 @@ const TitleBar = ({handleDrawerToggle, totalQuantity, changeAuthState, fetchAuth
       fetchAuthedUser()
     }
   })
-  
+
   const handleLogout = event => {
     event.preventDefault();
     signOut();
@@ -60,8 +60,8 @@ const TitleBar = ({handleDrawerToggle, totalQuantity, changeAuthState, fetchAuth
         </IconButton>
       </Hidden>
     </Box>
-  ) 
-  
+  )
+
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar>
@@ -77,24 +77,22 @@ const TitleBar = ({handleDrawerToggle, totalQuantity, changeAuthState, fetchAuth
         </IconButton>
         <Box flexGrow={1} fontSize="h6.fontSize">Sample</Box>
         <Box mr={0} ml="auto">
-            
-            <Grid container>
-              {button}
-              
+          <Grid container>
+            {button}
+            <Link to="/cart" style={{ color: "white"}}>
               <IconButton
                 color="inherit"
-                to="/cart"
-                component={RouterLink}
-               >
-                <Badge 
-                  color="secondary" 
-                  badgeContent={totalQuantity} 
-                  invisible={totalQuantity > 0 ? false: true} 
+              >
+                <Badge
+                  color="secondary"
+                  badgeContent={totalQuantity}
+                  invisible={totalQuantity > 0 ? false : true}
                 >
                   <ShoppingCartIcon />
                 </Badge>
               </IconButton>
-            </Grid>
+            </Link>
+          </Grid>
         </Box>
       </Toolbar>
     </AppBar>

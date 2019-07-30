@@ -1,0 +1,529 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Confirm Order component matches the snapshot 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-7"
+>
+  <div
+    className="MuiGrid-root"
+  >
+    <div
+      className="MuiBox-root MuiBox-root-111"
+    >
+      Thank you for your order.
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-112"
+    >
+      Thank you very much for your order.
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-113"
+    >
+      Order contents have been sent through [order confirmation mail].
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-114"
+    >
+      Please confirm the order contents, if there are any mismatches or unclear points, please contact us.
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-115"
+    >
+      <div
+        className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-143"
+        >
+          Order Number
+        </div>
+        <div
+          className="MuiBox-root MuiBox-root-144"
+        >
+          <span>
+            5
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-145"
+    >
+      <div
+        className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-146"
+        >
+          Total Price
+        </div>
+        <div
+          className="MuiBox-root MuiBox-root-147"
+        >
+          <span>
+            50000
+          </span>
+           MMK
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-148"
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root makeStyles-button-3 MuiButton-contained MuiButton-containedSecondary"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root makeStyles-leftIcon-4"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+            />
+          </svg>
+          Go To HOME
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Confirm Order component matches the snapshot 2`] = `
+<div
+  className="MuiBox-root MuiBox-root-188"
+>
+  <form
+    className="makeStyles-form-1"
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <div
+      className="MuiBox-root MuiBox-root-189"
+    >
+      1.Order contents
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-190"
+    >
+      <div
+        className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-195"
+        >
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-4"
+          >
+            <div
+              className="MuiBox-root MuiBox-root-196"
+            >
+               
+            </div>
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4"
+          >
+            <div
+              className="MuiBox-root MuiBox-root-197"
+            >
+               SUBTOTAL 
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-198"
+            >
+               SHIPPING COSTS 
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-199"
+            >
+               ADDITIONAL SHIPPING COSTS
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-200"
+            >
+              SALES TAX
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-201"
+            >
+              TOTAL COSTS(4 ARTICLSE)
+            </div>
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4"
+          >
+            <div
+              className="MuiBox-root MuiBox-root-202"
+            >
+               
+              0
+               MMK 
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-203"
+            >
+               0.0 MMK 
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-204"
+            >
+               0.0 MMK 
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-205"
+            >
+               0.0 MMK 
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-206"
+            >
+               
+              0
+               MMK
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-207"
+    >
+      2.Shipping Address
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-208"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-container"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-209"
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                className="MuiBox-root MuiBox-root-210"
+              >
+                <span>
+                  First Name
+                </span>
+              </div>
+              <div
+                className="MuiBox-root MuiBox-root-211"
+              >
+                <span>
+                  wint
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-212"
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                className="MuiBox-root MuiBox-root-213"
+              >
+                <span>
+                  Last Name
+                </span>
+              </div>
+              <div
+                className="MuiBox-root MuiBox-root-214"
+              >
+                <span>
+                  shwe yee
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-container"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-215"
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                className="MuiBox-root MuiBox-root-216"
+              >
+                <span>
+                  Address1
+                </span>
+              </div>
+              <div
+                className="MuiBox-root MuiBox-root-217"
+              >
+                <span>
+                  ye mon taung
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-218"
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                className="MuiBox-root MuiBox-root-219"
+              >
+                <span>
+                  Address2
+                </span>
+              </div>
+              <div
+                className="MuiBox-root MuiBox-root-220"
+              >
+                <span>
+                  mandalay
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-container"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-221"
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                className="MuiBox-root MuiBox-root-222"
+              >
+                <span>
+                  Country
+                </span>
+              </div>
+              <div
+                className="MuiBox-root MuiBox-root-223"
+              >
+                <span>
+                  myanmar
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-224"
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                className="MuiBox-root MuiBox-root-225"
+              >
+                <span>
+                  State
+                </span>
+              </div>
+              <div
+                className="MuiBox-root MuiBox-root-226"
+              >
+                <span>
+                  mandalay
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-container"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-227"
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                className="MuiBox-root MuiBox-root-228"
+              >
+                <span>
+                  City
+                </span>
+              </div>
+              <div
+                className="MuiBox-root MuiBox-root-229"
+              >
+                <span>
+                  mandalay
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-230"
+    >
+      3.Payment Method
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-231"
+    >
+      <div
+        className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-232"
+        >
+          Credit Card Pay
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-233"
+    >
+      <div
+        className="MuiBox-root MuiBox-root-234"
+      >
+        <button
+          className="MuiButtonBase-root MuiButton-root makeStyles-button-3 MuiButton-contained MuiButton-containedPrimary"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root makeStyles-leftIcon-4"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M14 7l-5 5 5 5V7z"
+              />
+              <path
+                d="M24 0v24H0V0h24z"
+                fill="none"
+              />
+            </svg>
+            Go Previous
+          </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </button>
+        <button
+          className="MuiButtonBase-root MuiButton-root makeStyles-button-3 MuiButton-contained MuiButton-containedSecondary"
+          disabled={false}
+          onBlur={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="submit"
+        >
+          <span
+            className="MuiButton-label"
+          >
+            Make an order
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root makeStyles-rightIcon-5"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M10 17l5-5-5-5v10z"
+              />
+              <path
+                d="M0 24V0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+          </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+`;

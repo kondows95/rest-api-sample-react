@@ -100,7 +100,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCategoryId, fetchAllItems, noMoreFetch, uploadImage, user, changeAuthState, history }) => {
+const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCategoryId, fetchAllItems, noMoreFetch, uploadImage, user, changeAuthState, history }) => {
   const classes = useStyles()
 
   const [dialogOpen, setDialogOpen] = React.useState(false)
@@ -203,7 +203,6 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
         }else{
           setIsLogin(false);
           setSpinner(true);
-          
           saveItem(selectedItem, fileName, file);
         }
         

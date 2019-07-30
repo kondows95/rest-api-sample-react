@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { BASEURL_ITEM_IMAGES } from '../constants'
 import { Grid, Box, CardMedia, Paper, Divider, Hidden } from '@material-ui/core';
 
-
 const useStyles = makeStyles(theme => ({
   form: {
     width: '100%', // Fix IE 11 issue.

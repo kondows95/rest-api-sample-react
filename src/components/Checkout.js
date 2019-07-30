@@ -38,7 +38,6 @@ const AddressForm = ({ requestParams, setRequestParams, history }) => {
   const handleSubmit = event => {
     event.preventDefault();
     setRequestParams(form);
-  
     history.push("/confirm");
   }
 
