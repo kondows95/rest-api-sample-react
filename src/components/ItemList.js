@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
   controlButton: {
     marginRight: 0,
     marginLeft: theme.spacing(2),
-     marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1),
     height: 40
   },
   paper: {
@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
   },
   labelCategory: {
-    margin: theme.spacing(1,2)
+    margin: theme.spacing(1, 2)
   },
   btnWrapper: {
     margin: theme.spacing(1),
@@ -100,7 +100,18 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCategoryId, fetchAllItems, noMoreFetch, uploadImage, user, changeAuthState, history }) => {
+const ItemList = ({
+  items,
+  categories,
+  saveItem,
+  deleteItem,
+  addCartItem,
+  setCategoryId,
+  fetchAllItems,
+  noMoreFetch,
+  user,
+  changeAuthState,
+  history }) => {
   const classes = useStyles()
 
   const [dialogOpen, setDialogOpen] = React.useState(false)
@@ -112,16 +123,16 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
   const [spinner, setSpinner] = React.useState(false);
   const [file, setFile] = React.useState(null);
   const [fileName, setFileName] = React.useState(null);
-  
+
   const timer = React.useRef();
   React.useEffect(() => {
-      return () => {
-        clearTimeout(timer.current);
-      };
-    }, []);
-  
-  const inputFile = React.useRef(null) ;
-  
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
+
+  const inputFile = React.useRef(null);
+
   const initialItem = { id: null, name: "", price: "", category_id: "" }
 
   const handleChangeValue = fieldName => event => {
@@ -153,41 +164,41 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
     setFile(null);
     setFileName(null);
   }
-  
+
   const handleBrowseOpen = (e) => {
     inputFile.current.click();
   }
 
   const handleChooseFile = event => {
     event.preventDefault();
-    
+
     let reader = new FileReader();
     let file = event.target.files[0];
-    
+
     //create dynamic name
-    const fname = uuidv1()+".png";
-    
+    const fname = uuidv1() + ".png";
+
     //add file name in state
     const newItem = { ...selectedItem }
     newItem['image'] = fname;
     setSelectedItem(newItem);
-    
+
     setFile(file);
     setFileName(fname);
-    
+
     //get url img for preview
     reader.onloadend = () => {
       setSelectedImg(reader.result)
     }
     reader.readAsDataURL(file);
-  
+
   }
-  
+
   const handleSubmit = event => {
     event.preventDefault();
-    
+
     const errs = validateForm(validationSetting, selectedItem)
-    
+
     if (errs) {
       setErrors(errs)
     }
@@ -197,19 +208,19 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
         deleteItem(selectedItem.id);
       }
       else {
-        
-        if(user === null){
+
+        if (user === null) {
           setIsLogin(true);
-        }else{
+        } else {
           setIsLogin(false);
           setSpinner(true);
           saveItem(selectedItem, fileName, file);
         }
-        
+
       }
-      
+
       timer.current = setTimeout(() => {
-        
+
         setSpinner(false);
         handleCloseDialog();
         //window.location.reload();
@@ -222,7 +233,7 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
     isEmpty: ['name', 'price', 'category_id'],
     isNumeric: ['price']
   }
-  
+
   const handleLogin = event => {
     event.preventDefault();
     changeAuthState('signIn')
@@ -236,9 +247,7 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
   const handleChangeCategory = event => {
     setCategoryId(event.target.value ? event.target.value : null)
   }
-
   const dialog = (selectedItem === null) ? null : (
-
     <Dialog
       open={dialogOpen}
       onClose={handleCloseDialog}
@@ -273,7 +282,7 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
           margin="dense"
           className={classes.inputField}
         />
-        
+
         <FormControl>
           <InputLabel htmlFor="category" className={classes.labelCategory}>
             Category
@@ -291,33 +300,33 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
             })}
           </NativeSelect>
         </FormControl>
-        
+
         <Grid>
           {selectedItem.id === null ?
             <Grid>
-                <Box textAlign="center"  p={1} my={2} className={classes.itemImgBox} >
-                  {selectedImg === null ? 
-                    <Box textAlign="center" pt={1}>
-                      <Box><AddPhotoIcon className={classes.defaultImg} onClick={() => handleBrowseOpen()} /></Box>
-                      <label className={classes.btnPicker}>
-                        <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
-                        Choose File
+              <Box textAlign="center" p={1} my={2} className={classes.itemImgBox} >
+                {selectedImg === null ?
+                  <Box textAlign="center" pt={1}>
+                    <Box><AddPhotoIcon className={classes.defaultImg} onClick={() => handleBrowseOpen()} /></Box>
+                    <label className={classes.btnPicker}>
+                      <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
+                      Choose File
                       </label>
-                    </Box>
-                    : 
-                    <Box>
-                      <img src={selectedImg} onClick={() => handleBrowseOpen()} className={classes.itemImg} alt={selectedItem.image}  />
-                      <label>
-                        <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
-                      </label>
-                    </Box>
-                  }
-                </Box>
+                  </Box>
+                  :
+                  <Box>
+                    <img src={selectedImg} onClick={() => handleBrowseOpen()} className={classes.itemImg} alt={selectedItem.image} />
+                    <label>
+                      <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
+                    </label>
+                  </Box>
+                }
+              </Box>
             </Grid>
             :
             <Grid>
-              <Box textAlign="center"  p={1} my={2} className={classes.itemImgBox} >
-                <img src={ selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} onClick={() => handleBrowseOpen()} alt={selectedItem.image} className={classes.itemImg} />
+              <Box textAlign="center" p={1} my={2} className={classes.itemImgBox} >
+                <img src={selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} onClick={() => handleBrowseOpen()} alt={selectedItem.image} className={classes.itemImg} />
                 <label>
                   <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
                 </label>
@@ -332,20 +341,17 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
         </Button>
         <Box className={classes.btnWrapper} >
           <Button onClick={handleSubmit} disabled={spinner} color="primary" variant="contained">
-            { isDelete ? 'Delete' : 'Submit' }
+            {isDelete ? 'Delete' : 'Submit'}
           </Button>
           {spinner && <CircularProgress size={24} className={classes.btnProgress} />}
         </Box>
       </DialogActions>
     </Dialog>
-
-  )
-
-
+  );
   const paperItems = []
   for (const item of items) {
     paperItems.push(
-      <Grid  item xs={12} sm={4} lg={3} key={item.id}>
+      <Grid item xs={12} sm={4} lg={3} key={item.id}>
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
@@ -378,7 +384,7 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
         </Card>
       </Grid>
     )
-  }
+  };
 
   const paperControl = (
     <Paper className={classes.paper}>
@@ -386,7 +392,7 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
         Items ({items.length})
       </Box>
       <NativeSelect
-        className={classes.inputField+ ' ' +classes.controlButton}
+        className={classes.inputField + ' ' + classes.controlButton}
         error={errors.category_id ? true : false}
         onChange={handleChangeCategory}
       >
@@ -404,8 +410,7 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
         Create
       </Button>
     </Paper>
-  )
-
+  );
   return (
     <InfiniteScroll
       pageStart={0}
@@ -423,10 +428,8 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
       </Container>
     </InfiniteScroll>
   )
-}
-
+};
 ItemList.propTypes = {
   changeAuthState: PropTypes.func.isRequired,
-}
-
+};
 export default withRouter(ItemList);
