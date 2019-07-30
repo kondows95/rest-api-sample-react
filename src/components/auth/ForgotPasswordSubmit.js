@@ -13,7 +13,6 @@ const ForgotPasswordSubmit = React.memo(({
   resendSingUp
 }) => {
   const [form, setForm] = React.useState({email:"", password:""})
-  console.log('Reset pwd', email)
   
   const handleChangeValue = fieldName => event => {
     const newForm = {...form}

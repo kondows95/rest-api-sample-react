@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       paddingRight: theme.spacing(1),
     },
+    zIndex: 99
   },
 }));
 

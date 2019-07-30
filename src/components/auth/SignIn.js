@@ -108,7 +108,7 @@ const SignIn = ({
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2" onClick={handleSignUp}>
-                  No account? Create account
+                  No account? Sign Up
                 </Link>
               </Grid>
             </Grid>

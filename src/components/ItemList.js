@@ -389,12 +389,19 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
   for (const item of items) {
     paperItems.push(
       <Grid  item xs={12} sm={4} lg={3} key={item.id}>
-        <Card className={classes.card}>
+        <Card 
+          className="card"
+          style={{maxWidth: 600,margin: 10,}}
+        >
           <CardMedia
-            className={classes.media}
+            width={100}
+            height={100}
             image={BASEURL_ITEM_IMAGES + item.image}
+            value={BASEURL_ITEM_IMAGES + item.image}
             title={item.name}
-          />
+            className="item-img"
+            style={{height: 0,paddingTop: '128%',}}
+          /> 
           <CardContent >
             <Box fontWeight={600}>
               {item.name}
@@ -405,7 +412,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
           </CardContent>
           <CardActions className={classes.cardAction}>
             <Box ml={0} mr="auto">
-              <IconButton onClick={handleAddCartItem(item)}>
+              <IconButton className="btnAddToCart" onClick={handleAddCartItem(item)}>
                 <AddShoppingCartIcon />
               </IconButton>
             </Box>

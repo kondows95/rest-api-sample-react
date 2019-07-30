@@ -13,7 +13,8 @@ import { FormattedMessage } from 'react-intl';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    //zIndex: theme.zIndex.drawer + 1,
+    zIndex:999
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -100,7 +101,7 @@ const TitleBar = ({locale, setLocale,handleDrawerToggle, totalQuantity, changeAu
                   badgeContent={totalQuantity} 
                   invisible={totalQuantity > 0 ? false: true} 
                 >
-                  <ShoppingCartIcon />
+                  <ShoppingCartIcon className="fa-shopping-cart" />
                 </Badge>
               </IconButton>
               
@@ -145,14 +146,14 @@ const TitleBar = ({locale, setLocale,handleDrawerToggle, totalQuantity, changeAu
                 
                 <MenuItem className={ locale === 'ja' ? classes.selected : null }  onClick={event => handleLocale(event, 'ja')}>
                   <ListItemIcon>
-                    <img src="https://cdn2.iconfinder.com/data/icons/world-flags-1-1/100/Japan-512.png" className={classes.imgIcon} alt='Japanese' />
+                    <img src={require('../assets/img/Ja_flag.png')} className={classes.imgIcon} alt='Japanese' />
                   </ListItemIcon>
                   <ListItemText> <FormattedMessage id="Menu.Japanese" defualtMessage="Japanese" /> </ListItemText>
                 </MenuItem>
                 
                 <MenuItem className={ locale === 'en' ? classes.selected : null } onClick={event => handleLocale(event, 'en')}>
                   <ListItemIcon>
-                    <img src="https://cdn3.iconfinder.com/data/icons/world-flags-circular-1/512/49-Great_Britain_United_Kingdom_UK_England_Union_Jack_country_flag_-512.png" className={classes.imgIcon} alt='English' />
+                    <img src={require('../assets/img/En_flag.png')} className={classes.imgIcon} alt='English' />
                   </ListItemIcon>
                   <ListItemText> <FormattedMessage id="Menu.English" defualtMessage="English" /> </ListItemText>
                 </MenuItem>
