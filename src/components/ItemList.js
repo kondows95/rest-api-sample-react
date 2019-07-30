@@ -17,6 +17,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import Dropzone from "react-dropzone";
 
 //import ScrollUpButton from "react-scroll-up-button";
 
@@ -100,6 +101,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: -12,
     marginLeft: -12,
   },
+  testImg: {
+    width: 100,
+    height: 100
+  }
 }))
 
 
@@ -115,6 +120,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
   const [spinner, setSpinner] = React.useState(false);
   const [file, setFile] = React.useState(null);
   const [fileName, setFileName] = React.useState(null);
+  const [fileStatus, setFileStatus] = React.useState(null);
   
   const timer = React.useRef();
   React.useEffect(() => {
@@ -122,8 +128,6 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
         clearTimeout(timer.current);
       };
     }, []);
-  
-  const inputFile = React.useRef(null) ;
   
   const initialItem = { id: null, name: "", price: "", category_id: "" }
 
@@ -155,35 +159,38 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
     setSelectedImg(null);
     setFile(null);
     setFileName(null);
+    setFileStatus(null);
   }
   
-  const handleBrowseOpen = (e) => {
-    inputFile.current.click();
-  }
-
-  const handleChooseFile = event => {
-    event.preventDefault();
+  const onDrop = (accepted, rejected) => {
     
-    let reader = new FileReader();
-    let file = event.target.files[0];
-    
-    //create dynamic name
-    const fname = uuidv1()+".png";
-    
-    //add file name in state
-    const newItem = { ...selectedItem }
-    newItem['image'] = fname;
-    setSelectedItem(newItem);
-    
-    setFile(file);
-    setFileName(fname);
-    
-    //get url img for preview
-    reader.onloadend = () => {
-      setSelectedImg(reader.result);
+    if (Object.keys(rejected).length !== 0) {
+      const message = "Please submit valid file type";
+      setFileStatus(message);
+      
+    } else {
+      let reader = new FileReader();
+      let file = accepted[0];
+      setFileStatus(null);
+      
+      //create dynamic name
+      const fname = uuidv1()+".png";
+      
+      //add file name in state
+      const newItem = { ...selectedItem }
+      newItem['image'] = fname;
+      setSelectedItem(newItem);
+      
+      setFile(file);
+      setFileName(fname);
+      
+      //get url img for preview
+      reader.onloadend = () => {
+        setSelectedImg(reader.result);
+      }
+      reader.readAsDataURL(file);
     }
-    reader.readAsDataURL(file);
-  
+    
   }
   
   const handleSubmit = event => {
@@ -240,6 +247,7 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
   const handleChangeCategory = event => {
     setCategoryId(event.target.value ? event.target.value : null)
   }
+  
 
   const dialog = (selectedItem === null) ? null : (
 
@@ -301,34 +309,57 @@ const ItemList = ({ items, categories, saveItem, deleteItem, addCartItem, setCat
         </FormControl>
         
         <Grid>
+          <Box textAlign="center" color="red" >{fileStatus ? fileStatus : null}</Box>
           {selectedItem.id === null ?
             <Grid>
                 <Box textAlign="center"  p={1} my={2} className={classes.itemImgBox} >
-                  {selectedImg === null ? 
-                    <Box textAlign="center" pt={1}>
-                      <Box><AddPhotoIcon className={classes.defaultImg} onClick={() => handleBrowseOpen()} /></Box>
-                      <label className={classes.btnPicker}>
-                        <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
-                        Choose File
-                      </label>
-                    </Box>
-                    : 
-                    <Box>
-                      <img src={selectedImg} onClick={() => handleBrowseOpen()} className={classes.itemImg} alt={selectedItem.image}  />
-                      <label>
-                        <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
-                      </label>
-                    </Box>
-                  }
+                  <Dropzone multiple={false} accept="image/*" onDrop={(accepted, rejected) => onDrop(accepted, rejected)}>
+                    {({ getRootProps, getInputProps, isDragActive }) => {
+                        return (
+                        <Box {...getRootProps()} className={"dropzone" + isDragActive ? " dropzone--isActive" : ""}>
+                            <input {...getInputProps()} />
+                            {isDragActive ? (
+                              (selectedImg === null ? 
+                                <Box mt={1}>
+                                  <AddPhotoIcon className={classes.defaultImg} />
+                                  <Box>Drop files here...</Box>
+                                </Box>
+                                :
+                                <img src={selectedImg} className={classes.itemImg} alt={selectedItem.image}  />
+                              )
+                            ) : (
+                              (selectedImg === null ? 
+                                <Box mt={1}>
+                                  <AddPhotoIcon className={classes.defaultImg} />
+                                  <Box>Try dropping images here, or click to select images to upload.</Box>
+                                </Box>
+                                :
+                                <img src={selectedImg} className={classes.itemImg} alt={selectedItem.image}  />
+                              )
+                            )}
+                        </Box>
+                        );
+                    }}
+                  </Dropzone>
                 </Box>
             </Grid>
             :
             <Grid>
               <Box textAlign="center"  p={1} my={2} className={classes.itemImgBox} >
-                <img src={ selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} onClick={() => handleBrowseOpen()} alt={selectedItem.image} className={classes.itemImg} />
-                <label>
-                  <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
-                </label>
+                <Dropzone multiple={false} accept="image/*" onDrop={(accepted, rejected) => onDrop(accepted, rejected)}>
+                    {({ getRootProps, getInputProps, isDragActive }) => {
+                        return (
+                        <Box {...getRootProps()} className={"dropzone" + isDragActive ? " dropzone--isActive" : ""}>
+                            <input {...getInputProps()} />
+                            {isDragActive ? (
+                              <img src={ selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} alt={selectedItem.image} className={classes.itemImg} />
+                            ) : (
+                              <img src={ selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} alt={selectedItem.image} className={classes.itemImg} />
+                            )}
+                        </Box>
+                        );
+                    }}
+                </Dropzone>
               </Box>
             </Grid>
           }

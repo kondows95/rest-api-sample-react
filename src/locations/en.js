@@ -12,6 +12,10 @@ const en = {
   'Button.Delete': 'Delete',
   'Button.Submit': 'Submit',
   'Button.Cancel': 'Cancel',
+  'Label.SignIn': 'Sign In',
+  'Button.SignIn': 'Sign In',
+  'Label.SignUp': 'Create Account',
+  'Button.SignUp': 'Create Account',
   'Confirm.TextTitle': 'Are you sure?',
   'Confirm.TextBody' : 'Do you really want to delete',
   

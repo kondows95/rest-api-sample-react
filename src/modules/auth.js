@@ -53,7 +53,9 @@ export const authReducer = (state = initialState, action) => {
     case 'AUTH_FORGOT_PASSWORD_SUCCESS':
       return {
         ..._getCommonState(state),
-        authState: 'forgotPasswordSubmit'
+        //authState: 'forgotPasswordSubmit'
+        authState: 'forgotPasswordReset',
+        email: action.payload
       }
     default:
       return state
@@ -226,7 +228,8 @@ export const forgotPassword = (email) => {
     try {
       await Auth.forgotPassword(email)
       dispatch({
-        type: 'AUTH_FORGOT_PASSWORD_SUCCESS'
+        type: 'AUTH_FORGOT_PASSWORD_SUCCESS',
+        payload: email
       })
     }
     catch(err) {

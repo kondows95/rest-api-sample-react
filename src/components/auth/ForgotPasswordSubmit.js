@@ -9,9 +9,11 @@ const ForgotPasswordSubmit = React.memo(({
   loading,
   error,
   email,
-  forgotPasswordSubmit
+  forgotPasswordSubmit,
+  resendSingUp
 }) => {
   const [form, setForm] = React.useState({email:"", password:""})
+  console.log('Reset pwd', email)
   
   const handleChangeValue = fieldName => event => {
     const newForm = {...form}
@@ -25,8 +27,14 @@ const ForgotPasswordSubmit = React.memo(({
   }
   
   const handleResendSignUp = event => {
+    event.preventDefault();
+    resendSingUp(email);
+    //alert('TODO:Auth.resendSignUp(email)')
+  }
+  
+  const handleSignIn = event => {
     event.preventDefault()
-    alert('TODO:Auth.resendSignUp(email)')
+    changeAuthState('signIn');
   }
   
   
@@ -49,6 +57,19 @@ const ForgotPasswordSubmit = React.memo(({
               fullWidth
             />
           </Box>
+          <Box width="100%" my={2}>
+            <TextField
+              id="password"
+              label="New Password"
+              type="password"
+              autoComplete="new-password"
+              onChange={handleChangeValue("password")}
+              value={form.password}
+              variant="outlined"
+              required
+              fullWidth
+            />
+          </Box>
           <Box width="100%" mt={4} mb={2}>
             <Button
               type="submit"
@@ -63,6 +84,11 @@ const ForgotPasswordSubmit = React.memo(({
           <Box width="100%" my={2}>
             <Link href="#" variant="body2" onClick={handleResendSignUp}>
               Resend code to {email}
+            </Link>
+          </Box>
+          <Box width="100%" my={2}>
+            <Link href="#" variant="body2" onClick={handleSignIn}>
+              Back to Sign in
             </Link>
           </Box>
         </Box>

@@ -12,11 +12,11 @@ import Checkout from '../containers/Checkout'
 import ConfirmOrder from '../containers/ConfirmOrder'
 import Cart from './Cart'
 
-import Amplify from 'aws-amplify'
-import aws_exports from '../aws-exports'
+import Amplify from 'aws-amplify';
+import aws_exports from '../aws-exports';
 import Login from '../containers/Login';
 import { IntlProvider } from "react-intl";
-import { chooseLocale } from '../locations'
+import { chooseLocale } from '../locations';
 
 Amplify.configure(aws_exports);
 
@@ -27,8 +27,8 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
     if (isFirstRef.current) {
       
       isFirstRef.current = false;
-      fetchAuthedUser()
-      fetchCartData()
+      fetchAuthedUser();
+      fetchCartData();
       
     }
     
@@ -66,6 +66,10 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
             }} />
             <Route exact path="/login" render={() => {
               return <Login />
+            }} />
+            <Route exact path="/myjwt" render={() => {
+              const token = user ? user.signInUserSession.accessToken.jwtToken : null
+              return (<div>{token}</div>);
             }} />
         </Box>
     </Box>  

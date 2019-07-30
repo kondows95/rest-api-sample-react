@@ -93,6 +93,7 @@ const TitleBar = ({locale, setLocale,handleDrawerToggle, totalQuantity, changeAu
                 color="inherit"
                 to="/cart"
                 component={RouterLink}
+                className="cardIcon"
                >
                 <Badge 
                   color="secondary" 
