@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { Grid, Box, AppBar, IconButton, Toolbar, Badge, Menu, MenuItem, Divider, ListItemIcon, ListItemText   } from '@material-ui/core'
+import { Grid, Box, AppBar, IconButton, Toolbar, Badge, Menu, MenuItem, Divider, ListItemIcon, ListItemText  } from '@material-ui/core'
 import { Link as RouterLink, withRouter } from 'react-router-dom'
 import { 
   Menu as MenuIcon,
@@ -88,8 +88,7 @@ const TitleBar = ({locale, setLocale,handleDrawerToggle, totalQuantity, changeAu
         </Box>
         <Box mr={0} ml="auto">
           <Grid container>
-            {button}
-            <Link to="/cart" style={{ color: "white"}}>
+            <RouterLink to="/cart" style={{ color: "white"}}>
               <IconButton
                 color="inherit"
               >
@@ -100,10 +99,8 @@ const TitleBar = ({locale, setLocale,handleDrawerToggle, totalQuantity, changeAu
                   <ShoppingCartIcon />
                 </Badge>
               </IconButton>
-            </Link>
-          </Grid>
-
-              
+            </RouterLink>
+          
               <IconButton
                 color="inherit"
                 aria-label="More"
@@ -168,7 +165,7 @@ const TitleBar = ({locale, setLocale,handleDrawerToggle, totalQuantity, changeAu
                 
               </Menu>
       
-            
+          </Grid>  
         </Box>
       </Toolbar>
     </AppBar>

@@ -1,10 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import { BrowserRouter as Router } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import { Provider } from 'react-redux'
-import store from '../../store';
+import Parent from '../Parent';
 import TitleBar from '../TitleBar';
 let container
 beforeEach(() => {
@@ -25,16 +23,15 @@ const changeAuthState = jest.fn(() => {
 const signOut = jest.fn(()=>{
   let auth=false;
 });
+
 describe("Titalbar component", () => {
   it('matches the snapshot', () => {
     const TitalbarSnapshot= renderer.create(
-      <Provider store={store}>
-        <Router>
-          <TitleBar
-            fetchAuthedUser={fetchAuthedUser}
-            changeAuthState={changeAuthState} />
-        </Router>
-      </Provider>
+      <Parent>
+        <TitleBar
+          fetchAuthedUser={fetchAuthedUser}
+          changeAuthState={changeAuthState} />
+      </Parent>
     ).toJSON();
     expect(TitalbarSnapshot).toMatchSnapshot();
   });
@@ -44,14 +41,12 @@ describe("Teting titlebar", () => {
   it('Testing Signout button and shoppingcart icon', () => {
     act(() => {
       ReactDOM.render((
-        <Provider store={store}>
-        <Router>
+        <Parent>
           <TitleBar
             fetchAuthedUser={fetchAuthedUser}
             changeAuthState={changeAuthState} 
             signOut={signOut}/>
-        </Router>
-      </Provider>
+        </Parent>
       ), container);
       const linkArr = document.querySelectorAll('a');
       act(() => {
