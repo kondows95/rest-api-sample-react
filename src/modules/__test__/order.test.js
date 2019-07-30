@@ -63,9 +63,17 @@ describe("ActionCreators Testing", () => {
       },
       order:{
         requestParams: { id: 1, quantity: 2, price: 2000 }
+      },
+      auth: {
+        user: {
+          signInUserSession: {
+            accessToken: { jwtToken: "123456789" }
+          }
+        }
       }
     }
   }
+ 
   const addressFrom = {
     first_name: "Manda",
     last_name: "lay",

@@ -87,10 +87,8 @@ export const fetchAllItems = () => {
     const auth = {
         headers: {Authorization:'Bearer ' + token } 
     }
-    
-    const url = URL_REST_ITEMS + '?offset=' + getState().items.rows.length
+    const url = URL_REST_ITEMS + '?offset=' + getState().items.rows.length;
     const axRes = await axios.get(url, auth)
-    
     if (axRes.data.data.length === 0) {
       dispatch({
         type: 'ITEM_NO_MORE_FETCH'

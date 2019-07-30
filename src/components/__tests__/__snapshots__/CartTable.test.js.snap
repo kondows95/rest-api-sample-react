@@ -1,0 +1,875 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartTable component matches the snapshot 1`] = `
+<div
+  className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    className="PrivateHiddenCss-smUp-40"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-container"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-155"
+        >
+          <div
+            className="MuiCardMedia-root makeStyles-descImageMobile-5"
+            style={
+              Object {
+                "backgroundImage": "url(\\"http://mb-amplify-sampledc98ea5760ad43938d826ce868526e9d-dev.s3-ap-northeast-1.amazonaws.com/public/undefined\\")",
+              }
+            }
+            title="a"
+          />
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-158"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-159"
+          >
+            <div
+              className="MuiBox-root MuiBox-root-160"
+            >
+              a
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-161"
+            >
+              <div
+                className="MuiBox-root MuiBox-root-162"
+              >
+                 Ks
+              </div>
+              <div
+                className="MuiBox-root MuiBox-root-163"
+              >
+                <a
+                  className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                >
+                  Delete
+                </a>
+              </div>
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-200"
+            >
+              <div
+                className="MuiInputBase-root MuiInput-root MuiInput-underline"
+                onClick={[Function]}
+              >
+                <select
+                  className="MuiNativeSelect-root MuiNativeSelect-select MuiInputBase-input MuiInput-input MuiInputBase-inputSelect"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  value={1}
+                >
+                  <option
+                    value={1}
+                  >
+                    1
+                  </option>
+                  <option
+                    value={2}
+                  >
+                    2
+                  </option>
+                  <option
+                    value={3}
+                  >
+                    3
+                  </option>
+                  <option
+                    value={4}
+                  >
+                    4
+                  </option>
+                  <option
+                    value={5}
+                  >
+                    5
+                  </option>
+                  <option
+                    value={6}
+                  >
+                    6
+                  </option>
+                  <option
+                    value={7}
+                  >
+                    7
+                  </option>
+                  <option
+                    value={8}
+                  >
+                    8
+                  </option>
+                  <option
+                    value={9}
+                  >
+                    9
+                  </option>
+                  <option
+                    value={10}
+                  >
+                    10
+                  </option>
+                  <option
+                    value={11}
+                  >
+                    11
+                  </option>
+                  <option
+                    value={12}
+                  >
+                    12
+                  </option>
+                  <option
+                    value={13}
+                  >
+                    13
+                  </option>
+                  <option
+                    value={14}
+                  >
+                    14
+                  </option>
+                  <option
+                    value={15}
+                  >
+                    15
+                  </option>
+                  <option
+                    value={16}
+                  >
+                    16
+                  </option>
+                  <option
+                    value={17}
+                  >
+                    17
+                  </option>
+                  <option
+                    value={18}
+                  >
+                    18
+                  </option>
+                  <option
+                    value={19}
+                  >
+                    19
+                  </option>
+                  <option
+                    value={20}
+                  >
+                    20
+                  </option>
+                </select>
+                <svg
+                  aria-hidden="true"
+                  className="MuiSvgIcon-root MuiNativeSelect-icon"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+              </div>
+              <div
+                className="MuiBox-root MuiBox-root-246"
+              >
+                @
+                1000
+                 Ks
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+        >
+          <hr
+            className="MuiDivider-root"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-container"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-252"
+        >
+          <div
+            className="MuiCardMedia-root makeStyles-descImageMobile-5"
+            style={
+              Object {
+                "backgroundImage": "url(\\"http://mb-amplify-sampledc98ea5760ad43938d826ce868526e9d-dev.s3-ap-northeast-1.amazonaws.com/public/undefined\\")",
+              }
+            }
+            title="b"
+          />
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-253"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-254"
+          >
+            <div
+              className="MuiBox-root MuiBox-root-255"
+            >
+              b
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-256"
+            >
+              <div
+                className="MuiBox-root MuiBox-root-257"
+              >
+                 Ks
+              </div>
+              <div
+                className="MuiBox-root MuiBox-root-258"
+              >
+                <a
+                  className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                >
+                  Delete
+                </a>
+              </div>
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-259"
+            >
+              <div
+                className="MuiInputBase-root MuiInput-root MuiInput-underline"
+                onClick={[Function]}
+              >
+                <select
+                  className="MuiNativeSelect-root MuiNativeSelect-select MuiInputBase-input MuiInput-input MuiInputBase-inputSelect"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  value={1}
+                >
+                  <option
+                    value={1}
+                  >
+                    1
+                  </option>
+                  <option
+                    value={2}
+                  >
+                    2
+                  </option>
+                  <option
+                    value={3}
+                  >
+                    3
+                  </option>
+                  <option
+                    value={4}
+                  >
+                    4
+                  </option>
+                  <option
+                    value={5}
+                  >
+                    5
+                  </option>
+                  <option
+                    value={6}
+                  >
+                    6
+                  </option>
+                  <option
+                    value={7}
+                  >
+                    7
+                  </option>
+                  <option
+                    value={8}
+                  >
+                    8
+                  </option>
+                  <option
+                    value={9}
+                  >
+                    9
+                  </option>
+                  <option
+                    value={10}
+                  >
+                    10
+                  </option>
+                  <option
+                    value={11}
+                  >
+                    11
+                  </option>
+                  <option
+                    value={12}
+                  >
+                    12
+                  </option>
+                  <option
+                    value={13}
+                  >
+                    13
+                  </option>
+                  <option
+                    value={14}
+                  >
+                    14
+                  </option>
+                  <option
+                    value={15}
+                  >
+                    15
+                  </option>
+                  <option
+                    value={16}
+                  >
+                    16
+                  </option>
+                  <option
+                    value={17}
+                  >
+                    17
+                  </option>
+                  <option
+                    value={18}
+                  >
+                    18
+                  </option>
+                  <option
+                    value={19}
+                  >
+                    19
+                  </option>
+                  <option
+                    value={20}
+                  >
+                    20
+                  </option>
+                </select>
+                <svg
+                  aria-hidden="true"
+                  className="MuiSvgIcon-root MuiNativeSelect-icon"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+              </div>
+              <div
+                className="MuiBox-root MuiBox-root-260"
+              >
+                @
+                1000
+                 Ks
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+      />
+    </div>
+  </div>
+  <div
+    className="PrivateHiddenCss-xsDown-38"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-container"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-261"
+        >
+          Desc
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-262"
+        >
+          @ (Ks)
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-263"
+        >
+          Qty.
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-264"
+        >
+          Price (Ks)
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-265"
+        />
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+      >
+        <hr
+          className="MuiDivider-root"
+        />
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-container"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-266"
+        >
+          <div
+            className="MuiCardMedia-root makeStyles-descImagePC-4"
+            style={
+              Object {
+                "backgroundImage": "url(\\"http://mb-amplify-sampledc98ea5760ad43938d826ce868526e9d-dev.s3-ap-northeast-1.amazonaws.com/public/undefined\\")",
+              }
+            }
+            title="a"
+          />
+          <div
+            className="MuiBox-root MuiBox-root-267"
+          >
+            a
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-268"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-269"
+          >
+            1000
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-270"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-271"
+          >
+            <div
+              className="MuiBox-root MuiBox-root-272"
+            >
+              <div
+                className="MuiInputBase-root MuiInput-root MuiInput-underline"
+                onClick={[Function]}
+              >
+                <select
+                  className="MuiNativeSelect-root MuiNativeSelect-select MuiInputBase-input MuiInput-input MuiInputBase-inputSelect"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  value={1}
+                >
+                  <option
+                    value={1}
+                  >
+                    1
+                  </option>
+                  <option
+                    value={2}
+                  >
+                    2
+                  </option>
+                  <option
+                    value={3}
+                  >
+                    3
+                  </option>
+                  <option
+                    value={4}
+                  >
+                    4
+                  </option>
+                  <option
+                    value={5}
+                  >
+                    5
+                  </option>
+                  <option
+                    value={6}
+                  >
+                    6
+                  </option>
+                  <option
+                    value={7}
+                  >
+                    7
+                  </option>
+                  <option
+                    value={8}
+                  >
+                    8
+                  </option>
+                  <option
+                    value={9}
+                  >
+                    9
+                  </option>
+                  <option
+                    value={10}
+                  >
+                    10
+                  </option>
+                  <option
+                    value={11}
+                  >
+                    11
+                  </option>
+                  <option
+                    value={12}
+                  >
+                    12
+                  </option>
+                  <option
+                    value={13}
+                  >
+                    13
+                  </option>
+                  <option
+                    value={14}
+                  >
+                    14
+                  </option>
+                  <option
+                    value={15}
+                  >
+                    15
+                  </option>
+                  <option
+                    value={16}
+                  >
+                    16
+                  </option>
+                  <option
+                    value={17}
+                  >
+                    17
+                  </option>
+                  <option
+                    value={18}
+                  >
+                    18
+                  </option>
+                  <option
+                    value={19}
+                  >
+                    19
+                  </option>
+                  <option
+                    value={20}
+                  >
+                    20
+                  </option>
+                </select>
+                <svg
+                  aria-hidden="true"
+                  className="MuiSvgIcon-root MuiNativeSelect-icon"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root makeStyles-gridRight-1 MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-273"
+        />
+      </div>
+      <div
+        className="MuiGrid-root makeStyles-gridRight-1 MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <a
+          className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+        >
+          Delete
+        </a>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+      >
+        <hr
+          className="MuiDivider-root"
+        />
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-container"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-274"
+        >
+          <div
+            className="MuiCardMedia-root makeStyles-descImagePC-4"
+            style={
+              Object {
+                "backgroundImage": "url(\\"http://mb-amplify-sampledc98ea5760ad43938d826ce868526e9d-dev.s3-ap-northeast-1.amazonaws.com/public/undefined\\")",
+              }
+            }
+            title="b"
+          />
+          <div
+            className="MuiBox-root MuiBox-root-275"
+          >
+            b
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-276"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-277"
+          >
+            1000
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-278"
+        >
+          <div
+            className="MuiBox-root MuiBox-root-279"
+          >
+            <div
+              className="MuiBox-root MuiBox-root-280"
+            >
+              <div
+                className="MuiInputBase-root MuiInput-root MuiInput-underline"
+                onClick={[Function]}
+              >
+                <select
+                  className="MuiNativeSelect-root MuiNativeSelect-select MuiInputBase-input MuiInput-input MuiInputBase-inputSelect"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  value={1}
+                >
+                  <option
+                    value={1}
+                  >
+                    1
+                  </option>
+                  <option
+                    value={2}
+                  >
+                    2
+                  </option>
+                  <option
+                    value={3}
+                  >
+                    3
+                  </option>
+                  <option
+                    value={4}
+                  >
+                    4
+                  </option>
+                  <option
+                    value={5}
+                  >
+                    5
+                  </option>
+                  <option
+                    value={6}
+                  >
+                    6
+                  </option>
+                  <option
+                    value={7}
+                  >
+                    7
+                  </option>
+                  <option
+                    value={8}
+                  >
+                    8
+                  </option>
+                  <option
+                    value={9}
+                  >
+                    9
+                  </option>
+                  <option
+                    value={10}
+                  >
+                    10
+                  </option>
+                  <option
+                    value={11}
+                  >
+                    11
+                  </option>
+                  <option
+                    value={12}
+                  >
+                    12
+                  </option>
+                  <option
+                    value={13}
+                  >
+                    13
+                  </option>
+                  <option
+                    value={14}
+                  >
+                    14
+                  </option>
+                  <option
+                    value={15}
+                  >
+                    15
+                  </option>
+                  <option
+                    value={16}
+                  >
+                    16
+                  </option>
+                  <option
+                    value={17}
+                  >
+                    17
+                  </option>
+                  <option
+                    value={18}
+                  >
+                    18
+                  </option>
+                  <option
+                    value={19}
+                  >
+                    19
+                  </option>
+                  <option
+                    value={20}
+                  >
+                    20
+                  </option>
+                </select>
+                <svg
+                  aria-hidden="true"
+                  className="MuiSvgIcon-root MuiNativeSelect-icon"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root makeStyles-gridRight-1 MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <div
+          className="MuiBox-root MuiBox-root-281"
+        />
+      </div>
+      <div
+        className="MuiGrid-root makeStyles-gridRight-1 MuiGrid-item MuiGrid-grid-xs-2"
+      >
+        <a
+          className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+        >
+          Delete
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

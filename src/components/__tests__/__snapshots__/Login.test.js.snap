@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component matches the snapshot1 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-2"
+>
+  <div
+    className="MuiBox-root MuiBox-root-3"
+  >
+    <div
+      className="MuiBox-root MuiBox-root-4"
+    >
+      <h1>
+        Tap To Login
+      </h1>
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          SIGN IN
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Header component matches the snapshot2 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-35"
+>
+  <div
+    className="MuiBox-root MuiBox-root-36"
+  >
+    <div
+      className="MuiBox-root MuiBox-root-37"
+    >
+      <h1>
+        SUCCESSFUL SIGN IN
+      </h1>
+      <h1>
+        Tap To Shopping
+      </h1>
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          SHOPPING
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

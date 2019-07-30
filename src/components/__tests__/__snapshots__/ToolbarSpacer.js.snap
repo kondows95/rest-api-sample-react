@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Confirm Toolbar component matches the snapshot 1`] = `
+<div
+  className="makeStyles-toolbar-1"
+/>
+`;

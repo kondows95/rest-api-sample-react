@@ -11,7 +11,7 @@ const ConfirmSignUp = React.memo(({
   email,
   confirmSignUp
 }) => {
-  const [form, setForm] = React.useState({email:"", password:""})
+  const [form, setForm] = React.useState({email:"", password:"",confirmationCode:""})
   
   const handleChangeValue = fieldName => event => {
     const newForm = {...form}
@@ -35,6 +35,7 @@ const ConfirmSignUp = React.memo(({
           <Box width="100%" my={2}>
             <TextField
               id="confirmationCode"
+              name="confirmationCode"
               label="Confirmation Code"
               onChange={handleChangeValue("confirmationCode")} 
               value={form.confirmationCode}
