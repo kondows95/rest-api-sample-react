@@ -11,7 +11,7 @@ const ForgotPasswordSubmit = React.memo(({
   email,
   forgotPasswordSubmit
 }) => {
-  const [form, setForm] = React.useState({email:"", password:""})
+  const [form, setForm] = React.useState({ password:"",confirmationCode:""})
   
   const handleChangeValue = fieldName => event => {
     const newForm = {...form}
@@ -44,6 +44,19 @@ const ForgotPasswordSubmit = React.memo(({
               label="Confirmation Code"
               onChange={handleChangeValue("confirmationCode")} 
               value={form.confirmationCode}
+              variant="outlined"
+              required
+              fullWidth
+            />
+          </Box>
+          <Box width="100%" my={2}>
+            <TextField
+              id="password"
+              label="New Password"
+              type="password"
+              autoComplete="new-password"
+              onChange={handleChangeValue("password")}
+              value={form.password}
               variant="outlined"
               required
               fullWidth
