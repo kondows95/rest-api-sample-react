@@ -10,14 +10,16 @@ exports[`CategoryList component matches the snapshot 1`] = `
     <div
       className="MuiBox-root MuiBox-root-38"
     >
-      Categories (
+      <span>
+        Categories
+      </span>
+      (
       2
       )
     </div>
     <button
       className="MuiButtonBase-root MuiButton-root makeStyles-button-1 MuiButton-contained MuiButton-containedSecondary"
       disabled={false}
-      id="create"
       onBlur={[Function]}
       onClick={[Function]}
       onDragLeave={[Function]}
@@ -36,7 +38,9 @@ exports[`CategoryList component matches the snapshot 1`] = `
       <span
         className="MuiButton-label"
       >
-        Create
+        <span>
+          Create
+        </span>
       </span>
     </button>
   </div>
@@ -65,7 +69,6 @@ exports[`CategoryList component matches the snapshot 1`] = `
             <button
               className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary"
               disabled={false}
-              id="categoryedit"
               onBlur={[Function]}
               onClick={[Function]}
               onDragLeave={[Function]}
@@ -84,13 +87,14 @@ exports[`CategoryList component matches the snapshot 1`] = `
               <span
                 className="MuiButton-label"
               >
-                Edit
+                <span>
+                  Edit
+                </span>
               </span>
             </button>
             <button
               className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary"
               disabled={false}
-              id="categorydelete"
               onBlur={[Function]}
               onClick={[Function]}
               onDragLeave={[Function]}
@@ -109,7 +113,9 @@ exports[`CategoryList component matches the snapshot 1`] = `
               <span
                 className="MuiButton-label"
               >
-                Delete
+                <span>
+                  Delete
+                </span>
               </span>
             </button>
           </div>
@@ -138,7 +144,6 @@ exports[`CategoryList component matches the snapshot 1`] = `
             <button
               className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary"
               disabled={false}
-              id="categoryedit"
               onBlur={[Function]}
               onClick={[Function]}
               onDragLeave={[Function]}
@@ -157,13 +162,14 @@ exports[`CategoryList component matches the snapshot 1`] = `
               <span
                 className="MuiButton-label"
               >
-                Edit
+                <span>
+                  Edit
+                </span>
               </span>
             </button>
             <button
               className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary"
               disabled={false}
-              id="categorydelete"
               onBlur={[Function]}
               onClick={[Function]}
               onDragLeave={[Function]}
@@ -182,7 +188,9 @@ exports[`CategoryList component matches the snapshot 1`] = `
               <span
                 className="MuiButton-label"
               >
-                Delete
+                <span>
+                  Delete
+                </span>
               </span>
             </button>
           </div>

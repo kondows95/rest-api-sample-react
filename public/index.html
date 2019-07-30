@@ -34,5 +34,39 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $(document).on("click", ".btnAddToCart", function(){
+          var basket_location=$(".fa-shopping-cart")[0].getBoundingClientRect();//this is basket location in the document
+          
+          var item_img=$(this).closest(".card").find(".item-img");// this is original image
+          var item_img_location=item_img[0].getBoundingClientRect();// original image location in the document
+          var src = $(this).closest(".card").find(".item-img").attr("value");// clone the original image
+          var clonded_img = $('<img width="30px" height="30px" src="'+ src +'"/>').css({
+            "position":"fixed",
+            "top":item_img_location.y+(item_img.outerHeight()-100)/2,// position the clone img into center
+            "left":item_img_location.x+(item_img.outerWidth()-100)/2,// position the clone img into center
+            "border":"2px solid blue",
+            "borderRadius":".25rem",
+            'background':"white",
+            "zIndex":999,
+            "width":"100px",
+            "height":"100px"
+          });
+                      
+          $("body").append(clonded_img);//append clone image into body
+          
+          clonded_img.animate({
+              top:basket_location.y,
+              left:basket_location.x,
+              width:"40px",
+              height:"40px"
+          },1000,function(){
+            clonded_img.remove();
+          })
+      })
+    })
+  </script>
   </body>
 </html>

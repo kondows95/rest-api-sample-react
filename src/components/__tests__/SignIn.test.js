@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import renderer from 'react-test-renderer';
+import Parent from '../Parent';
 import SignIn from '../auth/SignIn';
 
 let container
@@ -29,13 +30,15 @@ const signIn = jest.fn((email1, password1) => {
 describe("SignIn component snapshot", () => {
   it('matches the snapshot', () => {
     const SignInSnapshot = renderer.create(
-      <SignIn
-        authState={authState}
-        changeAuthState={changeAuthState}
-        loading={loading}
-        error={error}
-        signIn={signIn}
-      />
+      <Parent>
+        <SignIn
+          authState={authState}
+          changeAuthState={changeAuthState}
+          loading={loading}
+          error={error}
+          signIn={signIn}
+        />
+      </Parent>
     ).toJSON();
     expect(SignInSnapshot).toMatchSnapshot();
   });
@@ -44,14 +47,17 @@ describe("SignIn component snapshot", () => {
 describe("Testing SignIn", () => {
   it('Testing textfied and  SignIn button ', () => {
     act(() => {
-      ReactDOM.render(
-        <SignIn
-          authState={authState}
-          changeAuthState={changeAuthState}
-          loading={loading}
-          error={error}
-          signIn={signIn}
-        />, container);
+      ReactDOM.render((
+        <Parent>
+          <SignIn
+            authState={authState}
+            changeAuthState={changeAuthState}
+            loading={loading}
+            error={error}
+            signIn={signIn}
+          />
+        </Parent>
+      ), container);
     });
     const inputArr = document.querySelectorAll('input');
     act(() => {
@@ -72,14 +78,17 @@ describe("Testing SignIn", () => {
   })
   it("Testing two link ", () => {
     act(() => {
-      ReactDOM.render(
-        <SignIn
-          authState={authState}
-          changeAuthState={changeAuthState}
-          loading={loading}
-          error={error}
-          signIn={signIn}
-        />, container);
+      ReactDOM.render((
+        <Parent>
+          <SignIn
+            authState={authState}
+            changeAuthState={changeAuthState}
+            loading={loading}
+            error={error}
+            signIn={signIn}
+          />
+        </Parent>
+      ), container);
     });
     const linkArr = document.querySelectorAll('a');
     act(() => {

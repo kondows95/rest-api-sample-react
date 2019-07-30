@@ -7,7 +7,8 @@ import {
     Brush as BrushIcon, 
     Accessibility as AccessibilityIcon
 } from '@material-ui/icons'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 const useStyles = makeStyles(theme => ({
   link: {
@@ -25,13 +26,13 @@ const CategoryList = ({ handleDrawerClose }) => {
         <Link to = '/categories' className={classes.link} onClick={handleDrawerClose}>
           <ListItem button className="icon">
             <ListItemIcon ><BrushIcon /></ListItemIcon>
-            <ListItemText>Categories</ListItemText>
+            <ListItemText><FormattedMessage id="Menu.Category" defualtMessage="Categories" /></ListItemText>
           </ListItem>
         </Link>
         <Link to = '/' className={classes.link} onClick={handleDrawerClose}>
           <ListItem button className="icon">
             <ListItemIcon><PhotoIcon /></ListItemIcon>
-            <ListItemText>Items</ListItemText>
+            <ListItemText><FormattedMessage id="Menu.Item" defualtMessage="Items" /></ListItemText>
           </ListItem>
         </Link>
       </List>
@@ -42,7 +43,7 @@ const CategoryList = ({ handleDrawerClose }) => {
         <Link to = '/staffs' className={classes.link} onClick={handleDrawerClose}>
           <ListItem button className="icon">
             <ListItemIcon><AccessibilityIcon /></ListItemIcon>
-            <ListItemText>Staff</ListItemText>
+            <ListItemText><FormattedMessage id="Menu.Staff" defualtMessage="Staff" /></ListItemText>
           </ListItem>
         </Link>
       </List>
