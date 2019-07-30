@@ -48,7 +48,9 @@ Array [
           <span
             className="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
           >
-            Categories
+            <span>
+              Categories
+            </span>
           </span>
         </div>
       </div>
@@ -96,7 +98,9 @@ Array [
           <span
             className="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
           >
-            Items
+            <span>
+              Items
+            </span>
           </span>
         </div>
       </div>
@@ -151,7 +155,9 @@ Array [
           <span
             className="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
           >
-            Staff
+            <span>
+              Staff
+            </span>
           </span>
         </div>
       </div>

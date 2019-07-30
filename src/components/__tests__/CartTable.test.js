@@ -2,10 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import renderer from 'react-test-renderer';
+import Parent from '../Parent';
 import CartTable from '../CartTable';
-import { Provider } from 'react-redux'
-import store from '../../store';
-import {  BrowserRouter as Router } from 'react-router-dom';
+
 let container
 beforeEach(() => {
   container = document.createElement('div')
@@ -23,11 +22,9 @@ describe("CartTable component", () => {
   let cart = [{ id: 1, name: "a", quantity: 1, price: 1000 },
   { id: 2, name: "b", quantity: 1, price: 1000 }];
   it('matches the snapshot', () => {
-    const CartTableSnapshot = renderer.create(<Provider store={store}>
-      <Router>
-        <CartTable cart={cart} />
-      </Router>
-    </Provider>).toJSON();
+    const CartTableSnapshot = renderer.create(
+      <Parent><CartTable cart={cart} /></Parent>
+    ).toJSON();
     expect(CartTableSnapshot).toMatchSnapshot();
   })
 })
@@ -43,11 +40,9 @@ describe("testing cart table", () => {
       else cart = [{ id: 1, name: "a", quantity: 1, price: 1000, subTotal: 1000 }];
     });
     act(() => {
-      ReactDOM.render((<Provider store={store}>
-        <Router>
-          <CartTable cart={cart} deleteCartItem={deleteCartItem} />
-        </Router>
-      </Provider>), container);
+      ReactDOM.render((
+        <Parent><CartTable cart={cart} deleteCartItem={deleteCartItem} /></Parent>
+      ), container);
     });
     const linkArr = document.querySelectorAll('a')
     expect(linkArr[0].textContent.toUpperCase()).toBe("DELETE");

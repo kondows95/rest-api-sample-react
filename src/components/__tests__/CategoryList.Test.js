@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import CategoryList from '../CategoryList';
 import renderer from 'react-test-renderer';
+import Parent from '../Parent';
+
 let container
 beforeEach(() => {
   container = document.createElement('div')
@@ -26,22 +28,27 @@ describe("CategoryList component", () => {
     else categories = [{ id: 1, name: "a" }];
   });
   it('matches the snapshot', () => {
-    const CategoryListSnapshot = renderer.create(<CategoryList
-      categories={categories}
-      saveCategory={saveCategory}
-      deleteCategory={deleteCategory}
-    />).toJSON(); 
+    const CategoryListSnapshot = renderer.create(
+      <Parent>
+        <CategoryList
+          categories={categories}
+          saveCategory={saveCategory}
+          deleteCategory={deleteCategory}
+        />
+      </Parent>
+    ).toJSON(); 
     expect(CategoryListSnapshot).toMatchSnapshot();
   })
-
-
- 
 })
 describe("testing creating category", () => {
   it('should exists one create button and one name textfield', () => {
     let categories = [{ id: 1, name: "a" }, { id: 2, name: "b" }];
     act(() => {
-      ReactDOM.render(<CategoryList categories={categories} />, container);
+      ReactDOM.render((
+        <Parent>
+          <CategoryList categories={categories} />
+        </Parent>
+      ), container);
     });
     const button = container.querySelectorAll('Button')
     expect(button[0].textContent.toUpperCase()).toBe("CREATE")
@@ -56,7 +63,11 @@ describe("testing creating category", () => {
   it('check the textfield handle change and click cancle button', () => {
     let categories = [{ id: 1, name: "a" }, { id: 2, name: "b" }];
     act(() => {
-      ReactDOM.render(<CategoryList categories={categories} />, container);
+      ReactDOM.render((
+        <Parent>
+          <CategoryList categories={categories} />
+        </Parent>
+      ), container);
     });
     const CreateButton = container.querySelectorAll('Button')
     act(() => {
@@ -84,7 +95,11 @@ describe("testing creating category", () => {
       categories = [...categories, setSelectedCategory]
     });
     act(() => {
-      ReactDOM.render(<CategoryList categories={categories} saveCategory={saveCategory} />, container);
+      ReactDOM.render((
+        <Parent>
+          <CategoryList categories={categories} saveCategory={saveCategory} />
+        </Parent>
+      ), container);
     });
     const CreateButton = container.querySelectorAll('Button')
     act(() => {
@@ -114,7 +129,11 @@ describe("testing creating category", () => {
       categories = [...categories, setSelectedCategory]
     });
     act(() => {
-      ReactDOM.render(<CategoryList categories={categories} saveCategory={saveCategory} />, container);
+      ReactDOM.render((
+        <Parent>
+          <CategoryList categories={categories} saveCategory={saveCategory} />
+        </Parent>
+      ), container);
     });
     const CreateButton = container.querySelectorAll('Button')
     act(() => {
@@ -132,7 +151,11 @@ describe("testing category list", () => {
   it('testing edit button', () => {
     let categories = [{ id: 1, name: "a" }, { id: 2, name: "b" }];
     act(() => {
-      ReactDOM.render(<CategoryList categories={categories} />, container);
+      ReactDOM.render((
+        <Parent>
+          <CategoryList categories={categories} />
+        </Parent>
+      ), container);
     });
     const button = container.querySelectorAll('Button')
     act(() => {
@@ -149,7 +172,11 @@ describe("testing category list", () => {
       else categories = [{ id: 1, name: "a" }];
     });
     act(() => {
-      ReactDOM.render(<CategoryList categories={categories} deleteCategory={deleteCategory} />, container);
+      ReactDOM.render((
+        <Parent>
+          <CategoryList categories={categories} deleteCategory={deleteCategory} />
+        </Parent>
+      ), container);
     });
     const button = container.querySelectorAll('Button');
     act(() => {
@@ -173,7 +200,11 @@ describe("testing category list", () => {
       else categories = [{ id: 1, name: "a" }];
     });
     act(() => {
-      ReactDOM.render(<CategoryList categories={categories} deleteCategory={deleteCategory} />, container);
+      ReactDOM.render((
+        <Parent>
+          <CategoryList categories={categories} deleteCategory={deleteCategory} />
+        </Parent>
+      ), container);
     });
     const button = container.querySelectorAll('Button');
     act(() => {
