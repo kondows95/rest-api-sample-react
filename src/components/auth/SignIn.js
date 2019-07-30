@@ -5,6 +5,7 @@ import FormTitle from './FormTitle';
 import { makeStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { FormattedMessage } from 'react-intl';
 
 const useStyles = makeStyles(theme => ({
   btnWrapper: {
@@ -58,7 +59,7 @@ const SignIn = ({
     <Container component="main" maxWidth="xs">
       <form onSubmit={handleSubmit}>
         <Box display="flex" flexDirection="column" mt={8}>
-          <FormTitle>Sign In</FormTitle>
+          <FormTitle><FormattedMessage id="Label.SignIn" defualtMessage="Sign In" /></FormTitle>
           <Box display="flex" justifyContent="center" fontWeight={600} color="error.main">
             {error}
           </Box>
@@ -92,7 +93,7 @@ const SignIn = ({
             
             <Box className={classes.btnWrapper} >
               <Button type="submit" fullWidth disabled={loading} color="primary" variant="contained">
-                Sign In
+                <FormattedMessage id="Button.SignIn" defualtMessage="Sign In" />
               </Button>
               {loading && <CircularProgress size={24} className={classes.btnProgress} />}
             </Box>

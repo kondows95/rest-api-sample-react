@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import {
+import { 
   Box, Container, Paper, Grid, Button,
-  Dialog, DialogTitle, DialogContent, DialogActions, TextField,
+  Dialog, DialogTitle, DialogContent, DialogActions, TextField, 
 } from '@material-ui/core'
-import { validateForm } from '../util'
+import { validateForm } from '../util';
+import { FormattedMessage } from 'react-intl';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -25,23 +26,22 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
   const [selectedCategory, setSelectedCategory] = React.useState(null)
   const [isDelete, setIsDelete] = React.useState(false)
   const [errors, setErrors] = React.useState({})
-
-  const initialCategory = { id: null, name: "" }
-
+  
+  const initialCategory = {id: null, name: ""}
+  
   const handleChangeValue = fieldName => event => {
-    const newCategory = { ...selectedCategory }
-    newCategory[fieldName] = event.target.value
+    const newCategory = {...selectedCategory}
+    newCategory[fieldName] =  event.target.value
     setSelectedCategory(newCategory)
   }
-
+  
   const handleDelete = category => event => {
-    console.log("enter handel delete")
     setSelectedCategory(category)
     setDialogOpen(true)
     setIsDelete(true)
     setErrors({})
   }
-
+  
   const handleEdit = category => event => {
     setSelectedCategory(category)
     setDialogOpen(true)
@@ -53,11 +53,11 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
     setDialogOpen(false)
     setSelectedCategory(null)
   }
-
+  
   const validationSetting = {
     isEmpty: ['name'],
   }
-
+  
   const handleSubmit = () => {
     if (selectedCategory) {
       const errs = validateForm(validationSetting, selectedCategory)
@@ -75,43 +75,50 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
       }
     }
   }
-
+  
   const deleteDialog = (selectedCategory && isDelete) ? (
-    <Dialog
-      open={dialogOpen}
-      onClose={handleCloseDialog}
+    <Dialog 
+      open={dialogOpen} 
+      onClose={handleCloseDialog} 
       aria-labelledby="category-delete-dialog"
       fullWidth
       maxWidth="xs"
     >
       <DialogTitle id="category-delete-dialog">
-        {"Are you sure?"}
+        <FormattedMessage id="Confirm.TextTitle" defualtMessage="Are you sure?" />
       </DialogTitle>
       <DialogContent>
-        <Box>Do you really want to delete {selectedCategory.id}: {selectedCategory.name}.</Box>
+        <Box>
+          <FormattedMessage id="Confirm.TextBody" defualtMessage="Do you really want to delete" /> 
+          {selectedCategory.id}: {selectedCategory.name}.
+        </Box>
         <Box fontWeight={600}></Box>
       </DialogContent>
       <DialogActions>
-        <Button id="delete cancel" onClick={handleCloseDialog} color="primary">
-          Cancel
+        <Button onClick={handleCloseDialog} color="primary">
+          <FormattedMessage id="Button.Cancel" defualtMessage="Cancel" />
         </Button>
-        <Button id="delete" onClick={handleSubmit} color="primary">
-          Delete
+        <Button onClick={handleSubmit} color="primary">
+          <FormattedMessage id="Button.Delete" defualtMessage="Delete" />
         </Button>
       </DialogActions>
     </Dialog>
   ) : null
-
+  
   const saveDialog = (selectedCategory && isDelete === false) ? (
-    <Dialog
-      open={dialogOpen}
-      onClose={handleCloseDialog}
+    <Dialog 
+      open={dialogOpen} 
+      onClose={handleCloseDialog} 
       aria-labelledby="category-save-dialog"
       fullWidth
       maxWidth="xs"
     >
       <DialogTitle id="category-save-dialog" >
-        {selectedCategory.id ? "Edit (ID:" + selectedCategory.id + ")" : "Create"}
+        {selectedCategory.id ? 
+          <Box> <FormattedMessage id="Button.Edit" defualtMessage="Edit" /> (ID: {selectedCategory.id} )</Box> 
+          : 
+          <FormattedMessage id="Button.Create" defualtMessage="Create" />
+        }
       </DialogTitle>
       <DialogContent>
         <TextField
@@ -126,35 +133,16 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button id="cancle" onClick={handleCloseDialog} color="primary">
-          Cancel
+        <Button onClick={handleCloseDialog} color="primary">
+          <FormattedMessage id="Button.Cancel" defualtMessage="Cancel" />
         </Button>
-        <Button id="submit" onClick={handleSubmit} color="primary">
-          Submit
+        <Button onClick={handleSubmit} color="primary">
+          <FormattedMessage id="Button.Submit" defualtMessage="Submit" />
         </Button>
       </DialogActions>
     </Dialog>
   ) : null
-
   
-
-  const paperControl = (
-    <Paper className={classes.paper}>
-      <Box ml={0} my="auto" fontWeight={600}>
-        Categories ({categories.length})
-      </Box>
-      <Button
-        id="create"
-        variant="contained"
-        color="secondary"
-        className={classes.button}
-        onClick={handleEdit(initialCategory)}
-      >
-        Create
-      </Button>
-    </Paper>
-  )
-
   const paperItems = []
   for (const category of categories) {
     paperItems.push(
@@ -163,11 +151,11 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
           <Box display="flex" flexDirection="column" flexGrow={1}>
             <Box fontWeight={600}>{category.id}: {category.name}</Box>
             <Box ml="auto" mr={0} mt={2}>
-              <Button id="categoryedit" color="primary" onClick={handleEdit(category)}>
-                Edit
+              <Button color="primary" onClick={handleEdit(category)}>
+                <FormattedMessage id="Button.Edit" defualtMessage="Edit" />
               </Button>
-              <Button id='categorydelete' color="primary" onClick={handleDelete(category)}>
-                Delete
+              <Button color="primary" onClick={handleDelete(category)}>
+                <FormattedMessage id="Button.Delete" defualtMessage="Delete" />
               </Button>
             </Box>
           </Box>
@@ -175,7 +163,23 @@ const CategoryList = ({ categories, saveCategory, deleteCategory }) => {
       </Grid>
     )
   }
-
+  
+  const paperControl = (
+    <Paper className={classes.paper}>
+      <Box ml={0} my="auto" fontWeight={600}>
+        <FormattedMessage id="Menu.Category" defualtMessage="Category" />({categories.length})
+      </Box>
+      <Button 
+        variant="contained" 
+        color="secondary" 
+        className={classes.button}
+        onClick={handleEdit(initialCategory)}
+      >
+        <FormattedMessage id="Button.Create" defualtMessage="Create" />
+      </Button>
+    </Paper>
+  )
+  
   return (
     <React.Fragment>
       <Container maxWidth="lg">
