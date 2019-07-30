@@ -248,7 +248,7 @@ exports[`SignIn component snapshot matches the snapshot 1`] = `
               onClick={[Function]}
               onFocus={[Function]}
             >
-              No account? Create account
+              No account? Sign Up
             </a>
           </div>
         </div>
