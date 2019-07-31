@@ -14,7 +14,8 @@ import { FormattedMessage } from 'react-intl';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    //zIndex: theme.zIndex.drawer + 1,
+    zIndex: 999
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -96,7 +97,7 @@ const TitleBar = ({locale, setLocale,handleDrawerToggle, totalQuantity, changeAu
                   color="secondary"
                   badgeContent={totalQuantity}
                   invisible={totalQuantity > 0 ? false : true}>
-                  <ShoppingCartIcon />
+                  <ShoppingCartIcon className="fa-shopping-cart" />
                 </Badge>
               </IconButton>
             </RouterLink>
