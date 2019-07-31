@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Box, Button, Container, Link, TextField}  from '@material-ui/core'
 import FormTitle from './FormTitle'
+import { FormattedMessage } from 'react-intl';
 
 
 const SignUp = React.memo(({
@@ -34,7 +35,7 @@ const SignUp = React.memo(({
     <Container component="main" maxWidth="xs">
       <form onSubmit={handleSubmit}>
         <Box display="flex" flexDirection="column" mt={8}>
-          <FormTitle>Create Account</FormTitle>
+          <FormTitle><FormattedMessage id="Label.SignUp" defualtMessage="Create Account" /></FormTitle>
           <Box display="flex" justifyContent="center" fontWeight={600} color="error.main">
             {error}
           </Box>
@@ -72,7 +73,7 @@ const SignUp = React.memo(({
               color="primary"
               disabled={loading}
             >
-              Create Account
+              <FormattedMessage id="Button.SignUp" defualtMessage="Create Account" />
             </Button>
           </Box>
           <Box width="100%" my={2}>
