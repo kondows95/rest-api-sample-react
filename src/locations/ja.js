@@ -7,6 +7,7 @@ const ja = {
   'Menu.Japanese': '日本語',
   'Menu.English': '英語',
   'Menu.SingOut': 'ログアウト',
+  'Menu.Order':'注文',
   'Button.Create': '作成',
   'Button.Edit': '編集',
   'Button.Delete': '削除',

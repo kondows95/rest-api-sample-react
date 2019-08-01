@@ -14,7 +14,10 @@ afterEach(() => {
   document.body.outerHTML = '<body></body>'
   container = null
 })
-
+let closeDialog=true;
+const dialogBox= jest.fn((val) => {
+   closeDialog = val;
+})
 const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
 
     describe("CategoryList component", () => {
@@ -45,13 +48,12 @@ const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prot
         act(() => {
           ReactDOM.render((
             <Parent>
-              <CategoryList categories={categories} />
+              <CategoryList categories={categories} dialogBox={dialogBox} closeDialog={closeDialog}/>
             </Parent>
           ), container);
         });
         const button = container.querySelectorAll('Button')
         expect(button[0].textContent.toUpperCase()).toBe("CREATE")
-
         act(() => {
           button[0].dispatchEvent(new MouseEvent('click', { bubbles: true }));
         });
@@ -65,7 +67,7 @@ const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prot
         act(() => {
           ReactDOM.render((
             <Parent>
-              <CategoryList categories={categories} />
+              <CategoryList categories={categories}  dialogBox={dialogBox} closeDialog={closeDialog}/>
             </Parent>
           ), container);
         });
@@ -97,7 +99,7 @@ const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prot
         act(() => {
           ReactDOM.render((
             <Parent>
-              <CategoryList categories={categories} saveCategory={saveCategory} />
+              <CategoryList categories={categories} saveCategory={saveCategory}  dialogBox={dialogBox} closeDialog={closeDialog}/>
             </Parent>
           ), container);
         });
@@ -132,7 +134,7 @@ const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prot
         act(() => {
           ReactDOM.render((
             <Parent>
-              <CategoryList categories={categories} saveCategory={saveCategory} />
+              <CategoryList categories={categories} saveCategory={saveCategory}  dialogBox={dialogBox} closeDialog={closeDialog}/>
             </Parent>
           ), container);
         });
@@ -154,7 +156,7 @@ const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prot
         act(() => {
           ReactDOM.render((
             <Parent>
-              <CategoryList categories={categories} />
+              <CategoryList categories={categories}  dialogBox={dialogBox} closeDialog={closeDialog}/>
             </Parent>
           ), container);
         });
@@ -175,7 +177,7 @@ const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prot
         act(() => {
           ReactDOM.render((
             <Parent>
-              <CategoryList categories={categories} deleteCategory={deleteCategory} />
+              <CategoryList categories={categories} deleteCategory={deleteCategory}  dialogBox={dialogBox} closeDialog={closeDialog}/>
             </Parent>
           ), container);
         });
@@ -200,10 +202,11 @@ const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prot
           if (category_id === 1) categories = [{ id: 2, name: "b" }];
           else categories = [{ id: 1, name: "a" }];
         });
+        
         act(() => {
           ReactDOM.render((
             <Parent>
-              <CategoryList categories={categories} deleteCategory={deleteCategory} />
+              <CategoryList categories={categories} deleteCategory={deleteCategory} closeDialog={closeDialog} dialogBox={dialogBox} />
             </Parent>
           ), container);
         });
