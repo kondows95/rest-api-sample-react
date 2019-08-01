@@ -1,6 +1,5 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import {
   Box, Paper, Container, Grid, CardMedia, Card, CardActions, CardContent, Button, Dialog,
   DialogTitle, DialogContent, TextField, DialogActions, IconButton, NativeSelect
@@ -18,8 +17,6 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Dropzone from "react-dropzone";
-import Fab from '@material-ui/core/Fab';
-import CheckIcon from '@material-ui/icons/Home';
 
 const uuidv1 = require('uuid/v1');
 
@@ -150,23 +147,14 @@ const ItemList = ({
   history }) => {
   const classes = useStyles()
 
-  const [dialogOpen, setDialogOpen] = React.useState(false)
   const [selectedItem, setSelectedItem] = React.useState(null)
   const [selectedImg, setSelectedImg] = React.useState(null)
   const [isDelete, setIsDelete] = React.useState(false)
   const [errors, setErrors] = React.useState({})
   const [isLogin, setIsLogin] = React.useState(false);
-  const [spinner, setSpinner] = React.useState(false);
   const [file, setFile] = React.useState(null);
   const [fileName, setFileName] = React.useState(null);
   const [fileStatus, setFileStatus] = React.useState(null);
-  const timer = React.useRef();
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(timer.current);
-    };
-  }, []);
-
   const initialItem = { id: null, name: "", price: "", category_id: "" }
   const handleChangeValue = fieldName => event => {
     const newItem = { ...selectedItem }
@@ -177,7 +165,6 @@ const ItemList = ({
   const handleDelete = item => event => {
     dialogBox(true);
     setSelectedItem(item)
-    setDialogOpen(true)
     setIsDelete(true)
     setErrors({})
   }
@@ -185,7 +172,6 @@ const ItemList = ({
   const handleEdit = item => event => {
     dialogBox(true);
     setSelectedItem(item)
-    setDialogOpen(true)
     setIsDelete(false)
     setSelectedImg(null)
     setErrors({})
@@ -193,8 +179,6 @@ const ItemList = ({
 
   const handleCloseDialog = () => {
     dialogBox(false);
-    setDialogOpen(false);
-    setSpinner(false);
     setIsLogin(false);
     setSelectedImg(null);
     setFile(null);
@@ -243,7 +227,6 @@ const ItemList = ({
     }
     else {
       if (isDelete) {
-        setSpinner(true);
         deleteItem(selectedItem.id);
       }
       else {
@@ -252,7 +235,6 @@ const ItemList = ({
           setIsLogin(true);
         } else {
           setIsLogin(false);
-          setSpinner(true);
           saveItem(selectedItem, fileName, file);
         }
 
@@ -508,7 +490,7 @@ const ItemList = ({
       {loading &&
         <Grid container justify="center" className={classes.root}>
           <Grid className={classes.wrapper}>
-             <img src={require("../assets/img/spinner.gif")} width={50} height={50} />
+             <img src={require("../assets/img/spinner.gif")} width={50} height={50} alt="spinner"/>
           </Grid>
         </Grid>
       }

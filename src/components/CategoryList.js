@@ -9,7 +9,6 @@ import { validateForm } from '../util';
 import { FormattedMessage } from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { green } from '@material-ui/core/colors';
-import { CardMedia } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -48,7 +47,6 @@ const CategoryList = ({
   closeDialog,
   dialogBox, }) => {
   const classes = useStyles()
-  const [dialogOpen, setDialogOpen] = React.useState(false)
   const [selectedCategory, setSelectedCategory] = React.useState(null)
   const [isDelete, setIsDelete] = React.useState(false)
   const [errors, setErrors] = React.useState({})
@@ -63,7 +61,6 @@ const CategoryList = ({
   const handleDelete = category => event => {
     dialogBox(true);
     setSelectedCategory(category)
-    setDialogOpen(true)
     setIsDelete(true)
     setErrors({})
   }
@@ -71,14 +68,12 @@ const CategoryList = ({
   const handleEdit = category => event => {
     dialogBox(true);
     setSelectedCategory(category)
-    setDialogOpen(true)
     setIsDelete(false)
     setErrors({})
   }
 
   const handleCloseDialog = () => {
     dialogBox(false);
-    setDialogOpen(false)
     setSelectedCategory(null)
   }
 
@@ -167,7 +162,7 @@ const CategoryList = ({
         <Button onClick={handleCloseDialog} color="primary">
           <FormattedMessage id="Button.Cancel" defualtMessage="Cancel" />
         </Button>
-        <Box className={classes.wrapper} >s
+        <Box className={classes.wrapper} >
           <Button onClick={handleSubmit} color="primary">
             <FormattedMessage id="Button.Submit" defualtMessage="Submit" />
           </Button>
@@ -218,20 +213,19 @@ const CategoryList = ({
     <React.Fragment>
       <Container maxWidth="lg">
         {paperControl}
-        {loading &&
-          <Grid container justify="center" className={classes.root}>
-            <Grid className={classes.wrapper}>
-              <img src={require("../assets/img/spinner.gif")} width={50} height={50} />
-            </Grid>
-          </Grid>
-        }
         <Grid container>
           {paperItems}
         </Grid>
       </Container>
       {saveDialog}
       {deleteDialog}
-
+      {loading &&
+          <Grid container justify="center" className={classes.root}>
+            <Grid className={classes.wrapper}>
+              <img src={require("../assets/img/spinner.gif")} width={50} height={50} alt="spinner"/>
+            </Grid>
+          </Grid>
+        }
     </React.Fragment>
   )
 }
