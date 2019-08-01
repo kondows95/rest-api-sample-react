@@ -1,6 +1,6 @@
 import React from 'react'
-//import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import {
   Box, Paper, Container, Grid, CardMedia, Card, CardActions, CardContent, Button, Dialog,
   DialogTitle, DialogContent, TextField, DialogActions, IconButton, NativeSelect
@@ -16,6 +16,10 @@ import { green } from '@material-ui/core/colors';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import Dropzone from "react-dropzone";
+import Fab from '@material-ui/core/Fab';
+import CheckIcon from '@material-ui/icons/Home';
 
 const uuidv1 = require('uuid/v1');
 
@@ -90,6 +94,35 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
   },
   btnProgress: {
+    color: "#ff9100",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
+  testImg: {
+    width: 100,
+    height: 100
+  },
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: '200px',
+  },
+  wrapper: {
+    margin: theme.spacing(1),
+    position: 'relative',
+  },
+  fabProgress: {
+    color: "#ff9100",
+    position: 'absolute',
+    top: -6,
+    left: -6,
+    zIndex: 1,
+    animationDuration: '550ms',
+  },
+  buttonProgress: {
     color: green[500],
     position: 'absolute',
     top: '50%',
@@ -111,6 +144,9 @@ const ItemList = ({
   noMoreFetch,
   user,
   changeAuthState,
+  loading,
+  closeDialog,
+  dialogBox,
   history }) => {
   const classes = useStyles()
 
@@ -123,7 +159,7 @@ const ItemList = ({
   const [spinner, setSpinner] = React.useState(false);
   const [file, setFile] = React.useState(null);
   const [fileName, setFileName] = React.useState(null);
-
+  const [fileStatus, setFileStatus] = React.useState(null);
   const timer = React.useRef();
   React.useEffect(() => {
     return () => {
@@ -131,10 +167,7 @@ const ItemList = ({
     };
   }, []);
 
-  const inputFile = React.useRef(null);
-
   const initialItem = { id: null, name: "", price: "", category_id: "" }
-
   const handleChangeValue = fieldName => event => {
     const newItem = { ...selectedItem }
     newItem[fieldName] = event.target.value
@@ -142,6 +175,7 @@ const ItemList = ({
   }
 
   const handleDelete = item => event => {
+    dialogBox(true);
     setSelectedItem(item)
     setDialogOpen(true)
     setIsDelete(true)
@@ -149,6 +183,7 @@ const ItemList = ({
   }
 
   const handleEdit = item => event => {
+    dialogBox(true);
     setSelectedItem(item)
     setDialogOpen(true)
     setIsDelete(false)
@@ -157,40 +192,44 @@ const ItemList = ({
   }
 
   const handleCloseDialog = () => {
+    dialogBox(false);
     setDialogOpen(false);
     setSpinner(false);
     setIsLogin(false);
     setSelectedImg(null);
     setFile(null);
     setFileName(null);
+    setFileStatus(null);
   }
+ 
+  const onDrop = (accepted, rejected) => {
 
-  const handleBrowseOpen = (e) => {
-    inputFile.current.click();
-  }
+    if (Object.keys(rejected).length !== 0) {
+      const message = "Please submit valid file type";
+      setFileStatus(message);
 
-  const handleChooseFile = event => {
-    event.preventDefault();
+    } else {
+      let reader = new FileReader();
+      let file = accepted[0];
+      setFileStatus(null);
 
-    let reader = new FileReader();
-    let file = event.target.files[0];
+      //create dynamic name
+      const fname = uuidv1() + ".png";
 
-    //create dynamic name
-    const fname = uuidv1() + ".png";
+      //add file name in state
+      const newItem = { ...selectedItem }
+      newItem['image'] = fname;
+      setSelectedItem(newItem);
 
-    //add file name in state
-    const newItem = { ...selectedItem }
-    newItem['image'] = fname;
-    setSelectedItem(newItem);
+      setFile(file);
+      setFileName(fname);
 
-    setFile(file);
-    setFileName(fname);
-
-    //get url img for preview
-    reader.onloadend = () => {
-      setSelectedImg(reader.result)
+      //get url img for preview
+      reader.onloadend = () => {
+        setSelectedImg(reader.result);
+      }
+      reader.readAsDataURL(file);
     }
-    reader.readAsDataURL(file);
 
   }
 
@@ -218,13 +257,6 @@ const ItemList = ({
         }
 
       }
-
-      timer.current = setTimeout(() => {
-
-        setSpinner(false);
-        handleCloseDialog();
-        //window.location.reload();
-      }, 3000);
     }
 
   }
@@ -247,16 +279,23 @@ const ItemList = ({
   const handleChangeCategory = event => {
     setCategoryId(event.target.value ? event.target.value : null)
   }
+
+
   const dialog = (selectedItem === null) ? null : (
+
     <Dialog
-      open={dialogOpen}
+      open={closeDialog}
       onClose={handleCloseDialog}
       aria-labelledby="form-dialog-title"
       fullWidth
       maxWidth="xs"
     >
       <DialogTitle id="form-dialog-title">
-        {selectedItem.id ? "Edit (ID:" + selectedItem.id + ")" : "Create"}
+        {selectedItem.id ?
+          <Box> <FormattedMessage id="Button.Edit" defualtMessage="Edit" /> (ID: {selectedItem.id} )</Box>
+          :
+          <FormattedMessage id="Button.Create" defualtMessage="Create" />
+        }
         {isLogin ? <Box color="red" >You don't have Upload Permission. <Button onClick={handleLogin} color="secondary" >sign in</Button></Box> : null}
       </DialogTitle>
       <DialogContent className={classes.dialogContent}>
@@ -302,34 +341,57 @@ const ItemList = ({
         </FormControl>
 
         <Grid>
+          <Box textAlign="center" color="red" >{fileStatus ? fileStatus : null}</Box>
           {selectedItem.id === null ?
             <Grid>
               <Box textAlign="center" p={1} my={2} className={classes.itemImgBox} >
-                {selectedImg === null ?
-                  <Box textAlign="center" pt={1}>
-                    <Box><AddPhotoIcon className={classes.defaultImg} onClick={() => handleBrowseOpen()} /></Box>
-                    <label className={classes.btnPicker}>
-                      <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
-                      Choose File
-                      </label>
-                  </Box>
-                  :
-                  <Box>
-                    <img src={selectedImg} onClick={() => handleBrowseOpen()} className={classes.itemImg} alt={selectedItem.image} />
-                    <label>
-                      <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
-                    </label>
-                  </Box>
-                }
+                <Dropzone multiple={false} accept="image/*" onDrop={(accepted, rejected) => onDrop(accepted, rejected)}>
+                  {({ getRootProps, getInputProps, isDragActive }) => {
+                    return (
+                      <Box {...getRootProps()} className={"dropzone" + isDragActive ? " dropzone--isActive" : ""}>
+                        <input {...getInputProps()} />
+                        {isDragActive ? (
+                          (selectedImg === null ?
+                            <Box mt={1}>
+                              <AddPhotoIcon className={classes.defaultImg} />
+                              <Box>Drop files here...</Box>
+                            </Box>
+                            :
+                            <img src={selectedImg} className={classes.itemImg} alt={selectedItem.image} />
+                          )
+                        ) : (
+                            (selectedImg === null ?
+                              <Box mt={1}>
+                                <AddPhotoIcon className={classes.defaultImg} />
+                                <Box>Try dropping images here, or click to select images to upload.</Box>
+                              </Box>
+                              :
+                              <img src={selectedImg} className={classes.itemImg} alt={selectedItem.image} />
+                            )
+                          )}
+                      </Box>
+                    );
+                  }}
+                </Dropzone>
               </Box>
             </Grid>
             :
             <Grid>
               <Box textAlign="center" p={1} my={2} className={classes.itemImgBox} >
-                <img src={selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} onClick={() => handleBrowseOpen()} alt={selectedItem.image} className={classes.itemImg} />
-                <label>
-                  <TextField onChange={handleChooseFile} type="file" id="file" name="file" ref={inputFile} style={{ display: 'none' }} ></TextField>
-                </label>
+                <Dropzone multiple={false} accept="image/*" onDrop={(accepted, rejected) => onDrop(accepted, rejected)}>
+                  {({ getRootProps, getInputProps, isDragActive }) => {
+                    return (
+                      <Box {...getRootProps()} className={"dropzone" + isDragActive ? " dropzone--isActive" : ""}>
+                        <input {...getInputProps()} />
+                        {isDragActive ? (
+                          <img src={selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} alt={selectedItem.image} className={classes.itemImg} />
+                        ) : (
+                            <img src={selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} alt={selectedItem.image} className={classes.itemImg} />
+                          )}
+                      </Box>
+                    );
+                  }}
+                </Dropzone>
               </Box>
             </Grid>
           }
@@ -337,26 +399,41 @@ const ItemList = ({
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCloseDialog} color="primary">
-          Cancel
+          <FormattedMessage id="Button.Cancel" defualtMessage="Cancel" />
         </Button>
-        <Box className={classes.btnWrapper} >
-          <Button onClick={handleSubmit} disabled={spinner} color="primary" variant="contained">
-            {isDelete ? 'Delete' : 'Submit'}
+        <Box  className={classes.wrapper} >
+          <Button onClick={handleSubmit} disabled={loading} color="primary" variant="contained">
+            {isDelete ?
+              <FormattedMessage id="Button.Delete" defualtMessage="Delete" />
+              :
+              <FormattedMessage id="Button.Submit" defualtMessage="Submit" />
+            }
           </Button>
-          {spinner && <CircularProgress size={24} className={classes.btnProgress} />}
+         {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+         
         </Box>
       </DialogActions>
     </Dialog>
-  );
+
+  )
+
+
   const paperItems = []
   for (const item of items) {
     paperItems.push(
       <Grid item xs={12} sm={4} lg={3} key={item.id}>
-        <Card className={classes.card}>
+        <Card
+          className="card"
+          style={{ maxWidth: 600, margin: 10, }}
+        >
           <CardMedia
-            className={classes.media}
+            width={100}
+            height={100}
             image={BASEURL_ITEM_IMAGES + item.image}
+            value={BASEURL_ITEM_IMAGES + item.image}
             title={item.name}
+            className="item-img"
+            style={{ height: 0, paddingTop: '128%', }}
           />
           <CardContent >
             <Box fontWeight={600}>
@@ -368,28 +445,29 @@ const ItemList = ({
           </CardContent>
           <CardActions className={classes.cardAction}>
             <Box ml={0} mr="auto">
-              <IconButton onClick={handleAddCartItem(item)}>
+              <IconButton className="btnAddToCart" onClick={handleAddCartItem(item)}>
                 <AddShoppingCartIcon />
               </IconButton>
             </Box>
             <Box ml="auto" mr={0}>
               <Button color="primary" onClick={handleEdit(item)}>
-                Edit
+                <FormattedMessage id="Button.Edit" defualtMessage="Edit" />
               </Button>
+
               <Button color="primary" onClick={handleDelete(item)}>
-                Delete
+                <FormattedMessage id="Button.Delete" defualtMessage="Delete" />
               </Button>
             </Box>
           </CardActions>
         </Card>
       </Grid>
     )
-  };
+  }
 
   const paperControl = (
     <Paper className={classes.paper}>
       <Box ml={0} my="auto" flexGrow={1} fontWeight={600}>
-        Items ({items.length})
+        <FormattedMessage id="Menu.Item" defualtMessage="Items" /> ({items.length})
       </Box>
       <NativeSelect
         className={classes.inputField + ' ' + classes.controlButton}
@@ -407,10 +485,11 @@ const ItemList = ({
         className={classes.controlButton}
         onClick={handleEdit(initialItem)}
       >
-        Create
+        <FormattedMessage id="Button.Create" defualtMessage="Create" />
       </Button>
     </Paper>
-  );
+  )
+
   return (
     <InfiniteScroll
       pageStart={0}
@@ -426,10 +505,19 @@ const ItemList = ({
         </Grid>
         {dialog}
       </Container>
-    </InfiniteScroll>
+      {loading &&
+        <Grid container justify="center" className={classes.root}>
+          <Grid className={classes.wrapper}>
+             <img src={require("../assets/img/spinner.gif")} width={50} height={50} />
+          </Grid>
+        </Grid>
+      }
+    </InfiniteScroll >
   )
-};
+}
+
 ItemList.propTypes = {
   changeAuthState: PropTypes.func.isRequired,
-};
+}
+
 export default withRouter(ItemList);
