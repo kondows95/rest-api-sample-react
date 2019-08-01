@@ -29,7 +29,6 @@ const SignIn = ({
   loading,
   error
 }) => {
-  
   const classes = useStyles();
   
   const [form, setForm] = React.useState({email:"", password:""})
@@ -70,7 +69,7 @@ const SignIn = ({
               type="email"
               onChange={handleChangeValue('email')}
               value={form.email}
-              label="Email Address"
+              label={loading? " " : "Email Address"}
               variant="outlined"
               required
               fullWidth
@@ -79,7 +78,7 @@ const SignIn = ({
           <Box width="100%" my={2}>
             <TextField
               id="password"
-              label="Password"
+              label={loading? "" : "Password"}
               type="password"
               autoComplete="current-password"
               onChange={handleChangeValue('password')} 
