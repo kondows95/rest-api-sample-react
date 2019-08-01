@@ -190,7 +190,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 </svg>
               </div>
               <div
-                className="MuiBox-root MuiBox-root-247"
+                className="MuiBox-root MuiBox-root-246"
               >
                 @
                 1000
@@ -219,7 +219,7 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
       >
         <div
-          className="MuiBox-root MuiBox-root-253"
+          className="MuiBox-root MuiBox-root-252"
         >
           <div
             className="MuiCardMedia-root makeStyles-descImageMobile-5"
@@ -236,26 +236,26 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8"
       >
         <div
-          className="MuiBox-root MuiBox-root-254"
+          className="MuiBox-root MuiBox-root-253"
         >
           <div
-            className="MuiBox-root MuiBox-root-255"
+            className="MuiBox-root MuiBox-root-254"
           >
             <div
-              className="MuiBox-root MuiBox-root-256"
+              className="MuiBox-root MuiBox-root-255"
             >
               b
             </div>
             <div
-              className="MuiBox-root MuiBox-root-257"
+              className="MuiBox-root MuiBox-root-256"
             >
               <div
-                className="MuiBox-root MuiBox-root-258"
+                className="MuiBox-root MuiBox-root-257"
               >
                  Ks
               </div>
               <div
-                className="MuiBox-root MuiBox-root-259"
+                className="MuiBox-root MuiBox-root-258"
               >
                 <a
                   className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
@@ -268,7 +268,7 @@ exports[`CartTable component matches the snapshot 1`] = `
               </div>
             </div>
             <div
-              className="MuiBox-root MuiBox-root-260"
+              className="MuiBox-root MuiBox-root-259"
             >
               <div
                 className="MuiInputBase-root MuiInput-root MuiInput-underline"
@@ -395,7 +395,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 </svg>
               </div>
               <div
-                className="MuiBox-root MuiBox-root-261"
+                className="MuiBox-root MuiBox-root-260"
               >
                 @
                 1000
@@ -420,7 +420,7 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
       >
         <div
-          className="MuiBox-root MuiBox-root-262"
+          className="MuiBox-root MuiBox-root-261"
         >
           Desc
         </div>
@@ -429,7 +429,7 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
       >
         <div
-          className="MuiBox-root MuiBox-root-263"
+          className="MuiBox-root MuiBox-root-262"
         >
           @ (Ks)
         </div>
@@ -438,7 +438,7 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
       >
         <div
-          className="MuiBox-root MuiBox-root-264"
+          className="MuiBox-root MuiBox-root-263"
         >
           Qty.
         </div>
@@ -447,7 +447,7 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
       >
         <div
-          className="MuiBox-root MuiBox-root-265"
+          className="MuiBox-root MuiBox-root-264"
         >
           Price (Ks)
         </div>
@@ -456,7 +456,7 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
       >
         <div
-          className="MuiBox-root MuiBox-root-266"
+          className="MuiBox-root MuiBox-root-265"
         />
       </div>
       <div
@@ -474,7 +474,7 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
       >
         <div
-          className="MuiBox-root MuiBox-root-267"
+          className="MuiBox-root MuiBox-root-266"
         >
           <div
             className="MuiCardMedia-root makeStyles-descImagePC-4"
@@ -486,7 +486,7 @@ exports[`CartTable component matches the snapshot 1`] = `
             title="a"
           />
           <div
-            className="MuiBox-root MuiBox-root-268"
+            className="MuiBox-root MuiBox-root-267"
           >
             a
           </div>
@@ -496,10 +496,10 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
       >
         <div
-          className="MuiBox-root MuiBox-root-269"
+          className="MuiBox-root MuiBox-root-268"
         >
           <div
-            className="MuiBox-root MuiBox-root-270"
+            className="MuiBox-root MuiBox-root-269"
           >
             1000
           </div>
@@ -509,13 +509,13 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
       >
         <div
-          className="MuiBox-root MuiBox-root-271"
+          className="MuiBox-root MuiBox-root-270"
         >
           <div
-            className="MuiBox-root MuiBox-root-272"
+            className="MuiBox-root MuiBox-root-271"
           >
             <div
-              className="MuiBox-root MuiBox-root-273"
+              className="MuiBox-root MuiBox-root-272"
             >
               <div
                 className="MuiInputBase-root MuiInput-root MuiInput-underline"
@@ -649,7 +649,7 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root makeStyles-gridRight-1 MuiGrid-item MuiGrid-grid-xs-2"
       >
         <div
-          className="MuiBox-root MuiBox-root-274"
+          className="MuiBox-root MuiBox-root-273"
         />
       </div>
       <div
@@ -679,7 +679,7 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
       >
         <div
-          className="MuiBox-root MuiBox-root-275"
+          className="MuiBox-root MuiBox-root-274"
         >
           <div
             className="MuiCardMedia-root makeStyles-descImagePC-4"
@@ -691,7 +691,7 @@ exports[`CartTable component matches the snapshot 1`] = `
             title="b"
           />
           <div
-            className="MuiBox-root MuiBox-root-276"
+            className="MuiBox-root MuiBox-root-275"
           >
             b
           </div>
@@ -701,10 +701,10 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
       >
         <div
-          className="MuiBox-root MuiBox-root-277"
+          className="MuiBox-root MuiBox-root-276"
         >
           <div
-            className="MuiBox-root MuiBox-root-278"
+            className="MuiBox-root MuiBox-root-277"
           >
             1000
           </div>
@@ -714,13 +714,13 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
       >
         <div
-          className="MuiBox-root MuiBox-root-279"
+          className="MuiBox-root MuiBox-root-278"
         >
           <div
-            className="MuiBox-root MuiBox-root-280"
+            className="MuiBox-root MuiBox-root-279"
           >
             <div
-              className="MuiBox-root MuiBox-root-281"
+              className="MuiBox-root MuiBox-root-280"
             >
               <div
                 className="MuiInputBase-root MuiInput-root MuiInput-underline"
@@ -854,7 +854,7 @@ exports[`CartTable component matches the snapshot 1`] = `
         className="MuiGrid-root makeStyles-gridRight-1 MuiGrid-item MuiGrid-grid-xs-2"
       >
         <div
-          className="MuiBox-root MuiBox-root-282"
+          className="MuiBox-root MuiBox-root-281"
         />
       </div>
       <div

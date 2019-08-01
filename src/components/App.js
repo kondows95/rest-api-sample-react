@@ -29,7 +29,6 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
       isFirstRef.current = false;
       fetchAuthedUser();
       fetchCartData();
-      
     }
     
     fetchAllCategories();
@@ -43,7 +42,6 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
     
   })
   
- 
   const auth = (
     <Box display="flex">
       <Header />

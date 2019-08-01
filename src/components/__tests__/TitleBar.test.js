@@ -4,6 +4,7 @@ import { act } from 'react-dom/test-utils';
 import renderer from 'react-test-renderer';
 import Parent from '../Parent';
 import TitleBar from '../TitleBar';
+import { createMount } from 'material-ui/test-utils';
 let container
 beforeEach(() => {
   container = document.createElement('div')
@@ -23,6 +24,11 @@ const changeAuthState = jest.fn(() => {
 const signOut = jest.fn(()=>{
   let auth=false;
 });
+const renderedValue = createMount()(
+  // Code of this component - <BtnIcon /> you can find above
+  <BtnIcon>{buttonIcon}</BtnIcon>
+);
+expect(renderedValue.html()).toMatchSnapshot();
 
 describe("Titalbar component", () => {
   it('matches the snapshot', () => {
