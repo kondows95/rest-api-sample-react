@@ -10,7 +10,9 @@ import CategoryList from '../containers/CategoryList'
 import ItemList from '../containers/ItemList'
 import Checkout from '../containers/Checkout'
 import ConfirmOrder from '../containers/ConfirmOrder'
-import Cart from './Cart'
+import Cart from './Cart';
+
+import Federated from './Federated';
 
 import Amplify from 'aws-amplify';
 import aws_exports from '../aws-exports';
@@ -54,6 +56,9 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
             }} />
             <Route exact path="/checkout" render={() => {
               return <Checkout />
+            }} />
+            <Route exact path="/staffs" render={() => {
+              return <Federated />
             }} />
             <Route exact path="/confirm" render={() => {
               return <ConfirmOrder />
