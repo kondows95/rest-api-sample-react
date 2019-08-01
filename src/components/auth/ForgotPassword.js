@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Box, Container, Link, Button, TextField}  from '@material-ui/core'
-import FormTitle from './FormTitle'
+import FormTitle from './FormTitle';
 
 const ForgotPassword = React.memo(({
   authState, 

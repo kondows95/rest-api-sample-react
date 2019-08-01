@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import { BrowserRouter as Router } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import Parent from '../Parent';
 import MenuList from '../MenuList';
-import { Provider } from 'react-redux'
-import store from '../../store';
+
+
 let container
 beforeEach(() => {
   container = document.createElement('div')
@@ -18,11 +18,7 @@ afterEach(() => {
 describe("MenuList component", () => {
   it('matches the snapshot', () => {
     const MenuListSnapshot = renderer.create(
-      <Provider store={store}>
-        <Router>
-          <MenuList />
-        </Router>
-      </Provider>
+      <Parent><MenuList /></Parent>
     ).toJSON();
     expect(MenuListSnapshot).toMatchSnapshot();
   });
@@ -33,11 +29,7 @@ describe("testing menu list", () => {
   it('testing menulist link', () => {
     act(() => {
       ReactDOM.render((
-        <Provider store={store}>
-          <Router>
-            <MenuList />
-          </Router>
-        </Provider>
+        <Parent><MenuList /></Parent>
       ), container);
     });
     const linkArr = document.querySelectorAll('a');

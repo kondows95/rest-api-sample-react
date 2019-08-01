@@ -46,7 +46,9 @@ exports[`SignIn component snapshot matches the snapshot 1`] = `
         <div
           className="MuiBox-root MuiBox-root-24"
         >
-          Sign In
+          <span>
+            Sign In
+          </span>
         </div>
       </div>
       <div
@@ -210,7 +212,9 @@ exports[`SignIn component snapshot matches the snapshot 1`] = `
             <span
               className="MuiButton-label"
             >
-              Sign In
+              <span>
+                Sign In
+              </span>
             </span>
           </button>
         </div>
@@ -244,7 +248,7 @@ exports[`SignIn component snapshot matches the snapshot 1`] = `
               onClick={[Function]}
               onFocus={[Function]}
             >
-              No account? Create account
+              No account? Sign Up
             </a>
           </div>
         </div>

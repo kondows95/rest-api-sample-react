@@ -5,6 +5,8 @@ import { replaceRowInRows, deleteRowFromRows } from '../util';
 const initialState = {
   alreadyFetched: false,
   rows: [],
+  loading:false,
+  closeDialog:false
 }
 
 //=============================================================================
@@ -19,54 +21,72 @@ export const categoriesReducer = (state = initialState, action) => {
       }
     case 'CATEGORY_FETCH_ROWS_DONE':
       return {
-        ...state,
+        ...__commonState(state),
         rows: action.payload
       }
     case 'CATEGORY_POST_DONE':
       return {
-        ...state,
+        ...__commonState(state),
         rows: [...state.rows, action.payload]
       }
     case 'CATEGORY_PUT_DONE':
       return {
-        ...state,
+        ...__commonState(state),
         rows: replaceRowInRows(state.rows, action.payload)
       }
     case 'CATEGORY_DELETE_DONE':
       return {
-        ...state,
+        ...__commonState(state),
         rows: deleteRowFromRows(state.rows, action.payload)
       }
     case 'CATEGORY_TEST_POST':
-      return {...state}
+      return { ...state }
+    case 'CATEGORY_BEGIN_LOADING':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'CATEGORY_SET_DIALOG':
+      return {
+        ...state,
+        closeDialog: action.payload
+      }
     default:
       return state
   }
 }
 
+const __commonState = (state) => {
+  const newState = { ...state };
+  newState.loading = false;
+  newState.closeDialog = false;
+  return newState
+}
 //=============================================================================
 //　ActionCreators
 //=============================================================================
 export const fetchAllCategories = () => {
   return async (dispatch, getState) => {
-    
+    dispatch({
+      type: 'CATEGORY_BEGIN_LOADING'
+    })
     if (!getState().auth.user) {
       return;
     }
-    
+
     const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
-   
+
     const auth = {
-        headers: {Authorization:'Bearer ' + token } 
+      headers: { Authorization: 'Bearer ' + token }
     }
-    
+
     if (getState().categories.alreadyFetched) {
-        return
+      return
     }
     dispatch({
-        type: 'CATEGORY_SET_ALREADY_FETCHED'
+      type: 'CATEGORY_SET_ALREADY_FETCHED'
     })
-    
+
     const axRes = await axios.get(URL_REST_CATEGORIES, auth)
     dispatch({
       type: 'CATEGORY_FETCH_ROWS_DONE',
@@ -77,16 +97,19 @@ export const fetchAllCategories = () => {
 
 export const deleteCategory = (id) => {
   return async (dispatch, getState) => {
+    dispatch({
+      type: 'CATEGORY_BEGIN_LOADING'
+    })
     if (!getState().auth.user) {
       return;
     }
-    
+
     const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
-   
+
     const auth = {
-        headers: {Authorization:'Bearer ' + token } 
+      headers: { Authorization: 'Bearer ' + token }
     }
-    
+
     const url = URL_REST_CATEGORIES + '/' + id
     await axios.delete(url, auth)
     dispatch({
@@ -96,24 +119,26 @@ export const deleteCategory = (id) => {
   }
 }
 
-export const saveCategory= (category) => {
+export const saveCategory = (category) => {
   return async (dispatch, getState) => {
-    
+    dispatch({
+      type: 'CATEGORY_BEGIN_LOADING'
+    })
     if (!getState().auth.user) {
       return;
     }
-    
+
     const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
-   
+
     const auth = {
-        headers: {Authorization:'Bearer ' + token } 
+      headers: { Authorization: 'Bearer ' + token }
     }
-    
+
     const id = category.id ? category.id : null
     const reqParams = {
       name: category.name
     }
-    
+
     if (id === null) {
       //INSERT
       const axRes = await axios.post(URL_REST_CATEGORIES, reqParams, auth)
@@ -134,6 +159,10 @@ export const saveCategory= (category) => {
   }
 }
 
+export const dialogBox = (value) => ({
+  type: 'CATEGORY_SET_DIALOG',
+  payload: value
+})
 
 
 

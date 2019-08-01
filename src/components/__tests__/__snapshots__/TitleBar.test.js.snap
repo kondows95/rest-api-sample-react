@@ -43,19 +43,18 @@ exports[`Titalbar component matches the snapshot 1`] = `
       </span>
     </button>
     <div
-      className="MuiBox-root MuiBox-root-66"
+      className="MuiBox-root MuiBox-root-68"
     >
-      Sample
+      <span>
+        The Art Shop
+      </span>
     </div>
     <div
-      className="MuiBox-root MuiBox-root-67"
+      className="MuiBox-root MuiBox-root-69"
     >
       <div
         className="MuiGrid-root MuiGrid-container"
       >
-        <div
-          className="MuiBox-root MuiBox-root-171"
-        />
         <a
           href="/cart"
           onClick={[Function]}
@@ -104,11 +103,45 @@ exports[`Titalbar component matches the snapshot 1`] = `
                 />
               </span>
             </span>
-            <span
-              className="MuiTouchRipple-root"
-            />
           </button>
         </a>
+        <button
+          aria-controls="long-menu"
+          aria-haspopup="true"
+          aria-label="More"
+          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+              />
+            </svg>
+          </span>
+        </button>
       </div>
     </div>
   </div>

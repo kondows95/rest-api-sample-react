@@ -12,9 +12,12 @@ import Checkout from '../containers/Checkout'
 import ConfirmOrder from '../containers/ConfirmOrder'
 import Cart from './Cart'
 
-import Amplify from 'aws-amplify'
-import aws_exports from '../aws-exports'
-import Login from '../containers/Login'
+import Amplify from 'aws-amplify';
+import aws_exports from '../aws-exports';
+import Login from '../containers/Login';
+import { IntlProvider } from "react-intl";
+import { chooseLocale } from '../locations';
+
 Amplify.configure(aws_exports);
 
 const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchAuthedUser, user, refreshToken}) => {
@@ -24,9 +27,8 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
     if (isFirstRef.current) {
       
       isFirstRef.current = false;
-      fetchAuthedUser()
-    fetchCartData()
-      
+      fetchAuthedUser();
+      fetchCartData();
     }
     
     fetchAllCategories();
@@ -40,7 +42,6 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
     
   })
   
- 
   const auth = (
     <Box display="flex">
       <Header />
@@ -64,6 +65,10 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
             <Route exact path="/login" render={() => {
               return <Login />
             }} />
+            <Route exact path="/myjwt" render={() => {
+              const token = user ? user.signInUserSession.accessToken.jwtToken : null
+              return (<div>{token}</div>);
+            }} />
         </Box>
     </Box>  
   )
@@ -71,19 +76,22 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
  const contents = user ? auth : <Login />
 
   return (
-    <MuiThemeProvider theme={theme}>
-      <Router>
-        <CssBaseline />
-        {contents}
-      </Router>
-    </MuiThemeProvider>
+    <IntlProvider locale={locale} messages={chooseLocale(locale)}>
+      <MuiThemeProvider theme={theme}>
+        <Router>
+          <CssBaseline />
+          {contents}
+        </Router>
+      </MuiThemeProvider>
+    </IntlProvider>
   )
 }
 
 App.propTypes = {
   fetchAllCategories: PropTypes.func,
   fetchAllCustomers: PropTypes.func,
-  fetchAllItems: PropTypes.func
+  fetchAllItems: PropTypes.func,
 }
+
 
 export default App

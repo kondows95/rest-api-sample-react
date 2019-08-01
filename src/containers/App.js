@@ -9,7 +9,8 @@ export default connect(
     authState: state.auth.authState,
     dialogOpened: state.auth.dialogOpened,
     user: state.auth.user,
-    loading: state.auth.loading
+    loading: state.auth.loading,
+    locale: state.locale.locale
   }),
   (dispatch) => ({
     fetchAllCategories: () => dispatch(fetchAllCategories()),
