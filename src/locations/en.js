@@ -7,6 +7,7 @@ const en = {
   'Menu.Japanese': 'Japanese',
   'Menu.English': 'English',
   'Menu.SingOut': 'Sign Out',
+  'Menu.Order':'Orders',
   'Button.Create': 'Create',
   'Button.Edit': 'Edit',
   'Button.Delete': 'Delete',

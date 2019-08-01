@@ -11,7 +11,7 @@ import ItemList from '../containers/ItemList'
 import Checkout from '../containers/Checkout'
 import ConfirmOrder from '../containers/ConfirmOrder'
 import Cart from './Cart'
-
+import OrderList from '../containers/OrderList';
 import Amplify from 'aws-amplify';
 import aws_exports from '../aws-exports';
 import Login from '../containers/Login';
@@ -29,7 +29,6 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
       isFirstRef.current = false;
       fetchAuthedUser();
       fetchCartData();
-      
     }
     
     fetchAllCategories();
@@ -43,7 +42,6 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
     
   })
   
- 
   const auth = (
     <Box display="flex">
       <Header />
@@ -66,6 +64,9 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
             }} />
             <Route exact path="/login" render={() => {
               return <Login />
+            }} />
+             <Route exact path="/orderlist" render={() => {
+              return <OrderList />
             }} />
             <Route exact path="/myjwt" render={() => {
               const token = user ? user.signInUserSession.accessToken.jwtToken : null

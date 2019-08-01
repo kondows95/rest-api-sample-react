@@ -24,6 +24,7 @@ const signOut = jest.fn(()=>{
   let auth=false;
 });
 
+
 describe("Titalbar component", () => {
   it('matches the snapshot', () => {
     const TitalbarSnapshot= renderer.create(
