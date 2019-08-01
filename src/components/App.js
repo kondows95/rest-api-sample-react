@@ -22,20 +22,10 @@ import { chooseLocale } from '../locations';
 Amplify.configure(aws_exports);
 const useStyles = makeStyles(theme => ({
   root: {
-    // display: 'flex',
-    // alignItems: 'center',
-    // paddingTop: '200px',
-    // background: 'black',
-    // height: '100%',
-    // zIndex : 10,
-    // position:'absolute'
     color: 'black',
     position: 'absolute',
      top: '0%',
      paddingTop:'200px',
-    // left: '50%',
-    //marginTop: -12,
-   // marginLeft: -100,
     background: '#fafafa',
     height: "100%"
   },
