@@ -9,6 +9,9 @@ import ConfirmSignUp from '../containers/auth/ConfirmSignUp'
 import ForgotPassword from '../containers/auth/ForgotPassword'
 import ForgotPasswordSubmit from '../containers/auth/ForgotPasswordSubmit'
 
+import Testing from './Testing';
+import Federated from './Federated';
+
 const Login = ({ handleDrawerToggle, totalQuantity, authState, changeAuthState, fetchAuthedUser, signOut, user, loading, history }) => {
 
   const isFirstRef = React.useRef(true)
@@ -53,7 +56,8 @@ const Login = ({ handleDrawerToggle, totalQuantity, authState, changeAuthState, 
   const contents = authState ? auth : <Box m={2}>{button}</Box>
   return (
     <Box flexGrow={1} textAlign="center" >
-      {contents}
+      {/* {contents} */}
+      <Testing />
     </Box>
   )
 }

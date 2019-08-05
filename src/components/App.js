@@ -18,6 +18,9 @@ import Login from '../containers/Login';
 import { IntlProvider } from "react-intl";
 import { chooseLocale } from '../locations';
 
+import Federated from './Federated';
+import Testing from './Testing';
+
 Amplify.configure(aws_exports);
 
 const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchAuthedUser, user, refreshToken}) => {
@@ -50,10 +53,10 @@ const App = ({locale,fetchAllCategories,fetchAllCustomers, fetchCartData, fetchA
       <Box flexGrow={1} display="flex" flexDirection="column">
         <ToolbarSpacer />
             <Route exact path="/" render={() => {
-              return <ItemList />
+              return <Testing />
             }} />
-            <Route exact path="/checkout" render={() => {
-              return <Checkout />
+            <Route exact path="/staffs" render={() => {
+              return <Federated />
             }} />
             <Route exact path="/confirm" render={() => {
               return <ConfirmOrder />

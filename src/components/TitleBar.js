@@ -123,7 +123,7 @@ const TitleBar = ({locale, setLocale,handleDrawerToggle, totalQuantity, changeAu
                   vertical: 'top',
                   horizontal: 'center',
                 }}
-                keepMounted={false}
+                keepMounted={true}
                 open={open}
                 onClose={handleClose}
                 PaperProps={{
