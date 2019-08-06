@@ -8,6 +8,7 @@ describe("item reducer actions", () => {
     rows: [],
     error: "",
     loading: false,
+    closeDialog:false,
     selectedCateogryId: null,
     noMoreFetch: false,
   }
@@ -17,6 +18,8 @@ describe("item reducer actions", () => {
     error: "",
     selectedCateogryId: null,
     noMoreFetch: false,
+    loading: false,
+    closeDialog:false,
   }
   it("item set already fetched", () => {
     const action = {
@@ -179,13 +182,17 @@ describe("ActionCreators Testing", () => {
         data: { data: [{ id: 2, name: "item2" }] }
       })
     );
+    const expectedAction_common=[{
+      type :'ITEM_BEGIN_LOADING'
+    }]
     const expectedAction = [{
       type: 'ITEM_DELETE_DONE',
       payload: 1
     }];
     const dispatch = jest.fn();
     await deleteItem(1)(dispatch, getState);
-    expect(dispatch.mock.calls[0]).toEqual(expectedAction);
+    expect(dispatch.mock.calls[0]).toEqual(expectedAction_common);
+    expect(dispatch.mock.calls[1]).toEqual(expectedAction);
   });
 
   it("save item", async () => {
@@ -210,7 +217,9 @@ describe("ActionCreators Testing", () => {
       () => {
          return "successfully upload image"
      });
-  
+    const expectedAction_common=[{
+      type :'ITEM_BEGIN_LOADING'
+    }]
     const expectedAction_post = [{
       type: 'ITEM_POST_DONE',
       payload: { id: 5, name: "item 5" }
@@ -222,9 +231,11 @@ describe("ActionCreators Testing", () => {
     const dispatch_put = jest.fn();
     const dispatch_post = jest.fn();
     await saveItem(item_id,"abcd",fileData)(dispatch_put, getState);
-    expect(dispatch_put.mock.calls[0]).toEqual(expectedAction_put);
+    expect(dispatch_put.mock.calls[0]).toEqual(expectedAction_common);
+    expect(dispatch_put.mock.calls[1]).toEqual(expectedAction_put);
     await saveItem(item,"abcd",fileData)(dispatch_post, getState);
-    expect(dispatch_post.mock.calls[0]).toEqual(expectedAction_post)
+    expect(dispatch_post.mock.calls[0]).toEqual(expectedAction_common);
+    expect(dispatch_post.mock.calls[1]).toEqual(expectedAction_post)
   });
 
   it("set category id ", async () => {

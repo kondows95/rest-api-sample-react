@@ -10,6 +10,7 @@ const initialState = {
   selectedCateogryId: null,
   noMoreFetch: false,
   loading: false,
+  closeDialog:false,
 }
 
 //=============================================================================
@@ -24,23 +25,22 @@ export const itemsReducer = (state = initialState, action) => {
       }
     case 'ITEM_FETCH_ROWS_DONE':
       return {
-        ...state,
-        rows: [...state.rows, ...action.payload],
-        loading: false
+        ...__commonState(state),
+        rows: [...state.rows, ...action.payload]
       }
     case 'ITEM_POST_DONE':
       return {
-        ...state,
+        ...__commonState(state),
         rows: [...state.rows, action.payload]
       }
     case 'ITEM_PUT_DONE':
       return {
-        ...state,
+        ...__commonState(state),
         rows: replaceRowInRows(state.rows, action.payload)
       }
     case 'ITEM_DELETE_DONE':
       return {
-        ...state,
+        ...__commonState(state),
         rows: deleteRowFromRows(state.rows, action.payload)
       }
     case 'ITEM_SET_CATEGORY_ID':
@@ -58,12 +58,22 @@ export const itemsReducer = (state = initialState, action) => {
         ...state,
         loading: true
       }
+      case 'ITEM_SET_DIALOG':
+          return {
+            ...state,
+            closeDialog:action.payload
+          }
     default:
       return state
   }
 }
 
-
+const __commonState = (state) =>{
+  const newState = { ...state };
+  newState.loading= false;
+  newState.closeDialog=false;
+  return newState
+}
 //=============================================================================
 //　ActionCreators
 //=============================================================================
@@ -104,10 +114,12 @@ export const fetchAllItems = () => {
 
 export const deleteItem = (id) => {
   return async (dispatch, getState) => {
+    dispatch({
+      type: 'ITEM_BEGIN_LOADING'
+    })
     if (!getState().auth.user) {
       return;
     }
-    
     const token = getState().auth.user.signInUserSession.accessToken.jwtToken;
     const auth = {
         headers: {Authorization:'Bearer ' + token } 
@@ -124,7 +136,9 @@ export const deleteItem = (id) => {
 
 export const saveItem= (item, fileName, fileData) => {
   return async (dispatch, getState) => {
-    
+    dispatch({
+      type: 'ITEM_BEGIN_LOADING'
+    })
     if (!getState().auth.user) {
       return;
     }
@@ -172,4 +186,9 @@ export const saveItem= (item, fileName, fileData) => {
 export const setCategoryId = categoryId => ({
   type: 'ITEM_SET_CATEGORY_ID',
   payload: categoryId
+})
+
+export const dialogBox = (value) =>({
+    type: 'ITEM_SET_DIALOG',
+    payload:value
 })

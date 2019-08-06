@@ -81,7 +81,7 @@ exports[`SignIn component snapshot matches the snapshot 1`] = `
           >
             <fieldset
               aria-hidden={true}
-              className="PrivateNotchedOutline-root-84 MuiOutlinedInput-notchedOutline"
+              className="PrivateNotchedOutline-root-83 MuiOutlinedInput-notchedOutline"
               style={
                 Object {
                   "paddingLeft": 8,
@@ -89,7 +89,7 @@ exports[`SignIn component snapshot matches the snapshot 1`] = `
               }
             >
               <legend
-                className="PrivateNotchedOutline-legend-85"
+                className="PrivateNotchedOutline-legend-84"
                 style={
                   Object {
                     "width": 0.01,
@@ -122,7 +122,7 @@ exports[`SignIn component snapshot matches the snapshot 1`] = `
         </div>
       </div>
       <div
-        className="MuiBox-root MuiBox-root-86"
+        className="MuiBox-root MuiBox-root-85"
       >
         <div
           className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
@@ -146,7 +146,7 @@ exports[`SignIn component snapshot matches the snapshot 1`] = `
           >
             <fieldset
               aria-hidden={true}
-              className="PrivateNotchedOutline-root-84 MuiOutlinedInput-notchedOutline"
+              className="PrivateNotchedOutline-root-83 MuiOutlinedInput-notchedOutline"
               style={
                 Object {
                   "paddingLeft": 8,
@@ -154,7 +154,7 @@ exports[`SignIn component snapshot matches the snapshot 1`] = `
               }
             >
               <legend
-                className="PrivateNotchedOutline-legend-85"
+                className="PrivateNotchedOutline-legend-84"
                 style={
                   Object {
                     "width": 0.01,
@@ -187,10 +187,10 @@ exports[`SignIn component snapshot matches the snapshot 1`] = `
         </div>
       </div>
       <div
-        className="MuiBox-root MuiBox-root-87"
+        className="MuiBox-root MuiBox-root-86"
       >
         <div
-          className="MuiBox-root MuiBox-root-88 makeStyles-btnWrapper-1"
+          className="MuiBox-root MuiBox-root-87 makeStyles-btnWrapper-1"
         >
           <button
             className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-fullWidth"
@@ -220,7 +220,7 @@ exports[`SignIn component snapshot matches the snapshot 1`] = `
         </div>
       </div>
       <div
-        className="MuiBox-root MuiBox-root-109"
+        className="MuiBox-root MuiBox-root-108"
       >
         <div
           className="MuiGrid-root MuiGrid-container"

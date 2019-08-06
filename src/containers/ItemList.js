@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ItemList from '../components/ItemList'
-import { saveItem, deleteItem, setCategoryId, fetchAllItems } from '../modules/items'
+import { saveItem, deleteItem, setCategoryId, fetchAllItems, dialogBox } from '../modules/items'
 import { addCartItem } from '../modules/cart'
 import { uploadImage } from '../modules/image'
 import { changeAuthState } from '../modules/auth'
@@ -23,6 +23,8 @@ export default connect(
     categories: state.categories.rows,
     noMoreFetch: state.items.noMoreFetch,
     user: state.auth.user,
+    loading:state.items.loading,
+    closeDialog:state.items.closeDialog
   }),
   (dispatch) => ({
     saveItem: (item, fileName, fileData) =>  dispatch(saveItem(item, fileName, fileData)),
@@ -32,5 +34,6 @@ export default connect(
     fetchAllItems: () => dispatch(fetchAllItems()),
     uploadImage: (fileName, fileData, contentType) => dispatch(uploadImage(fileName, fileData, contentType)),
     changeAuthState: (value) => dispatch(changeAuthState(value)),
+    dialogBox:(value) => dispatch(dialogBox(value))
   })
 )(ItemList)

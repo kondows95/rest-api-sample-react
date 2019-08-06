@@ -1,6 +1,5 @@
 import React from 'react'
-//import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Box, Paper, Container, Grid, CardMedia, Card, CardActions, CardContent, Button, Dialog,
   DialogTitle, DialogContent, TextField, DialogActions, IconButton, NativeSelect
@@ -18,8 +17,6 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Dropzone from "react-dropzone";
-
-//import ScrollUpButton from "react-scroll-up-button";
 
 const uuidv1 = require('uuid/v1');
 
@@ -48,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   controlButton: {
     marginRight: 0,
     marginLeft: theme.spacing(2),
-     marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1),
     height: 40
   },
   paper: {
@@ -87,14 +84,14 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
   },
   labelCategory: {
-    margin: theme.spacing(1,2)
+    margin: theme.spacing(1, 2)
   },
   btnWrapper: {
     margin: theme.spacing(1),
     position: 'relative',
   },
   btnProgress: {
-    color: green[500],
+    color: "#ff9100",
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -104,33 +101,61 @@ const useStyles = makeStyles(theme => ({
   testImg: {
     width: 100,
     height: 100
-  }
+  },
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: '200px',
+  },
+  wrapper: {
+    margin: theme.spacing(1),
+    position: 'relative',
+  },
+  fabProgress: {
+    color: "#ff9100",
+    position: 'absolute',
+    top: -6,
+    left: -6,
+    zIndex: 1,
+    animationDuration: '550ms',
+  },
+  buttonProgress: {
+    color: green[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
 }))
 
 
-const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCategoryId, fetchAllItems, noMoreFetch, uploadImage, user, changeAuthState, history }) => {
+const ItemList = ({
+  items,
+  categories,
+  saveItem,
+  deleteItem,
+  addCartItem,
+  setCategoryId,
+  fetchAllItems,
+  noMoreFetch,
+  user,
+  changeAuthState,
+  loading,
+  closeDialog,
+  dialogBox,
+  history }) => {
   const classes = useStyles()
 
-  const [dialogOpen, setDialogOpen] = React.useState(false)
   const [selectedItem, setSelectedItem] = React.useState(null)
   const [selectedImg, setSelectedImg] = React.useState(null)
   const [isDelete, setIsDelete] = React.useState(false)
   const [errors, setErrors] = React.useState({})
   const [isLogin, setIsLogin] = React.useState(false);
-  const [spinner, setSpinner] = React.useState(false);
   const [file, setFile] = React.useState(null);
   const [fileName, setFileName] = React.useState(null);
   const [fileStatus, setFileStatus] = React.useState(null);
-  
-  const timer = React.useRef();
-  React.useEffect(() => {
-      return () => {
-        clearTimeout(timer.current);
-      };
-    }, []);
-  
   const initialItem = { id: null, name: "", price: "", category_id: "" }
-
   const handleChangeValue = fieldName => event => {
     const newItem = { ...selectedItem }
     newItem[fieldName] = event.target.value
@@ -138,92 +163,82 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
   }
 
   const handleDelete = item => event => {
+    dialogBox(true);
     setSelectedItem(item)
-    setDialogOpen(true)
     setIsDelete(true)
     setErrors({})
   }
 
   const handleEdit = item => event => {
+    dialogBox(true);
     setSelectedItem(item)
-    setDialogOpen(true)
     setIsDelete(false)
     setSelectedImg(null)
     setErrors({})
   }
 
   const handleCloseDialog = () => {
-    setDialogOpen(false);
-    setSpinner(false);
+    dialogBox(false);
     setIsLogin(false);
     setSelectedImg(null);
     setFile(null);
     setFileName(null);
     setFileStatus(null);
   }
-  
+ 
   const onDrop = (accepted, rejected) => {
-    
+
     if (Object.keys(rejected).length !== 0) {
       const message = "Please submit valid file type";
       setFileStatus(message);
-      
+
     } else {
       let reader = new FileReader();
       let file = accepted[0];
       setFileStatus(null);
-      
+
       //create dynamic name
-      const fname = uuidv1()+".png";
-      
+      const fname = uuidv1() + ".png";
+
       //add file name in state
       const newItem = { ...selectedItem }
       newItem['image'] = fname;
       setSelectedItem(newItem);
-      
+
       setFile(file);
       setFileName(fname);
-      
+
       //get url img for preview
       reader.onloadend = () => {
         setSelectedImg(reader.result);
       }
       reader.readAsDataURL(file);
     }
-    
+
   }
-  
+
   const handleSubmit = event => {
     event.preventDefault();
-    
+
     const errs = validateForm(validationSetting, selectedItem)
-    
+
     if (errs) {
       setErrors(errs)
     }
     else {
       if (isDelete) {
-        setSpinner(true);
         deleteItem(selectedItem.id);
       }
       else {
-        
-        if(user === null){
+
+        if (user === null) {
           setIsLogin(true);
-        }else{
+        } else {
           setIsLogin(false);
-          setSpinner(true);
           saveItem(selectedItem, fileName, file);
         }
-        
+
       }
-      
-      timer.current = setTimeout(() => {
-        
-        setSpinner(false);
-        handleCloseDialog();
-        //window.location.reload();
-      }, 3000);
     }
 
   }
@@ -232,7 +247,7 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
     isEmpty: ['name', 'price', 'category_id'],
     isNumeric: ['price']
   }
-  
+
   const handleLogin = event => {
     event.preventDefault();
     changeAuthState('signIn')
@@ -246,22 +261,22 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
   const handleChangeCategory = event => {
     setCategoryId(event.target.value ? event.target.value : null)
   }
-  
+
 
   const dialog = (selectedItem === null) ? null : (
 
     <Dialog
-      open={dialogOpen}
+      open={closeDialog}
       onClose={handleCloseDialog}
       aria-labelledby="form-dialog-title"
       fullWidth
       maxWidth="xs"
     >
       <DialogTitle id="form-dialog-title">
-        {selectedItem.id ? 
-           <Box> <FormattedMessage id="Button.Edit" defualtMessage="Edit" /> (ID: {selectedItem.id} )</Box>
-          : 
-           <FormattedMessage id="Button.Create" defualtMessage="Create" />
+        {selectedItem.id ?
+          <Box> <FormattedMessage id="Button.Edit" defualtMessage="Edit" /> (ID: {selectedItem.id} )</Box>
+          :
+          <FormattedMessage id="Button.Create" defualtMessage="Create" />
         }
         {isLogin ? <Box color="red" >You don't have Upload Permission. <Button onClick={handleLogin} color="secondary" >sign in</Button></Box> : null}
       </DialogTitle>
@@ -288,7 +303,7 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
           margin="dense"
           className={classes.inputField}
         />
-        
+
         <FormControl>
           <InputLabel htmlFor="category" className={classes.labelCategory}>
             Category
@@ -306,58 +321,58 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
             })}
           </NativeSelect>
         </FormControl>
-        
+
         <Grid>
           <Box textAlign="center" color="red" >{fileStatus ? fileStatus : null}</Box>
           {selectedItem.id === null ?
             <Grid>
-                <Box textAlign="center"  p={1} my={2} className={classes.itemImgBox} >
-                  <Dropzone multiple={false} accept="image/*" onDrop={(accepted, rejected) => onDrop(accepted, rejected)}>
-                    {({ getRootProps, getInputProps, isDragActive }) => {
-                        return (
-                        <Box {...getRootProps()} className={"dropzone" + isDragActive ? " dropzone--isActive" : ""}>
-                            <input {...getInputProps()} />
-                            {isDragActive ? (
-                              (selectedImg === null ? 
-                                <Box mt={1}>
-                                  <AddPhotoIcon className={classes.defaultImg} />
-                                  <Box>Drop files here...</Box>
-                                </Box>
-                                :
-                                <img src={selectedImg} className={classes.itemImg} alt={selectedItem.image}  />
-                              )
-                            ) : (
-                              (selectedImg === null ? 
-                                <Box mt={1}>
-                                  <AddPhotoIcon className={classes.defaultImg} />
-                                  <Box>Try dropping images here, or click to select images to upload.</Box>
-                                </Box>
-                                :
-                                <img src={selectedImg} className={classes.itemImg} alt={selectedItem.image}  />
-                              )
-                            )}
-                        </Box>
-                        );
-                    }}
-                  </Dropzone>
-                </Box>
+              <Box textAlign="center" p={1} my={2} className={classes.itemImgBox} >
+                <Dropzone multiple={false} accept="image/*" onDrop={(accepted, rejected) => onDrop(accepted, rejected)}>
+                  {({ getRootProps, getInputProps, isDragActive }) => {
+                    return (
+                      <Box {...getRootProps()} className={"dropzone" + isDragActive ? " dropzone--isActive" : ""}>
+                        <input {...getInputProps()} />
+                        {isDragActive ? (
+                          (selectedImg === null ?
+                            <Box mt={1}>
+                              <AddPhotoIcon className={classes.defaultImg} />
+                              <Box>Drop files here...</Box>
+                            </Box>
+                            :
+                            <img src={selectedImg} className={classes.itemImg} alt={selectedItem.image} />
+                          )
+                        ) : (
+                            (selectedImg === null ?
+                              <Box mt={1}>
+                                <AddPhotoIcon className={classes.defaultImg} />
+                                <Box>Try dropping images here, or click to select images to upload.</Box>
+                              </Box>
+                              :
+                              <img src={selectedImg} className={classes.itemImg} alt={selectedItem.image} />
+                            )
+                          )}
+                      </Box>
+                    );
+                  }}
+                </Dropzone>
+              </Box>
             </Grid>
             :
             <Grid>
-              <Box textAlign="center"  p={1} my={2} className={classes.itemImgBox} >
+              <Box textAlign="center" p={1} my={2} className={classes.itemImgBox} >
                 <Dropzone multiple={false} accept="image/*" onDrop={(accepted, rejected) => onDrop(accepted, rejected)}>
-                    {({ getRootProps, getInputProps, isDragActive }) => {
-                        return (
-                        <Box {...getRootProps()} className={"dropzone" + isDragActive ? " dropzone--isActive" : ""}>
-                            <input {...getInputProps()} />
-                            {isDragActive ? (
-                              <img src={ selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} alt={selectedItem.image} className={classes.itemImg} />
-                            ) : (
-                              <img src={ selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} alt={selectedItem.image} className={classes.itemImg} />
-                            )}
-                        </Box>
-                        );
-                    }}
+                  {({ getRootProps, getInputProps, isDragActive }) => {
+                    return (
+                      <Box {...getRootProps()} className={"dropzone" + isDragActive ? " dropzone--isActive" : ""}>
+                        <input {...getInputProps()} />
+                        {isDragActive ? (
+                          <img src={selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} alt={selectedItem.image} className={classes.itemImg} />
+                        ) : (
+                            <img src={selectedImg ? selectedImg : BASEURL_ITEM_IMAGES + selectedItem.image} alt={selectedItem.image} className={classes.itemImg} />
+                          )}
+                      </Box>
+                    );
+                  }}
                 </Dropzone>
               </Box>
             </Grid>
@@ -368,15 +383,16 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
         <Button onClick={handleCloseDialog} color="primary">
           <FormattedMessage id="Button.Cancel" defualtMessage="Cancel" />
         </Button>
-        <Box className={classes.btnWrapper} >
-          <Button onClick={handleSubmit} disabled={spinner} color="primary" variant="contained">
-            { isDelete ? 
+        <Box  className={classes.wrapper} >
+          <Button onClick={handleSubmit} disabled={loading} color="primary" variant="contained">
+            {isDelete ?
               <FormattedMessage id="Button.Delete" defualtMessage="Delete" />
-            : 
+              :
               <FormattedMessage id="Button.Submit" defualtMessage="Submit" />
             }
           </Button>
-          {spinner && <CircularProgress size={24} className={classes.btnProgress} />}
+         {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+         
         </Box>
       </DialogActions>
     </Dialog>
@@ -387,10 +403,10 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
   const paperItems = []
   for (const item of items) {
     paperItems.push(
-      <Grid  item xs={12} sm={4} lg={3} key={item.id}>
-        <Card 
+      <Grid item xs={12} sm={4} lg={3} key={item.id}>
+        <Card
           className="card"
-          style={{maxWidth: 600,margin: 10,}}
+          style={{ maxWidth: 600, margin: 10, }}
         >
           <CardMedia
             width={100}
@@ -399,8 +415,8 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
             value={BASEURL_ITEM_IMAGES + item.image}
             title={item.name}
             className="item-img"
-            style={{height: 0,paddingTop: '128%',}}
-          /> 
+            style={{ height: 0, paddingTop: '128%', }}
+          />
           <CardContent >
             <Box fontWeight={600}>
               {item.name}
@@ -419,6 +435,7 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
               <Button color="primary" onClick={handleEdit(item)}>
                 <FormattedMessage id="Button.Edit" defualtMessage="Edit" />
               </Button>
+
               <Button color="primary" onClick={handleDelete(item)}>
                 <FormattedMessage id="Button.Delete" defualtMessage="Delete" />
               </Button>
@@ -435,7 +452,7 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
         <FormattedMessage id="Menu.Item" defualtMessage="Items" /> ({items.length})
       </Box>
       <NativeSelect
-        className={classes.inputField+ ' ' +classes.controlButton}
+        className={classes.inputField + ' ' + classes.controlButton}
         error={errors.category_id ? true : false}
         onChange={handleChangeCategory}
       >
@@ -463,16 +480,21 @@ const ItemList = ({ items,  categories, saveItem, deleteItem, addCartItem, setCa
       initialLoad={true}
       loader={<div className="loader" key={0}></div>}
     >
-        <Container maxWidth="lg">
-          {paperControl}
-          <Grid container>
-            {paperItems}
+      <Container maxWidth="lg">
+        {paperControl}
+        <Grid container>
+          {paperItems}
+        </Grid>
+        {dialog}
+      </Container>
+      {loading &&
+        <Grid container justify="center" className={classes.root}>
+          <Grid className={classes.wrapper}>
+             <img src={require("../assets/img/spinner.gif")} width={50} height={50} alt="spinner"/>
           </Grid>
-          {dialog}
-        </Container>
-        
-    </InfiniteScroll>
-    
+        </Grid>
+      }
+    </InfiniteScroll >
   )
 }
 

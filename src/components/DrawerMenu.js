@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
       width: drawerWidth,
       flexShrink: 0,
     },
+    zIndex: 99
   },
   drawerPaper: {
     [theme.breakpoints.up('md')]: {

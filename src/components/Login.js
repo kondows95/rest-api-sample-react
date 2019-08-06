@@ -56,8 +56,8 @@ const Login = ({ handleDrawerToggle, totalQuantity, authState, changeAuthState, 
   const contents = authState ? auth : <Box m={2}>{button}</Box>
   return (
     <Box flexGrow={1} textAlign="center" >
-      {/* {contents} */}
-      <Testing />
+      {contents}
+      {/* <Testing /> */}
     </Box>
   )
 }

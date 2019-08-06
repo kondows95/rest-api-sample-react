@@ -23,12 +23,10 @@ const ForgotPasswordSubmit = React.memo(({
     event.preventDefault()
     forgotPasswordSubmit(email, form['confirmationCode'], form['password'])
   }
-  
   const handleResendSignUp = event => {
     event.preventDefault()
     alert('TODO:Auth.resendSignUp(email)')
   }
-  
   
   const content = (
     <Container component="main" maxWidth="xs">

@@ -5,7 +5,8 @@ import { List, ListItem, ListItemText, ListItemIcon, Divider} from '@material-ui
 import {
     Photo as PhotoIcon, 
     Brush as BrushIcon, 
-    Accessibility as AccessibilityIcon
+    Accessibility as AccessibilityIcon,
+    Reorder as Reorder
 } from '@material-ui/icons'
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -44,6 +45,14 @@ const CategoryList = ({ handleDrawerClose }) => {
           <ListItem button className="icon">
             <ListItemIcon><AccessibilityIcon /></ListItemIcon>
             <ListItemText><FormattedMessage id="Menu.Staff" defualtMessage="Staff" /></ListItemText>
+          </ListItem>
+        </Link>
+      </List>
+      <List>
+        <Link to = '/orderlist' className={classes.link} onClick={handleDrawerClose}>
+          <ListItem button className="icon">
+            <ListItemIcon><Reorder /></ListItemIcon>
+            <ListItemText><FormattedMessage id="Menu.Order" defualtMessage="Orders" /></ListItemText>
           </ListItem>
         </Link>
       </List>
