@@ -1,9 +1,6 @@
 import React from 'react';
-import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
 import { withRouter } from 'react-router-dom';
-import { withFederated } from 'aws-amplify-react';
-import { Auth } from 'aws-amplify';
 
 const Federated = () => {
     
@@ -33,7 +30,6 @@ const Federated = () => {
     
   //Triggering login for google
     const googleLogin = () => {
-        let response = null;
         window.gapi.auth.signIn({
             callback: function(authResponse) {
                 googleSignInCallback(authResponse)

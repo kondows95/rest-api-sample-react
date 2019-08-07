@@ -75,6 +75,9 @@ const App = ({
           return <ItemList />
         }} />
         <Route exact path="/checkout" render={() => {
+          return <Checkout />
+        }} />
+        <Route exact path="/staffs" render={() => {
           return <PushNotification />
         }} />
         <Route exact path="/confirm" render={() => {

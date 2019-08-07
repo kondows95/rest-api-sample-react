@@ -28,7 +28,7 @@ class SignInWithGoogle extends Component {
 
     getAWSCredentials(googleUser) {
         const { id_token, expires_at } = googleUser.getAuthResponse();
-        const googleResponse = googleUser.getAuthResponse();
+        //const googleResponse = googleUser.getAuthResponse();
         const profile = googleUser.getBasicProfile();
         let user = {
             email: profile.getEmail(),
@@ -38,14 +38,18 @@ class SignInWithGoogle extends Component {
         console.log(googleUser);
         console.log(user);
         
-        const credentials = Auth.federatedSignIn(
-            'google',
-            { token: id_token, expires_at },
-            //googleResponse,
-            user
-        );
-        console.log('credentials', credentials);
+        // const credentials = Auth.federatedSignIn(
+        //     'google',
+        //     { token: id_token, expires_at },
+        //     //googleResponse,
+        //     user
+        // );
+        // console.log('credentials', credentials);
         
+    }
+
+    logIn(){
+        Auth.federatedSignIn({provider: 'Google'});
     }
 
     createScript() {
@@ -73,6 +77,7 @@ class SignInWithGoogle extends Component {
         return (
             <div>
                 <button onClick={this.signIn}>Sign in with Google</button>
+                <button onClick={this.logIn}>LogIn</button>
             </div>
         );
     }
