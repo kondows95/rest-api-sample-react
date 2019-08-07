@@ -55,7 +55,7 @@ exports[`CartTable component matches the snapshot 1`] = `
             >
               <fieldset
                 aria-hidden={true}
-                className="PrivateNotchedOutline-root-151 MuiOutlinedInput-notchedOutline"
+                className="PrivateNotchedOutline-root-150 MuiOutlinedInput-notchedOutline"
                 style={
                   Object {
                     "paddingLeft": 8,
@@ -63,7 +63,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 }
               >
                 <legend
-                  className="PrivateNotchedOutline-legend-152"
+                  className="PrivateNotchedOutline-legend-151"
                   style={
                     Object {
                       "width": 0.01,
@@ -103,7 +103,7 @@ exports[`CartTable component matches the snapshot 1`] = `
           className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
         >
           <div
-            className="MuiBox-root MuiBox-root-153"
+            className="MuiBox-root MuiBox-root-152"
           >
             Last Name
           </div>
@@ -125,7 +125,7 @@ exports[`CartTable component matches the snapshot 1`] = `
             >
               <fieldset
                 aria-hidden={true}
-                className="PrivateNotchedOutline-root-151 MuiOutlinedInput-notchedOutline"
+                className="PrivateNotchedOutline-root-150 MuiOutlinedInput-notchedOutline"
                 style={
                   Object {
                     "paddingLeft": 8,
@@ -133,7 +133,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 }
               >
                 <legend
-                  className="PrivateNotchedOutline-legend-152"
+                  className="PrivateNotchedOutline-legend-151"
                   style={
                     Object {
                       "width": 0.01,
@@ -173,7 +173,7 @@ exports[`CartTable component matches the snapshot 1`] = `
           className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
         >
           <div
-            className="MuiBox-root MuiBox-root-154"
+            className="MuiBox-root MuiBox-root-153"
           >
             Address1 *
           </div>
@@ -195,7 +195,7 @@ exports[`CartTable component matches the snapshot 1`] = `
             >
               <fieldset
                 aria-hidden={true}
-                className="PrivateNotchedOutline-root-151 MuiOutlinedInput-notchedOutline"
+                className="PrivateNotchedOutline-root-150 MuiOutlinedInput-notchedOutline"
                 style={
                   Object {
                     "paddingLeft": 8,
@@ -203,7 +203,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 }
               >
                 <legend
-                  className="PrivateNotchedOutline-legend-152"
+                  className="PrivateNotchedOutline-legend-151"
                   style={
                     Object {
                       "width": 0.01,
@@ -243,7 +243,7 @@ exports[`CartTable component matches the snapshot 1`] = `
           className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
         >
           <div
-            className="MuiBox-root MuiBox-root-155"
+            className="MuiBox-root MuiBox-root-154"
           >
             Address2
           </div>
@@ -265,7 +265,7 @@ exports[`CartTable component matches the snapshot 1`] = `
             >
               <fieldset
                 aria-hidden={true}
-                className="PrivateNotchedOutline-root-151 MuiOutlinedInput-notchedOutline"
+                className="PrivateNotchedOutline-root-150 MuiOutlinedInput-notchedOutline"
                 style={
                   Object {
                     "paddingLeft": 8,
@@ -273,7 +273,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 }
               >
                 <legend
-                  className="PrivateNotchedOutline-legend-152"
+                  className="PrivateNotchedOutline-legend-151"
                   style={
                     Object {
                       "width": 0.01,
@@ -313,7 +313,7 @@ exports[`CartTable component matches the snapshot 1`] = `
           className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
         >
           <div
-            className="MuiBox-root MuiBox-root-156"
+            className="MuiBox-root MuiBox-root-155"
           >
             Country *
           </div>
@@ -335,7 +335,7 @@ exports[`CartTable component matches the snapshot 1`] = `
             >
               <fieldset
                 aria-hidden={true}
-                className="PrivateNotchedOutline-root-151 MuiOutlinedInput-notchedOutline"
+                className="PrivateNotchedOutline-root-150 MuiOutlinedInput-notchedOutline"
                 style={
                   Object {
                     "paddingLeft": 8,
@@ -343,7 +343,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 }
               >
                 <legend
-                  className="PrivateNotchedOutline-legend-152"
+                  className="PrivateNotchedOutline-legend-151"
                   style={
                     Object {
                       "width": 0.01,
@@ -383,7 +383,7 @@ exports[`CartTable component matches the snapshot 1`] = `
           className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
         >
           <div
-            className="MuiBox-root MuiBox-root-157"
+            className="MuiBox-root MuiBox-root-156"
           >
             State
           </div>
@@ -405,7 +405,7 @@ exports[`CartTable component matches the snapshot 1`] = `
             >
               <fieldset
                 aria-hidden={true}
-                className="PrivateNotchedOutline-root-151 MuiOutlinedInput-notchedOutline"
+                className="PrivateNotchedOutline-root-150 MuiOutlinedInput-notchedOutline"
                 style={
                   Object {
                     "paddingLeft": 8,
@@ -413,7 +413,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 }
               >
                 <legend
-                  className="PrivateNotchedOutline-legend-152"
+                  className="PrivateNotchedOutline-legend-151"
                   style={
                     Object {
                       "width": 0.01,
@@ -453,7 +453,7 @@ exports[`CartTable component matches the snapshot 1`] = `
           className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
         >
           <div
-            className="MuiBox-root MuiBox-root-158"
+            className="MuiBox-root MuiBox-root-157"
           >
             City *
           </div>
@@ -475,7 +475,7 @@ exports[`CartTable component matches the snapshot 1`] = `
             >
               <fieldset
                 aria-hidden={true}
-                className="PrivateNotchedOutline-root-151 MuiOutlinedInput-notchedOutline"
+                className="PrivateNotchedOutline-root-150 MuiOutlinedInput-notchedOutline"
                 style={
                   Object {
                     "paddingLeft": 8,
@@ -483,7 +483,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 }
               >
                 <legend
-                  className="PrivateNotchedOutline-legend-152"
+                  className="PrivateNotchedOutline-legend-151"
                   style={
                     Object {
                       "width": 0.01,
@@ -518,21 +518,21 @@ exports[`CartTable component matches the snapshot 1`] = `
       </div>
     </div>
     <div
-      className="MuiBox-root MuiBox-root-159"
+      className="MuiBox-root MuiBox-root-158"
     >
       2.Order Review
     </div>
     <div
-      className="MuiBox-root MuiBox-root-160"
+      className="MuiBox-root MuiBox-root-159"
     >
       SELECT SHIPPING METHOD
     </div>
     <div
-      className="MuiBox-root MuiBox-root-161"
+      className="MuiBox-root MuiBox-root-160"
     >
       <span
         aria-disabled={false}
-        className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-167 MuiRadio-root"
+        className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-166 MuiRadio-root"
         onBlur={[Function]}
         onDragLeave={[Function]}
         onFocus={[Function]}
@@ -562,7 +562,7 @@ exports[`CartTable component matches the snapshot 1`] = `
           </svg>
           <input
             aria-label="E"
-            className="PrivateSwitchBase-input-170"
+            className="PrivateSwitchBase-input-169"
             name="radio-button-demo"
             onChange={[Function]}
             type="radio"
@@ -575,19 +575,19 @@ exports[`CartTable component matches the snapshot 1`] = `
       FedEx-3-4 business day(s)
     </div>
     <div
-      className="MuiBox-root MuiBox-root-192"
+      className="MuiBox-root MuiBox-root-191"
     >
       <div
         className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
       >
         <div
-          className="MuiBox-root MuiBox-root-224"
+          className="MuiBox-root MuiBox-root-223"
         >
           <div
             className="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-4"
           >
             <div
-              className="MuiBox-root MuiBox-root-225"
+              className="MuiBox-root MuiBox-root-224"
             >
                
             </div>
@@ -596,27 +596,27 @@ exports[`CartTable component matches the snapshot 1`] = `
             className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4"
           >
             <div
-              className="MuiBox-root MuiBox-root-226"
+              className="MuiBox-root MuiBox-root-225"
             >
                SUBTOTAL 
             </div>
             <div
-              className="MuiBox-root MuiBox-root-227"
+              className="MuiBox-root MuiBox-root-226"
             >
                SHIPPING COSTS 
             </div>
             <div
-              className="MuiBox-root MuiBox-root-228"
+              className="MuiBox-root MuiBox-root-227"
             >
                ADDITIONAL SHIPPING COSTS
             </div>
             <div
-              className="MuiBox-root MuiBox-root-229"
+              className="MuiBox-root MuiBox-root-228"
             >
               SALES TAX
             </div>
             <div
-              className="MuiBox-root MuiBox-root-230"
+              className="MuiBox-root MuiBox-root-229"
             >
               TOTAL COSTS(4 ARTICLSE)
             </div>
@@ -625,11 +625,16 @@ exports[`CartTable component matches the snapshot 1`] = `
             className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4"
           >
             <div
-              className="MuiBox-root MuiBox-root-231"
+              className="MuiBox-root MuiBox-root-230"
             >
                
               0
                MMK 
+            </div>
+            <div
+              className="MuiBox-root MuiBox-root-231"
+            >
+               0.0 MMK 
             </div>
             <div
               className="MuiBox-root MuiBox-root-232"
@@ -644,11 +649,6 @@ exports[`CartTable component matches the snapshot 1`] = `
             <div
               className="MuiBox-root MuiBox-root-234"
             >
-               0.0 MMK 
-            </div>
-            <div
-              className="MuiBox-root MuiBox-root-235"
-            >
                
               0
                MMK
@@ -658,24 +658,24 @@ exports[`CartTable component matches the snapshot 1`] = `
       </div>
     </div>
     <div
-      className="MuiBox-root MuiBox-root-240"
+      className="MuiBox-root MuiBox-root-239"
       dispaly="column"
     >
       <div
-        className="MuiBox-root MuiBox-root-241"
+        className="MuiBox-root MuiBox-root-240"
       >
         2.Payment
       </div>
       <div
-        className="MuiBox-root MuiBox-root-242"
+        className="MuiBox-root MuiBox-root-241"
       >
         SELECT PAYMENT METHOD
       </div>
       <div
-        className="MuiBox-root MuiBox-root-243"
+        className="MuiBox-root MuiBox-root-242"
       >
         <div
-          className="MuiBox-root MuiBox-root-244"
+          className="MuiBox-root MuiBox-root-243"
         >
           <div
             bgcolor="white"
@@ -687,6 +687,7 @@ exports[`CartTable component matches the snapshot 1`] = `
               <div
                 className="MuiTabs-scroller MuiTabs-fixed"
                 onScroll={[Function]}
+                role="tablist"
                 style={
                   Object {
                     "marginBottom": null,
@@ -696,11 +697,10 @@ exports[`CartTable component matches the snapshot 1`] = `
               >
                 <div
                   className="MuiTabs-flexContainer"
-                  role="tablist"
                 >
                   <button
                     aria-selected={true}
-                    className="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit makeStyles-default_tabStyle-237 Mui-selected MuiTab-labelIcon"
+                    className="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit makeStyles-default_tabStyle-236 Mui-selected MuiTab-labelIcon"
                     disabled={false}
                     onBlur={[Function]}
                     onClick={[Function]}
@@ -780,7 +780,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                   </button>
                 </div>
                 <span
-                  className="PrivateTabIndicator-root-268 PrivateTabIndicator-colorSecondary-270 MuiTabs-indicator makeStyles-indicator-239"
+                  className="PrivateTabIndicator-root-265 PrivateTabIndicator-colorSecondary-267 MuiTabs-indicator makeStyles-indicator-238"
                   style={
                     Object {
                       "left": 0,
@@ -811,7 +811,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
               >
                 <div
-                  className="MuiBox-root MuiBox-root-302"
+                  className="MuiBox-root MuiBox-root-298"
                 >
                   Name on card *
                 </div>
@@ -833,7 +833,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                   >
                     <fieldset
                       aria-hidden={true}
-                      className="PrivateNotchedOutline-root-151 MuiOutlinedInput-notchedOutline"
+                      className="PrivateNotchedOutline-root-150 MuiOutlinedInput-notchedOutline"
                       style={
                         Object {
                           "paddingLeft": 8,
@@ -841,7 +841,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                       }
                     >
                       <legend
-                        className="PrivateNotchedOutline-legend-152"
+                        className="PrivateNotchedOutline-legend-151"
                         style={
                           Object {
                             "width": 0.01,
@@ -880,7 +880,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
               >
                 <div
-                  className="MuiBox-root MuiBox-root-303"
+                  className="MuiBox-root MuiBox-root-299"
                 >
                   Credit card number *
                 </div>
@@ -902,7 +902,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                   >
                     <fieldset
                       aria-hidden={true}
-                      className="PrivateNotchedOutline-root-151 MuiOutlinedInput-notchedOutline"
+                      className="PrivateNotchedOutline-root-150 MuiOutlinedInput-notchedOutline"
                       style={
                         Object {
                           "paddingLeft": 8,
@@ -910,7 +910,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                       }
                     >
                       <legend
-                        className="PrivateNotchedOutline-legend-152"
+                        className="PrivateNotchedOutline-legend-151"
                         style={
                           Object {
                             "width": 0.01,
@@ -952,7 +952,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
               >
                 <div
-                  className="MuiBox-root MuiBox-root-304"
+                  className="MuiBox-root MuiBox-root-300"
                 >
                   Expiry Date *
                 </div>
@@ -974,7 +974,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                   >
                     <fieldset
                       aria-hidden={true}
-                      className="PrivateNotchedOutline-root-151 MuiOutlinedInput-notchedOutline"
+                      className="PrivateNotchedOutline-root-150 MuiOutlinedInput-notchedOutline"
                       style={
                         Object {
                           "paddingLeft": 8,
@@ -982,7 +982,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                       }
                     >
                       <legend
-                        className="PrivateNotchedOutline-legend-152"
+                        className="PrivateNotchedOutline-legend-151"
                         style={
                           Object {
                             "width": 0.01,
@@ -1021,7 +1021,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                 className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
               >
                 <div
-                  className="MuiBox-root MuiBox-root-305"
+                  className="MuiBox-root MuiBox-root-301"
                 >
                   Security *
                 </div>
@@ -1043,7 +1043,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                   >
                     <fieldset
                       aria-hidden={true}
-                      className="PrivateNotchedOutline-root-151 MuiOutlinedInput-notchedOutline"
+                      className="PrivateNotchedOutline-root-150 MuiOutlinedInput-notchedOutline"
                       style={
                         Object {
                           "paddingLeft": 8,
@@ -1051,7 +1051,7 @@ exports[`CartTable component matches the snapshot 1`] = `
                       }
                     >
                       <legend
-                        className="PrivateNotchedOutline-legend-152"
+                        className="PrivateNotchedOutline-legend-151"
                         style={
                           Object {
                             "width": 0.01,
@@ -1091,7 +1091,7 @@ exports[`CartTable component matches the snapshot 1`] = `
       </div>
     </div>
     <div
-      className="MuiBox-root MuiBox-root-306"
+      className="MuiBox-root MuiBox-root-302"
     >
       By clicking 'PROCEED TO PAYMENT' you agree to our Terms and Conditions and you have reviewed your and personal details.
       <button

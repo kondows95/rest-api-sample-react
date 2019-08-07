@@ -100,7 +100,6 @@ export const fetchAuthedUser = () => {
     dispatch({
       type: 'AUTH_BEGIN_LOADING'
     })
-    
     try {
       const user = await Auth.currentAuthenticatedUser()
       dispatch({

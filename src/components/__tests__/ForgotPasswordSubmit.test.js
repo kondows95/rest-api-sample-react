@@ -41,8 +41,6 @@ describe("ForgotPasswordSubmit component snapshot", () => {
     expect(ForgotPasswordSubmitSnapshot).toMatchSnapshot();
   })
 })
-
-
 describe("Testing ForgotPasswordSubmit", () => {
   it('Testing textfied and  confirm button ', () => {
     act(() => {
