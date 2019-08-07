@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ConfirmOrder from '../components/ConfirmOrder'
-import { setRequestParams, postOrder } from '../modules/order'
+import { setRequestParams, postOrder } from '../modules/order.ts'
 
 export default connect(
   (state) => ({

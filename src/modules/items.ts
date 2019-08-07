@@ -16,7 +16,7 @@ const initialState = {
 //=============================================================================
 //　Reducer
 //=============================================================================
-export const itemsReducer = (state = initialState, action) => {
+export const itemsReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case 'ITEM_SET_ALREADY_FETCHED':
       return {
@@ -68,7 +68,7 @@ export const itemsReducer = (state = initialState, action) => {
   }
 }
 
-const __commonState = (state) =>{
+const __commonState = (state: any) =>{
   const newState = { ...state };
   newState.loading= false;
   newState.closeDialog=false;
@@ -79,7 +79,7 @@ const __commonState = (state) =>{
 //=============================================================================
 
 export const fetchAllItems = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch: any, getState: any) => {
     if (!getState().auth.user) {
       return;
     }
@@ -112,8 +112,8 @@ export const fetchAllItems = () => {
   }
 }
 
-export const deleteItem = (id) => {
-  return async (dispatch, getState) => {
+export const deleteItem = (id: number) => {
+  return async (dispatch: any, getState: any) => {
     dispatch({
       type: 'ITEM_BEGIN_LOADING'
     })
@@ -134,8 +134,8 @@ export const deleteItem = (id) => {
   }
 }
 
-export const saveItem= (item, fileName, fileData) => {
-  return async (dispatch, getState) => {
+export const saveItem= (item:any, fileName: any, fileData: any) => {
+  return async (dispatch: any, getState: any) => {
     dispatch({
       type: 'ITEM_BEGIN_LOADING'
     })
@@ -183,12 +183,12 @@ export const saveItem= (item, fileName, fileData) => {
   }
 }
 
-export const setCategoryId = categoryId => ({
+export const setCategoryId = (categoryId: number) => ({
   type: 'ITEM_SET_CATEGORY_ID',
   payload: categoryId
 })
 
-export const dialogBox = (value) =>({
+export const dialogBox = (value: boolean) =>({
     type: 'ITEM_SET_DIALOG',
     payload:value
 })

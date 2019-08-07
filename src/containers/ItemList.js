@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
 import ItemList from '../components/ItemList'
-import { saveItem, deleteItem, setCategoryId, fetchAllItems, dialogBox } from '../modules/items'
-import { addCartItem } from '../modules/cart'
-import { uploadImage } from '../modules/image'
-import { changeAuthState } from '../modules/auth'
+import { saveItem, deleteItem, setCategoryId, fetchAllItems, dialogBox } from '../modules/items.ts'
+import { addCartItem } from '../modules/cart.ts'
+import { uploadImage } from '../modules/image.ts'
+import { changeAuthState } from '../modules/auth.ts'
 
 
 const _getItemsByCategory = (rows, categoryId) => {

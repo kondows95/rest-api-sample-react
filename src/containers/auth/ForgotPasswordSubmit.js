@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ForgotPasswordSubmit from '../../components/auth/ForgotPasswordSubmit'
-import { changeAuthState, forgotPasswordSubmit, resendSingUp } from '../../modules/auth'
+import { changeAuthState, forgotPasswordSubmit, resendSingUp } from '../../modules/auth.ts'
 
 export default connect(
   (state) => ({

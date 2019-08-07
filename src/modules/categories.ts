@@ -12,7 +12,7 @@ const initialState = {
 //=============================================================================
 //　Reducer
 //=============================================================================
-export const categoriesReducer = (state = initialState, action) => {
+export const categoriesReducer = (state = initialState, action:any) => {
   switch (action.type) {
     case 'CATEGORY_SET_ALREADY_FETCHED':
       return {
@@ -56,7 +56,7 @@ export const categoriesReducer = (state = initialState, action) => {
   }
 }
 
-const __commonState = (state) => {
+const __commonState = (state:any) => {
   const newState = { ...state };
   newState.loading = false;
   newState.closeDialog = false;
@@ -66,7 +66,7 @@ const __commonState = (state) => {
 //　ActionCreators
 //=============================================================================
 export const fetchAllCategories = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch: any, getState: any) => {
     dispatch({
       type: 'CATEGORY_BEGIN_LOADING'
     })
@@ -95,8 +95,8 @@ export const fetchAllCategories = () => {
   }
 }
 
-export const deleteCategory = (id) => {
-  return async (dispatch, getState) => {
+export const deleteCategory = (id:number) => {
+  return async (dispatch: any, getState: any) => {
     dispatch({
       type: 'CATEGORY_BEGIN_LOADING'
     })
@@ -119,8 +119,8 @@ export const deleteCategory = (id) => {
   }
 }
 
-export const saveCategory = (category) => {
-  return async (dispatch, getState) => {
+export const saveCategory = (category:any) => {
+  return async (dispatch: any, getState: any) => {
     dispatch({
       type: 'CATEGORY_BEGIN_LOADING'
     })
@@ -159,7 +159,7 @@ export const saveCategory = (category) => {
   }
 }
 
-export const dialogBox = (value) => ({
+export const dialogBox = (value : boolean) => ({
   type: 'CATEGORY_SET_DIALOG',
   payload: value
 })

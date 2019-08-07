@@ -8,10 +8,11 @@ const initialState = {
   loading: false,
 }
 
+
 //=============================================================================
 //　Reducers
 //=============================================================================
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action:any) => {
   switch (action.type) {
     case 'AUTH_SYSTEM_ERROR':
       return {
@@ -62,7 +63,7 @@ export const authReducer = (state = initialState, action) => {
   }
 }
 
-const _getCommonState = (state) => ({
+const _getCommonState = (state: any) => ({
   ...state, 
   error: null,
   loading: false,
@@ -73,12 +74,12 @@ const _getCommonState = (state) => ({
 //=============================================================================
 
 export const refreshToken = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch: any , getState: any) => {
     
     try {
       const cognitoUser = await Auth.currentAuthenticatedUser();
       const currentSession = await Auth.currentSession();
-      cognitoUser.refreshSession(currentSession.refreshToken, (err, session) => {
+      cognitoUser.refreshSession(currentSession.getRefreshToken, (err:any, session:any) => {
         console.log('session', err, session);
         //const { idToken, refreshToken, accessToken } = session;
         // do whatever you want to do now :)
@@ -90,13 +91,13 @@ export const refreshToken = () => {
   }
 }
 
-export const changeAuthState = (value) =>  ({
+export const changeAuthState = (value:String) =>  ({
   type: 'AUTH_CHANGE_AUTH_STATE',
   payload: value
 })
 
 export const fetchAuthedUser = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch:any, getState:any) => {
     dispatch({
       type: 'AUTH_BEGIN_LOADING'
     })
@@ -116,7 +117,7 @@ export const fetchAuthedUser = () => {
 }
 
 export const signOut = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch:any, getState:any) => {
     dispatch({
       type: 'AUTH_INIT',
     })
@@ -133,8 +134,8 @@ export const signOut = () => {
   }
 }
 
-export const signIn = (email, password) => {
-  return async (dispatch, getState) => {
+export const signIn = (email:string, password:string) => {
+  return async (dispatch:any, getState:any) => {
     dispatch({
       type: 'AUTH_BEGIN_LOADING'
     })
@@ -156,8 +157,8 @@ export const signIn = (email, password) => {
   }
 }
 
-export const signUp = (email, password) => {
-  return async (dispatch, getState) => {
+export const signUp = (email:string, password:string) => {
+  return async (dispatch:any, getState:any) => {
     dispatch({
       type: 'AUTH_BEGIN_LOADING'
     })
@@ -178,8 +179,8 @@ export const signUp = (email, password) => {
   }
 }
 
-export const confirmSignUp = (email, code) => {
-  return async (dispatch, getState) => {
+export const confirmSignUp = (email:string, code:string) => {
+  return async (dispatch:any, getState:any) => {
     dispatch({
       type: 'AUTH_BEGIN_LOADING'
     })
@@ -200,8 +201,8 @@ export const confirmSignUp = (email, code) => {
 }
 
 
-export const resendSingUp = (email) => {
-  return async (dispatch, getState) => {
+export const resendSingUp = (email:string) => {
+  return async (dispatch:any, getState:any) => {
     dispatch({
       type: 'AUTH_BEGIN_LOADING'
     })
@@ -218,8 +219,8 @@ export const resendSingUp = (email) => {
   }
 }
 
-export const forgotPassword = (email) => {
-  return async (dispatch, getState) => {
+export const forgotPassword = (email:string) => {
+  return async (dispatch:any, getState:any) => {
     dispatch({
       type: 'AUTH_BEGIN_LOADING'
     })
@@ -240,8 +241,8 @@ export const forgotPassword = (email) => {
   }
 }
 
-export const forgotPasswordSubmit = (email, code, password) => {
-  return async (dispatch, getState) => {
+export const forgotPasswordSubmit = (email:string, code:string, password:string) => {
+  return async (dispatch:any, getState:any) => {
     dispatch({
       type: 'AUTH_BEGIN_LOADING'
     })

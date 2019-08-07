@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import TitleBar from '../components/TitleBar';
-import { fetchAuthedUser, changeAuthState, signOut } from '../modules/auth';
-import { setLocale } from '../modules/locale';
+import { fetchAuthedUser, changeAuthState, signOut } from '../modules/auth.ts';
+import { setLocale } from '../modules/locale.ts';
 
 export default connect(
   (state) => ({

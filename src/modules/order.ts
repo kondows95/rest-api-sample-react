@@ -9,7 +9,7 @@ const initialState = {
 //=============================================================================
 //　Reducer
 //=============================================================================
-export const ordersReducer = (state = initialState, action) => {
+export const ordersReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case 'ORDERS_SET_REQUEST_PARAMS':
       return {
@@ -32,8 +32,8 @@ export const ordersReducer = (state = initialState, action) => {
 //=============================================================================
 //　ActionCreators
 //=============================================================================
-export const setRequestParams = addressForm => {
-  return(dispatch, getState) => {
+export const setRequestParams = (addressForm: any ) => {
+  return(dispatch: any, getState: any) => {
     const reqParams = {...addressForm}
     reqParams.total_price = getState().cart.totalPrice
     reqParams.item_id_array = []
@@ -55,7 +55,7 @@ export const setRequestParams = addressForm => {
 }
 
 export const postOrder = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch: any, getState: any) => {
     if (!getState().auth.user) {
       return;
     }

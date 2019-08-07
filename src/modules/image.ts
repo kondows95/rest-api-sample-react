@@ -9,7 +9,7 @@ const initialState = {
 //=============================================================================
 //　Reducers
 //=============================================================================
-export const imageReducer = (state = initialState, action) => {
+export const imageReducer = (state = initialState, action:any) => {
   switch (action.type) {
     case 'IMAGE_UPLOAD_SUCCESS':
       return {
@@ -25,7 +25,7 @@ export const imageReducer = (state = initialState, action) => {
   }
 }
 
-const _getCommonState = (state) => ({
+const _getCommonState = (state : any) => ({
   ...state, 
   error: null,
   loading: false,
@@ -37,7 +37,7 @@ const _getCommonState = (state) => ({
 
 export const setRequestParams = () => {
   
-  return(dispatch, getState) => {
+  return(dispatch: any, getState: any) => {
     dispatch({
       type: 'IMAGE_INIT'
     })
@@ -46,8 +46,8 @@ export const setRequestParams = () => {
 }
 
 //'image/png'
-export const uploadImage = (fileName, fileData, contentType) => {
-  return async (dispatch, getState) => {
+export const uploadImage = (fileName: any, fileData: any, contentType: any) => {
+  return async (dispatch: any, getState: any) => {
     dispatch({
       type: 'IMAGE_BEGIN_LOADING'
     })

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ConfirmSignUp from '../../components/auth/ConfirmSignUp'
-import { changeAuthState, confirmSignUp } from '../../modules/auth'
+import { changeAuthState, confirmSignUp } from '../../modules/auth.ts'
 
 export default connect(
   (state) => ({

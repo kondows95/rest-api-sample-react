@@ -9,7 +9,7 @@ const initialState = {
 //=============================================================================
 //　Reducer
 //=============================================================================
-export const ordersListReducer = (state = initialState, action) => {
+export const ordersListReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case 'ORDERLIST_LOAD_FETCH':
       return {
@@ -29,8 +29,8 @@ export const ordersListReducer = (state = initialState, action) => {
 //=============================================================================
 //　ActionCreators
 //=============================================================================
-export const orderListFetch = offset => {
-  return async (dispatch, getState) => {
+export const orderListFetch = (offset:any )=> {
+  return async (dispatch: any, getState: any) => {
     dispatch({
       type: 'ORDERLIST_BEGIN_LOADING'
     })

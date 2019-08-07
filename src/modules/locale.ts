@@ -6,7 +6,7 @@ const initialState = {
 //=============================================================================
 //　Reducer
 //=============================================================================
-export const localeReducer = (state = initialState, action) => {
+export const localeReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case 'LOCALE_SET_LANG':
       return {
@@ -22,7 +22,7 @@ export const localeReducer = (state = initialState, action) => {
 //　ActionCreators
 //=============================================================================
 
-export const setLocale = locale => ({
+export const setLocale = (locale:string) => ({
   type: 'LOCALE_SET_LANG',
   payload: locale
 })

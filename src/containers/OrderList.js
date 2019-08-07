@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import OrderList from '../components/OrderList'
-import {orderListFetch} from '../modules/orderList';
+import {orderListFetch} from '../modules/orderList.ts';
 
 export default connect(
   (state) => ({

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import App from '../components/App'
-import { fetchAllCategories } from '../modules/categories'
-import { fetchCartData } from '../modules/cart'
-import { fetchAuthedUser, refreshToken } from '../modules/auth'
+import { fetchAllCategories } from '../modules/categories.ts'
+import { fetchCartData } from '../modules/cart.ts'
+import { fetchAuthedUser, refreshToken } from '../modules/auth.ts'
 
 export default connect(
   (state) => ({

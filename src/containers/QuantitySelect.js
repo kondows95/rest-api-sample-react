@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import QuantitySelect from '../components/QuantitySelect'
-import { changeQuantity } from '../modules/cart'
+import { changeQuantity } from '../modules/cart.ts'
 
 export default connect(
   (state) => ({

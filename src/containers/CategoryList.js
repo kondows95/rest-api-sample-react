@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import CategoryList from '../components/CategoryList'
-import { saveCategory, deleteCategory, dialogBox } from '../modules/categories'
+import { saveCategory, deleteCategory, dialogBox } from '../modules/categories.ts'
 
 export default connect(
   (state) => ({

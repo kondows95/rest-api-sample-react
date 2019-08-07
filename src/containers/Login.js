@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Login from '../components/Login'
-import { fetchAuthedUser, changeAuthState, signOut } from '../modules/auth';
+import { fetchAuthedUser, changeAuthState, signOut } from '../modules/auth.ts';
 
 export default connect(
   (state) => ({

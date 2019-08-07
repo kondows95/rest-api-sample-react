@@ -11,7 +11,7 @@ const initialState = {
 //=============================================================================
 //　Reducer
 //=============================================================================
-export const cartReducer = (state = initialState, action) => {
+export const cartReducer = (state = initialState, action:any) => {
   switch (action.type) {
     case 'CART_ADD_ITEM':
       return _updateState({
@@ -39,7 +39,7 @@ export const cartReducer = (state = initialState, action) => {
   }
 }
 
-const _updateState = (state) => {
+const _updateState = (state:any) => {
   const newState = { ...state }
   let totalQuantity = 0
   let maxQuantity = 0
@@ -71,8 +71,8 @@ const _updateState = (state) => {
 //　ActionCreators
 //=============================================================================
 
-export const addCartItem = (item) => {
-  return (dispatch, getState) => {
+export const addCartItem = (item:any) => {
+  return (dispatch:any, getState:any) => {
     //Define cart item object
     const cartItem = { ...item }
     cartItem.quantity = 1
@@ -101,7 +101,7 @@ export const addCartItem = (item) => {
 }
 
 export const fetchCartData = () => {
-  return (dispatch) => {
+  return (dispatch:any) => {
     const jsonData = localStorage.getItem('cart')
     let rows = [];
     if (jsonData) {
@@ -113,8 +113,8 @@ export const fetchCartData = () => {
     })
   }
 }
-export const deleteCartItem = itemId => {
-  return (dispatch, getState) => {
+export const deleteCartItem = (itemId: number )=> {
+  return (dispatch: any, getState:any) => {
     const cartItems = [];
     const rows = [...getState().cart.rows];
     for (const row of rows) {
@@ -132,9 +132,10 @@ export const deleteCartItem = itemId => {
 
 }
 
-export const changeQuantity = (itemId, quantity) => {
-  return (dispatch, getState) => {
-    quantity= parseInt(quantity);
+export const changeQuantity = (itemId: number, quantityString : string) => {
+  return (dispatch: any, getState:any) => {
+    let quantity:number;
+    quantity= parseInt(quantityString);
     if (!quantity || quantity <= 0) {
       quantity = 0
     }
